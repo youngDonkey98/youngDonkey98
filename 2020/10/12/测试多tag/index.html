@@ -6,19 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://example.com">
-  <title>JUC:有关于线程的一些小东西 | 曾万鑫的博客</title>
+  <title>测试多tag | 曾万鑫的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="本文主要是记录一些关于线程的知识点 日后查看 本文将持续更新敲击灵魂的面试题  线程创建的方式有哪些？   继承Thread  实现Runable接口  实现Callable  线程池">
+  <meta name="description" content="一个懂一点java皮毛的弟弟">
 <meta property="og:type" content="article">
-<meta property="og:title" content="JUC:有关于线程的一些小东西">
-<meta property="og:url" content="http://example.com/2020/10/11/JUC-%E6%9C%89%E5%85%B3%E4%BA%8E%E7%BA%BF%E7%A8%8B%E7%9A%84%E4%B8%80%E4%BA%9B%E5%B0%8F%E4%B8%9C%E8%A5%BF/index.html">
+<meta property="og:title" content="测试多tag">
+<meta property="og:url" content="http://example.com/2020/10/12/%E6%B5%8B%E8%AF%95%E5%A4%9Atag/index.html">
 <meta property="og:site_name" content="曾万鑫的博客">
-<meta property="og:description" content="本文主要是记录一些关于线程的知识点 日后查看 本文将持续更新敲击灵魂的面试题  线程创建的方式有哪些？   继承Thread  实现Runable接口  实现Callable  线程池">
+<meta property="og:description" content="一个懂一点java皮毛的弟弟">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2020-10-11T15:51:47.000Z">
-<meta property="article:modified_time" content="2020-10-12T03:14:04.238Z">
+<meta property="article:published_time" content="2020-10-12T03:28:48.000Z">
+<meta property="article:modified_time" content="2020-10-12T03:29:20.717Z">
 <meta property="article:author" content="donkey_zwx">
 <meta property="article:tag" content="JUC">
+<meta property="article:tag" content="微服务">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternative" href="/atom.xml" title="曾万鑫的博客" type="application/atom+xml">
@@ -143,57 +144,27 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-JUC-有关于线程的一些小东西" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-测试多tag" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      JUC:有关于线程的一些小东西
+      测试多tag
     </h1>
   
 
         
-        <a href="/2020/10/11/JUC-%E6%9C%89%E5%85%B3%E4%BA%8E%E7%BA%BF%E7%A8%8B%E7%9A%84%E4%B8%80%E4%BA%9B%E5%B0%8F%E4%B8%9C%E8%A5%BF/" class="archive-article-date">
-  	<time datetime="2020-10-11T15:51:47.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-10-11</time>
+        <a href="/2020/10/12/%E6%B5%8B%E8%AF%95%E5%A4%9Atag/" class="archive-article-date">
+  	<time datetime="2020-10-12T03:28:48.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-10-12</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="本文主要是记录一些关于线程的知识点-日后查看-本文将持续更新"><a href="#本文主要是记录一些关于线程的知识点-日后查看-本文将持续更新" class="headerlink" title="本文主要是记录一些关于线程的知识点 日后查看 本文将持续更新"></a>本文主要是记录一些关于线程的知识点 日后查看 本文将持续更新</h3><h2 id="敲击灵魂的面试题"><a href="#敲击灵魂的面试题" class="headerlink" title="敲击灵魂的面试题"></a>敲击灵魂的面试题</h2><blockquote>
-<p> 线程创建的方式有哪些？</p>
-</blockquote>
-<ul>
-<li><p>继承Thread</p>
-</li>
-<li><p>实现Runable接口</p>
-</li>
-<li><p>实现Callable</p>
-</li>
-<li><p>线程池</p>
-</li>
-</ul>
-<a id="more"></a>
-
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 关于使用Callable 创建线程</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyThread2</span> <span class="keyword">implements</span> <span class="title">Callable</span>&lt;<span class="title">String</span>&gt; </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">call</span><span class="params">()</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;MyThread2 implements Callable &quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> *   // Thread &lt;--- Runnable &lt;--- FutureTask(Callable)</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> *   创建线程的第三种方法 实现 Callable 接口</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">TestFuTrueTask</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> ExecutionException, InterruptedException </span>&#123;</span><br><span class="line"></span><br><span class="line">        FutureTask&lt;String&gt; futureTask = <span class="keyword">new</span> FutureTask&lt;String&gt;(<span class="keyword">new</span> MyThread2());</span><br><span class="line">        <span class="keyword">new</span> Thread(futureTask,<span class="string">&quot;AA&quot;</span>).start();</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 获取到结果 调用get()</span></span><br><span class="line">        System.out.println(<span class="string">&quot;futureTask.get() = &quot;</span> + futureTask.get());</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<blockquote>
-<p>callable接口与runnable接口的区别？</p>
-</blockquote>
-<ol>
-<li>是否有返回值 （Callable 有返回值）</li>
-<li>是否抛异常 (Callable 需要抛出异常)</li>
-<li>落地方法不一样，一个是run，一个是call</li>
-</ol>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">M1</span> <span class="keyword">implements</span> <span class="title">Runnable</span></span>&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span></span>&#123;</span><br><span class="line">        </span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">M2</span> <span class="keyword">implements</span> <span class="title">Callable</span></span>&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Object <span class="title">call</span><span class="params">()</span> <span class="keyword">throws</span> Exception</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-
-<h3 id=""><a href="#" class="headerlink" title=""></a></h3><h2 id="JUC"><a href="#JUC" class="headerlink" title="JUC"></a>JUC</h2><h3 id="是什么"><a href="#是什么" class="headerlink" title="是什么"></a>是什么</h3><p>​    JUC：全称 java.util.concurrent 在并发编程中使用的工具类</p>
-
+        
       
 
       
@@ -228,6 +199,10 @@
 			 
         		<li class="article-tag-list-item">
         			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">JUC</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">微服务</a>
         		</li>
       		
 		</ul>
@@ -283,7 +258,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://example.com/2020/10/11/JUC-%E6%9C%89%E5%85%B3%E4%BA%8E%E7%BA%BF%E7%A8%8B%E7%9A%84%E4%B8%80%E4%BA%9B%E5%B0%8F%E4%B8%9C%E8%A5%BF/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=http://example.com/2020/10/12/%E6%B5%8B%E8%AF%95%E5%A4%9Atag/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -297,18 +272,9 @@
   
 <nav id="article-nav">
   
-    <a href="/2020/10/12/%E6%B5%8B%E8%AF%95%E5%A4%9Atag/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          测试多tag
-        
-      </div>
-    </a>
   
-  
-    <a href="/2020/10/11/%E5%BE%AE%E6%9C%8D%E5%8A%A1%EF%BC%9Afeign%E8%BF%9C%E7%A8%8B%E8%B0%83%E7%94%A8/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">微服务：feign远程调用</div>
+    <a href="/2020/10/11/JUC-%E6%9C%89%E5%85%B3%E4%BA%8E%E7%BA%BF%E7%A8%8B%E7%9A%84%E4%B8%80%E4%BA%9B%E5%B0%8F%E4%B8%9C%E8%A5%BF/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">JUC:有关于线程的一些小东西</div>
       <i class="icon-circle-right"></i>
     </a>
   
