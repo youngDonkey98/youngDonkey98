@@ -8,15 +8,15 @@
   <link rel="dns-prefetch" href="http://example.com">
   <title>Redis:基本知识(一) | 曾万鑫的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="本文主要记录有关Redis的知识点 用于日后个人学习使用为什么非关系型数据库 产生起源   Web1.0  数据访问量有限 用一夫当关的高性能的 单节点 服务器 可以解决大部分问题  Web2.0  用户访问量大幅度提升 同时产生了大量的用户数据 加上智能移动设备的普及所有的互联网平台面临巨大的性能挑战 （应用服务器：CPU及内存压力 数据库服务器 ：IO压力）  解决CPU及内存压力：  ses">
+  <meta name="description" content="本文主要记录有关Redis的知识点 用于日后个人学习使用为什么非关系型数据库 产生起源   Web1.0  数据访问量有限 用一夫当关的高性能的 单节点 服务器 可以解决大部分问题 Web2.0  用户访问量大幅度提升 同时产生了大量的用户数据 加上智能移动设备的普及所有的互联网平台面临巨大的性能挑战 （应用服务器：CPU及内存压力 数据库服务器 ：IO压力） 解决CPU及内存压力：   sess">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Redis:基本知识(一)">
 <meta property="og:url" content="http://example.com/2020/10/12/Redis-%E5%9F%BA%E6%9C%AC%E7%9F%A5%E8%AF%86(%E4%B8%80)/index.html">
 <meta property="og:site_name" content="曾万鑫的博客">
-<meta property="og:description" content="本文主要记录有关Redis的知识点 用于日后个人学习使用为什么非关系型数据库 产生起源   Web1.0  数据访问量有限 用一夫当关的高性能的 单节点 服务器 可以解决大部分问题  Web2.0  用户访问量大幅度提升 同时产生了大量的用户数据 加上智能移动设备的普及所有的互联网平台面临巨大的性能挑战 （应用服务器：CPU及内存压力 数据库服务器 ：IO压力）  解决CPU及内存压力：  ses">
+<meta property="og:description" content="本文主要记录有关Redis的知识点 用于日后个人学习使用为什么非关系型数据库 产生起源   Web1.0  数据访问量有限 用一夫当关的高性能的 单节点 服务器 可以解决大部分问题 Web2.0  用户访问量大幅度提升 同时产生了大量的用户数据 加上智能移动设备的普及所有的互联网平台面临巨大的性能挑战 （应用服务器：CPU及内存压力 数据库服务器 ：IO压力） 解决CPU及内存压力：   sess">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2020-10-12T08:19:40.000Z">
-<meta property="article:modified_time" content="2020-10-12T10:31:29.501Z">
+<meta property="article:modified_time" content="2020-10-12T10:34:19.226Z">
 <meta property="article:author" content="donkey_zwx">
 <meta property="article:tag" content="redis">
 <meta name="twitter:card" content="summary">
@@ -166,20 +166,21 @@
         <h3 id="本文主要记录有关Redis的知识点-用于日后个人学习使用"><a href="#本文主要记录有关Redis的知识点-用于日后个人学习使用" class="headerlink" title="本文主要记录有关Redis的知识点 用于日后个人学习使用"></a>本文主要记录有关Redis的知识点 用于日后个人学习使用</h3><h2 id="为什么"><a href="#为什么" class="headerlink" title="为什么"></a>为什么</h2><h3 id="非关系型数据库-产生起源"><a href="#非关系型数据库-产生起源" class="headerlink" title="非关系型数据库 产生起源"></a>非关系型数据库 产生起源</h3><blockquote>
 <blockquote>
 <ol>
-<li><p>Web1.0  数据访问量有限 用一夫当关的高性能的 单节点 服务器 可以解决大部分问题</p>
-</li>
-<li><p>Web2.0  用户访问量大幅度提升 同时产生了大量的用户数据 加上智能移动设备的普及所有的互联网平台面临巨大的性能挑战 （应用服务器：CPU及内存压力 数据库服务器 ：IO压力）</p>
-</li>
-<li><p>解决CPU及内存压力：</p>
+<li>Web1.0  数据访问量有限 用一夫当关的高性能的 单节点 服务器 可以解决大部分问题</li>
+<li>Web2.0  用户访问量大幅度提升 同时产生了大量的用户数据 加上智能移动设备的普及所有的互联网平台面临巨大的性能挑战 （应用服务器：CPU及内存压力 数据库服务器 ：IO压力）</li>
+<li>解决CPU及内存压力：</li>
+</ol>
 <ul>
-<li>session存哪里？</li>
-<li>方案一：存cookie （缺点：不安全  网络负担效率低）</li>
-<li>方案二：存文件服务器或者数据库 （大量IO效率问题）</li>
-<li>方案三：session复制 （session数据冗余 节点越多浪费越大）</li>
-<li>方案四：存缓存</li>
-</ul>
+<li><p>session存哪里？</p>
 </li>
-<li><p>解决IO压力：</p>
+<li><p>方案一：存cookie （缺点：不安全  网络负担效率低）</p>
+</li>
+<li><p>方案二：存文件服务器或者数据库 （大量IO效率问题）</p>
+</li>
+<li><p>方案三：session复制 （session数据冗余 节点越多浪费越大）</p>
+</li>
+<li><p>方案四：存缓存</p>
+<p>4.解决IO压力：</p>
 <ul>
 <li>打破 <strong>传统关系型</strong>数据库以 业务逻辑 为依据的 存储模式 而 针对 不同数据结构类型改为以性能为最优先的存储方式</li>
 <li>缓存数据库 ： 减少IO操作</li>
@@ -188,7 +189,7 @@
 <li>读写分离</li>
 </ul>
 </li>
-</ol>
+</ul>
 </blockquote>
 </blockquote>
   <a id="more"></a>
@@ -615,15 +616,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">redis</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">JUC</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">微服务</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">redis</a>
               </li>
              
               <li class="article-tag-list-item">
