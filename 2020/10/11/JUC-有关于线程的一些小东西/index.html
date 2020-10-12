@@ -8,15 +8,15 @@
   <link rel="dns-prefetch" href="http://example.com">
   <title>JUC:有关于线程的一些小东西 | 曾万鑫的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="本文主要是记录一些关于线程的知识点 日后查看 本文将持续更新敲击灵魂的面试题     线程创建的方式有哪些？  继承Thread  实现Runable接口  实现Callable  线程池">
+  <meta name="description" content="本文主要是记录一些关于线程的知识点 日后查看 本文将持续更新敲击灵魂的面试题 线程创建的方式有哪些？  继承Thread  实现Runable接口  实现Callable  线程池">
 <meta property="og:type" content="article">
 <meta property="og:title" content="JUC:有关于线程的一些小东西">
 <meta property="og:url" content="http://example.com/2020/10/11/JUC-%E6%9C%89%E5%85%B3%E4%BA%8E%E7%BA%BF%E7%A8%8B%E7%9A%84%E4%B8%80%E4%BA%9B%E5%B0%8F%E4%B8%9C%E8%A5%BF/index.html">
 <meta property="og:site_name" content="曾万鑫的博客">
-<meta property="og:description" content="本文主要是记录一些关于线程的知识点 日后查看 本文将持续更新敲击灵魂的面试题     线程创建的方式有哪些？  继承Thread  实现Runable接口  实现Callable  线程池">
+<meta property="og:description" content="本文主要是记录一些关于线程的知识点 日后查看 本文将持续更新敲击灵魂的面试题 线程创建的方式有哪些？  继承Thread  实现Runable接口  实现Callable  线程池">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2020-10-11T15:51:47.000Z">
-<meta property="article:modified_time" content="2020-10-12T02:53:39.714Z">
+<meta property="article:modified_time" content="2020-10-12T03:03:15.779Z">
 <meta property="article:author" content="donkey_zwx">
 <meta property="article:tag" content="JUC">
 <meta name="twitter:card" content="summary">
@@ -163,11 +163,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="本文主要是记录一些关于线程的知识点-日后查看-本文将持续更新"><a href="#本文主要是记录一些关于线程的知识点-日后查看-本文将持续更新" class="headerlink" title="本文主要是记录一些关于线程的知识点 日后查看 本文将持续更新"></a>本文主要是记录一些关于线程的知识点 日后查看 本文将持续更新</h3><h2 id="敲击灵魂的面试题"><a href="#敲击灵魂的面试题" class="headerlink" title="敲击灵魂的面试题"></a>敲击灵魂的面试题</h2><blockquote>
-<blockquote>
-</blockquote>
-</blockquote>
-<ol>
+        <h3 id="本文主要是记录一些关于线程的知识点-日后查看-本文将持续更新"><a href="#本文主要是记录一些关于线程的知识点-日后查看-本文将持续更新" class="headerlink" title="本文主要是记录一些关于线程的知识点 日后查看 本文将持续更新"></a>本文主要是记录一些关于线程的知识点 日后查看 本文将持续更新</h3><h2 id="敲击灵魂的面试题"><a href="#敲击灵魂的面试题" class="headerlink" title="敲击灵魂的面试题"></a>敲击灵魂的面试题</h2><ol>
 <li><p>线程创建的方式有哪些？</p>
 <ul>
 <li><p>继承Thread</p>
@@ -184,8 +180,6 @@
 <a id="more"></a>
 
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 关于使用Callable 创建线程</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyThread2</span> <span class="keyword">implements</span> <span class="title">Callable</span>&lt;<span class="title">String</span>&gt; </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">call</span><span class="params">()</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;MyThread2 implements Callable &quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> *   // Thread &lt;--- Runnable &lt;--- FutureTask(Callable)</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> *   创建线程的第三种方法 实现 Callable 接口</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">TestFuTrueTask</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> ExecutionException, InterruptedException </span>&#123;</span><br><span class="line"></span><br><span class="line">        FutureTask&lt;String&gt; futureTask = <span class="keyword">new</span> FutureTask&lt;String&gt;(<span class="keyword">new</span> MyThread2());</span><br><span class="line">        <span class="keyword">new</span> Thread(futureTask,<span class="string">&quot;AA&quot;</span>).start();</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 获取到结果 调用get()</span></span><br><span class="line">        System.out.println(<span class="string">&quot;futureTask.get() = &quot;</span> + futureTask.get());</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-
 
 <ol start="2">
 <li>callable接口与runnable接口的区别？<ol>
