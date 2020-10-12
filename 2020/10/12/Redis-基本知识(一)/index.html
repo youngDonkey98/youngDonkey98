@@ -16,7 +16,7 @@
 <meta property="og:description" content="本文主要记录有关Redis的知识点 用于日后个人学习使用为什么非关系型数据库 产生起源  Web1.0  数据访问量有限 用一夫当关的高性能的 单节点 服务器 可以解决大部分问题Web2.0  用户访问量大幅度提升 同时产生了大量的用户数据 加上智能移动设备的普及所有的互联网平台面临巨大的性能挑战 （应用服务器：CPU及内存压力 数据库服务器 ：IO压力）解决CPU及内存压力： session存哪">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2020-10-12T08:19:40.000Z">
-<meta property="article:modified_time" content="2020-10-12T10:45:54.051Z">
+<meta property="article:modified_time" content="2020-10-12T10:49:44.246Z">
 <meta property="article:author" content="donkey_zwx">
 <meta property="article:tag" content="redis">
 <meta name="twitter:card" content="summary">
@@ -265,14 +265,14 @@
 <p>String是Redis最基本的类型，你可以理解成与Memcached一模一样的类型，一个key对应一个value。</p>
 <p>String类型是二进制安全的。意味着Redis的string可以包含任何数据。比如jpg图片或者序列化的对象。</p>
 <p>String类型是Redis最基本的数据类型，一个Redis中字符串value最多可以是512M</p>
- <br>
-
-<p>set   &lt; key&gt;  &lt; value&gt;       添加键值对</p>
+<br>
+</blockquote>
+<p>set     &lt; key &gt;  &lt; value&gt;     添加键值对</p>
 <p>get   &lt; key&gt;                查询对应键值</p>
 <p>append  &lt; key&gt;  &lt; value&gt;     将给定的<value> 追加到原值的末尾</p>
 <p>strlen  &lt; key&gt;               获得值的长度</p>
 <p>setnx  &lt; key&gt;  &lt; value&gt;      只有在 key 不存在时    设置 key 的值</p>
- <br>
+<br>
 
 <p>incr  &lt; key&gt;</p>
 <p>将 key 中储存的数字值增1   </p>
@@ -290,19 +290,19 @@
 <p>msetnx &lt; key1&gt;  &lt; value1&gt;  &lt; key2&gt;  &lt; value2&gt;  ….. </p>
 <p>同时设置一个或多个 key-value 对，当且仅当所有给定 key 都不存在。</p>
 <p><strong>原子性，有一个失败则都失败</strong></p>
- <br>
+<br>
 
 <p>getrange  &lt; key&gt;  &lt;起始位置&gt;  &lt;结束位置&gt; </p>
 <p>获得值的范围，类似java中的substring，<strong>前包，后包</strong></p>
 <p>setrange  &lt; key&gt;   &lt;起始位置&gt;   &lt; value&gt; </p>
 <p>用 &lt; value&gt;  覆写&lt; key&gt; 所储存的字符串值，从&lt;起始位置&gt;开始(<strong>索引从0**</strong>开始**)。</p>
- <br>
+<br>
 
 <p><strong>setex  &lt; key&gt;  &lt;**过期时间**&gt;   <value></strong> </p>
 <p>设置键值的同时，设置过期时间，单位秒。</p>
 <p>getset &lt; key&gt;  &lt; value &gt;</p>
 <p>以新换旧，设置了新值同时获得旧值。</p>
-</blockquote>
+<br>
 </li>
 <li><p><strong>Redis列表(List)</strong></p>
 <blockquote>
@@ -311,21 +311,22 @@
 <p>它的底层实际是个双向链表，对两端的操作性能很高，通过索引下标的操作中间的节点性能会较差。</p>
 <br>
 
+</blockquote>
 <p>lpush/rpush  &lt; key&gt;  &lt; value1&gt;  &lt; value2&gt;  &lt; value3&gt; ….     从左边/右边插入一个或多个值。</p>
 <p>lpop/rpop  &lt; key&gt;              从左边/右边吐出一个值。值在键在，值光键亡。</p>
 <p>rpoplpush  &lt; key1&gt;  &lt; key2&gt;    从&lt; key1&gt;列表右边吐出一个值，插到&lt; key2&gt;列表左边。</p>
- <br>
+<br>
 
 <p>lrange &lt; key&gt; &lt; start&gt; &lt; stop&gt;</p>
 <p>按照索引下标获得元素(从左到右)</p>
 <p>lrange mylist 0 -1              从0开始，-1表示获取所有</p>
 <p>lindex &lt; key&gt; &lt; index&gt;          按照索引下标获得元素(从左到右)</p>
 <p>llen &lt; key&gt;                    获得列表长度 </p>
- <br>
+<br>
 
 <p>linsert &lt; key&gt;  before &lt; value&gt;  &lt; newvalue&gt;      在&lt; value&gt;的后面插入&lt; newvalue&gt; 插入值</p>
 <p>lrem &lt; key&gt; &lt; n&gt;  &lt; value&gt;                     从左边删除n个value(从左到右)</p>
-</blockquote>
+<br>
 </li>
 <li><p><strong>Redis哈希(Hash)</strong></p>
 <blockquote>
@@ -347,6 +348,7 @@
 <p>​    key：用户id  hash：【field属性标签1      value属性标签1值】</p>
 <br>
 
+</blockquote>
 <p>hset &lt; key&gt;  &lt; field&gt;  &lt; value&gt;       给<key>集合中的  <field>键赋值<value></p>
 <p>hget &lt; key1&gt;  &lt; field&gt;              从<key1>集合<field> 取出 value </p>
 <p>hmset &lt; key1&gt;  &lt; field1&gt; &lt; value1&gt; &lt; field2&gt; &lt; value2&gt;…     批量设置hash的值</p>
@@ -355,15 +357,16 @@
 <p>hvals &lt; key&gt;                       列出该hash集合的所有value</p>
 <p>hincrby &lt; key&gt; &lt; field&gt;  &lt; increment&gt;   为哈希表 key 中的域 field 的值加上增量 1   -1 </p>
 <p>hsetnx &lt; key&gt;  &lt; field&gt; &lt; value&gt;       将哈希表 key 中的域 field 的值设置为 value ，当且仅当域 field 不存在 .</p>
-</blockquote>
+<br>
 </li>
 <li><p><strong>Redis集合(Set)</strong></p>
 <blockquote>
 <p>Redis set对外提供的功能与list类似是一个列表的功能，特殊之处在于set是可以<strong>自动排重</strong>的，当你需要存储一个列表数据，又不希望出现重复数据时，set是一个很好的选择，并且set提供了判断某个成员是否在一个set集合内的重要接口，这个也是list所不能提供的。</p>
 <p>Redis的Set是string类型的无序集合。它底层其实是一个value为null的hash表，所以添加，删除，查找的<strong>复杂度都是**</strong>O(1)**。</p>
 <p>一个算法，随着数据的增加，执行时间的长短，如果是O(1)，数据增加，查找数据的时间不变</p>
- <br>
+<br>
 
+</blockquote>
 <p>sadd &lt; key&gt;  &lt; value1&gt;  &lt; value2&gt; ….. </p>
 <p>将一个或多个 member 元素加入到集合 key 中，已经存在的 member 元素将被忽略</p>
 <p>smembers &lt; key&gt;                  取出该集合的所有值。</p>
@@ -375,7 +378,7 @@
 <p>sinter &lt; key1&gt; &lt; key2&gt;              返回两个集合的交集元素。</p>
 <p>sunion &lt; key1&gt; &lt; key2&gt;             返回两个集合的并集元素。</p>
 <p>sdiff &lt; key1&gt; &lt; key2&gt;               返回两个集合的<strong>差集</strong>元素(key1中的，不包含key2中的)</p>
-</blockquote>
+<br>
 </li>
 <li><p>Redis有序集合ZSet(sorted set)</p>
 <blockquote>
@@ -385,6 +388,7 @@
 <p>访问有序集合的中间元素也是非常快的,因此你能够使用有序集合作为一个没有重复成员的智能列表。</p>
 <br>
 
+</blockquote>
 <p>zadd  &lt; key&gt; &lt; score1&gt; &lt; value1&gt;  &lt; score2&gt; &lt; value2&gt;…</p>
 <p>将一个或多个 member 元素及其 score 值加入到有序集 key 当中。</p>
 <p><strong>zrange &lt; key&gt;  &lt; start&gt; &lt; stop&gt;  [WITHSCORES]</strong>   </p>
@@ -400,7 +404,8 @@
 <p>zrem  &lt; key&gt;  &lt; value&gt;                删除该集合下，指定值的元素 </p>
 <p>zcount &lt; key&gt;  &lt; min&gt;  &lt; max&gt;          统计该集合，分数区间内的元素个数 </p>
 <p>zrank &lt; key&gt;  &lt; value&gt;                 返回该值在集合中的排名，从0开始。</p>
-</blockquote>
+<br>
+
 </li>
 </ul>
 
