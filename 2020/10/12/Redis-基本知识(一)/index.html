@@ -6,17 +6,19 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://example.com">
-  <title>Tag: 随笔 | 曾万鑫的博客</title>
+  <title>Redis:基本知识(一) | 曾万鑫的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="一个懂一点java皮毛的弟弟">
-<meta property="og:type" content="website">
-<meta property="og:title" content="曾万鑫的博客">
-<meta property="og:url" content="http://example.com/tags/%E9%9A%8F%E7%AC%94/index.html">
+  <meta name="description" content="本文主要记录有关Redis的知识点 用于日后个人学习使用为什么非关系型数据库 产生起源   Web1.0  数据访问量有限 用一夫当关的高性能的 单节点 服务器 可以解决大部分问题  Web2.0  用户访问量大幅度提升 同时产生了大量的用户数据 加上智能移动设备的普及所有的互联网平台面临巨大的性能挑战 （应用服务器：CPU及内存压力 数据库服务器 ：IO压力）  解决CPU及内存压力：  ses">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Redis:基本知识(一)">
+<meta property="og:url" content="http://example.com/2020/10/12/Redis-%E5%9F%BA%E6%9C%AC%E7%9F%A5%E8%AF%86(%E4%B8%80)/index.html">
 <meta property="og:site_name" content="曾万鑫的博客">
-<meta property="og:description" content="一个懂一点java皮毛的弟弟">
+<meta property="og:description" content="本文主要记录有关Redis的知识点 用于日后个人学习使用为什么非关系型数据库 产生起源   Web1.0  数据访问量有限 用一夫当关的高性能的 单节点 服务器 可以解决大部分问题  Web2.0  用户访问量大幅度提升 同时产生了大量的用户数据 加上智能移动设备的普及所有的互联网平台面临巨大的性能挑战 （应用服务器：CPU及内存压力 数据库服务器 ：IO压力）  解决CPU及内存压力：  ses">
 <meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2020-10-12T08:19:40.000Z">
+<meta property="article:modified_time" content="2020-10-12T10:31:29.501Z">
 <meta property="article:author" content="donkey_zwx">
-<meta property="article:tag" content="java">
+<meta property="article:tag" content="redis">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternative" href="/atom.xml" title="曾万鑫的博客" type="application/atom+xml">
@@ -141,60 +143,386 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-Redis-基本知识(一)" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2020" class="archive-year">2020</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/10/11/%E7%BB%88%E4%BA%8E%E6%9C%89%E4%BA%86%E8%87%AA%E5%B7%B1%E7%9A%84%E5%8D%9A%E5%AE%A2/" class="archive-article-date">
-  	<time datetime="2020-10-10T17:43:07.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-10-11</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/10/11/%E7%BB%88%E4%BA%8E%E6%9C%89%E4%BA%86%E8%87%AA%E5%B7%B1%E7%9A%84%E5%8D%9A%E5%AE%A2/">终于有了自己的博客</a>
+    <h1 class="article-title" itemprop="name">
+      Redis:基本知识(一)
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
+        
+        <a href="/2020/10/12/Redis-%E5%9F%BA%E6%9C%AC%E7%9F%A5%E8%AF%86(%E4%B8%80)/" class="archive-article-date">
+  	<time datetime="2020-10-12T08:19:40.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-10-12</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="本文主要记录有关Redis的知识点-用于日后个人学习使用"><a href="#本文主要记录有关Redis的知识点-用于日后个人学习使用" class="headerlink" title="本文主要记录有关Redis的知识点 用于日后个人学习使用"></a>本文主要记录有关Redis的知识点 用于日后个人学习使用</h3><h2 id="为什么"><a href="#为什么" class="headerlink" title="为什么"></a>为什么</h2><h3 id="非关系型数据库-产生起源"><a href="#非关系型数据库-产生起源" class="headerlink" title="非关系型数据库 产生起源"></a>非关系型数据库 产生起源</h3><blockquote>
+<blockquote>
+<ol>
+<li><p>Web1.0  数据访问量有限 用一夫当关的高性能的 单节点 服务器 可以解决大部分问题</p>
+</li>
+<li><p>Web2.0  用户访问量大幅度提升 同时产生了大量的用户数据 加上智能移动设备的普及所有的互联网平台面临巨大的性能挑战 （应用服务器：CPU及内存压力 数据库服务器 ：IO压力）</p>
+</li>
+<li><p>解决CPU及内存压力：</p>
+<ul>
+<li>session存哪里？</li>
+<li>方案一：存cookie （缺点：不安全  网络负担效率低）</li>
+<li>方案二：存文件服务器或者数据库 （大量IO效率问题）</li>
+<li>方案三：session复制 （session数据冗余 节点越多浪费越大）</li>
+<li>方案四：存缓存</li>
+</ul>
+</li>
+<li><p>解决IO压力：</p>
+<ul>
+<li>打破 <strong>传统关系型</strong>数据库以 业务逻辑 为依据的 存储模式 而 针对 不同数据结构类型改为以性能为最优先的存储方式</li>
+<li>缓存数据库 ： 减少IO操作</li>
+<li>水平切分</li>
+<li>垂直切分</li>
+<li>读写分离</li>
+</ul>
+</li>
+</ol>
+</blockquote>
+</blockquote>
+  <a id="more"></a>
+
+<h2 id="是什么"><a href="#是什么" class="headerlink" title="是什么"></a>是什么</h2><ul>
+<li><p>Redis 是完全开源的，遵守 BSD 协议，是一个高性能的 key-value 数据库。</p>
+</li>
+<li><p>Redis 底层由C语言编写</p>
+</li>
+<li><p>NoSQL 数据库（非关系型数据库）</p>
+</li>
+</ul>
+<blockquote>
+<blockquote>
+<ul>
+<li><p><strong>三种常见的NoSQL数据库</strong></p>
+</li>
+<li><p><strong>Memcache</strong></p>
+<ul>
+<li>很早出现的NoSql数据库 </li>
+<li>数据都在内存中 一般不持久化</li>
+<li>支持简单的K-V模式 支持类型单一</li>
+<li>一般是作为 缓存数据库 辅助持久化 的数据库</li>
+</ul>
+</li>
+<li><p><strong>Redis</strong></p>
+<ul>
+<li>几乎覆盖了Memcached的绝大部分功能</li>
+<li>数据都存在内存中 支持持久化 主要用于 备份恢复</li>
+<li>支持多种数据结构</li>
+<li>一般作为 缓存数据库 辅助持久化的数据库</li>
+</ul>
+</li>
+<li><p><strong>Mongdb</strong></p>
+<ul>
+<li>高性能 开源 模式自由 的 <strong>文档型数据库</strong></li>
+<li>数据都在内存中 如果内存不足 把不常用的数据保存到硬盘</li>
+<li>支持K-V模式 对value（尤其是json）提供了丰富的查询功能</li>
+<li>支持二进制数据 及 大型对象</li>
+<li>可以根据数据的特点<strong>替代RDBMS</strong>  成为独立的数据库 或者配合RDBMS 存储特定的数据 </li>
+</ul>
+</li>
+</ul>
+</blockquote>
+</blockquote>
+<h2 id="怎么用"><a href="#怎么用" class="headerlink" title="怎么用"></a>怎么用</h2><h3 id="应用场景"><a href="#应用场景" class="headerlink" title="应用场景"></a>应用场景</h3><ul>
+<li><strong>配合关系型数据库做高速缓存</strong><ul>
+<li>高频次 热门访问的数据 降低数据库IO</li>
+<li>分布式架构 做session共享</li>
+</ul>
+</li>
+<li><strong>多样的数据结构存储持久化数据</strong><ul>
+<li>通过List实现 按 自然数据排序 的数据    应用场景 ：最新N个数据</li>
+<li>利用Zset（有序集合）     应用场景 ： 排行榜，Top N</li>
+<li>Expire过期     应用场景：时效性的数据 如 手机验证码</li>
+<li>原子性 自增方法INCR  DECR     应用场景：计数器 秒杀</li>
+<li>利用set集合    应用场景：去除大量数据中的重复数据</li>
+<li>利用list集合    应用场景：构建队列</li>
+<li>pub/sub模式    发布订阅消息系统</li>
+</ul>
+</li>
+</ul>
+<h2 id="常用五大数据类型"><a href="#常用五大数据类型" class="headerlink" title="常用五大数据类型"></a>常用五大数据类型</h2><h3 id="String-List-Hash-Set-ZSet-sorted-set"><a href="#String-List-Hash-Set-ZSet-sorted-set" class="headerlink" title="String      List     Hash     Set     ZSet(sorted set)"></a>String      List     Hash     Set     ZSet(sorted set)</h3><ul>
+<li><p><strong>Redis键（key）</strong></p>
+<blockquote>
+<p>keys *         查看当前库所有key    (匹配：keys *)</p>
+<p>exists key      判断某个key是否存在</p>
+<p>type key       查看你的key是什么类型</p>
+<p>del key        删除指定的key数据</p>
+<p>expire key 10    10秒钟：为给定的key设置过期时间</p>
+<p>ttl key          查看还有多少秒过期，-1表示永不过期，-2表示已过期</p>
+<p>select          命令切换数据库</p>
+<p>dbsize         查看当前数据库的key的数量</p>
+<p>flushdb        清空当前库</p>
+<p>flushall        通杀全部库</p>
+</blockquote>
+</li>
+<li><p><strong>Redis字符串(String)</strong></p>
+<blockquote>
+<p>String是Redis最基本的类型，你可以理解成与Memcached一模一样的类型，一个key对应一个value。</p>
+<p>String类型是二进制安全的。意味着Redis的string可以包含任何数据。比如jpg图片或者序列化的对象。</p>
+<p>String类型是Redis最基本的数据类型，一个Redis中字符串value最多可以是512M</p>
+<p>set   <key>  <value>       添加键值对</p>
+<p>get   <key>                查询对应键值</p>
+<p>append  <key>  <value>     将给定的<value> 追加到原值的末尾</p>
+<p>strlen  <key>               获得值的长度</p>
+<p>setnx  <key>  <value>      只有在 key 不存在时    设置 key 的值</p>
+<p>incr  <key></p>
+<p>将 key 中储存的数字值增1   </p>
+<p>只能对数字值操作，如果为空，新增值为1</p>
+<p>decr  <key></p>
+<p>将 key 中储存的数字值减1  </p>
+<p>只能对数字值操作，如果为空，新增值为-1</p>
+<p>incrby / decrby  <key>  &lt;步长&gt;      将 key 中储存的数字值增减。自定义步长。</p>
+<p>mset  <key1>  <value1>  <key2>  <value2>  …..    </p>
+<p>同时设置一个或多个 key-value对  </p>
+<p>mget  <key1>   <key2>   <key3> …..              </p>
+<p>同时获取一个或多个 value  </p>
+<p>msetnx <key1>  <value1>  <key2>  <value2>  ….. </p>
+<p>同时设置一个或多个 key-value 对，当且仅当所有给定 key 都不存在。</p>
+<p><strong>原子性，有一个失败则都失败</strong></p>
+<p>getrange  <key>  &lt;起始位置&gt;  &lt;结束位置&gt; </p>
+<p>获得值的范围，类似java中的substring，<strong>前包，后包</strong></p>
+<p>setrange  <key>   &lt;起始位置&gt;   <value> </p>
+<p>用 <value>  覆写<key> 所储存的字符串值，从&lt;起始位置&gt;开始(<strong>索引从0**</strong>开始**)。</p>
+<p><strong>setex  <key>  &lt;****过期时间****&gt;   <value></strong> </p>
+<p>设置键值的同时，设置过期时间，单位秒。</p>
+<p>getset <key>  <value></p>
+<p>以新换旧，设置了新值同时获得旧值。</p>
+</blockquote>
+</li>
+<li><p><strong>Redis列表(List)</strong></p>
+<blockquote>
+<p>单键多值</p>
+<p>Redis 列表是简单的字符串列表，按照插入顺序排序。你可以添加一个元素到列表的头部（左边）或者尾部（右边）。</p>
+<p>它的底层实际是个双向链表，对两端的操作性能很高，通过索引下标的操作中间的节点性能会较差。</p>
+<p>lpush/rpush  <key>  <value1>  <value2>  <value3> ….     从左边/右边插入一个或多个值。</p>
+<p>lpop/rpop  <key>              从左边/右边吐出一个值。值在键在，值光键亡。</p>
+<p>rpoplpush  <key1>  <key2>    从<key1>列表右边吐出一个值，插到<key2>列表左边。</p>
+<p>lrange <key> <start> <stop></p>
+<p>按照索引下标获得元素(从左到右)</p>
+<p>lrange mylist 0 -1              从0开始，-1表示获取所有</p>
+<p>lindex <key> <index>          按照索引下标获得元素(从左到右)</p>
+<p>llen <key>                    获得列表长度 </p>
+<p>linsert <key>  before <value>  <newvalue>      在<value>的后面插入<newvalue> 插入值</p>
+<p>lrem <key> <n>  <value>                     从左边删除n个value(从左到右)</p>
+</blockquote>
+</li>
+<li><p><strong>Redis哈希(Hash)</strong></p>
+<blockquote>
+<p>Redis hash 是一个键值对集合。</p>
+<p>Redis hash是一个string类型的field和value的映射表，hash特别适合用于存储对象。</p>
+<p>类似Java里面的Map&lt;String,Object&gt;</p>
+<p>用户ID为查找的key，存储的value用户对象包含姓名，年龄，生日等信息，如果用普通的key/value结构来存储</p>
+<p>主要有以下2种存储方式：</p>
+<p>方式一：</p>
+<p>​    key：用户id  value：实体类里面的属性值</p>
+<p>​    缺点：每次修改用户的某个属性 都需要 序列化 修改属性 反序列化 开销较大</p>
+<p>方式二：</p>
+<p>​    key：用户id+属性1 value：属性1值</p>
+<p>​    缺点：用户id字段冗余</p>
+<p>如果用上redis的hash存储：</p>
+<p><strong>通过 key(用户ID) + field(属性标签) 就可以操作对应属性数据了，既不需要重复存储数据，也不会带来序列化和并发修改控制的问题</strong></p>
+<p>​    key：用户id  hash：【field属性标签1      value属性标签1值】</p>
+<p>hset <key>  <field>  <value>       给<key>集合中的  <field>键赋值<value></p>
+<p>hget <key1>  <field>              从<key1>集合<field> 取出 value </p>
+<p>hmset <key1>  <field1> <value1> <field2> <value2>…     批量设置hash的值</p>
+<p>hexists <key1>  <field>             查看哈希表 key 中，给定域 field 是否存在。 </p>
+<p>hkeys <key>                       列出该hash集合的所有field</p>
+<p>hvals <key>                       列出该hash集合的所有value</p>
+<p>hincrby <key> <field>  <increment>   为哈希表 key 中的域 field 的值加上增量 1   -1 </p>
+<p>hsetnx <key>  <field> <value>       将哈希表 key 中的域 field 的值设置为 value ，当且仅当域 field 不存在 .</p>
+</blockquote>
+</li>
+<li><p><strong>Redis集合(Set)</strong></p>
+<blockquote>
+<p>Redis set对外提供的功能与list类似是一个列表的功能，特殊之处在于set是可以<strong>自动排重</strong>的，当你需要存储一个列表数据，又不希望出现重复数据时，set是一个很好的选择，并且set提供了判断某个成员是否在一个set集合内的重要接口，这个也是list所不能提供的。</p>
+<p>Redis的Set是string类型的无序集合。它底层其实是一个value为null的hash表，所以添加，删除，查找的<strong>复杂度都是**</strong>O(1)**。</p>
+<p>一个算法，随着数据的增加，执行时间的长短，如果是O(1)，数据增加，查找数据的时间不变</p>
+<p>sadd <key>  <value1>  <value2> ….. </p>
+<p>将一个或多个 member 元素加入到集合 key 中，已经存在的 member 元素将被忽略</p>
+<p>smembers <key>                  取出该集合的所有值。</p>
+<p>sismember <key>  <value>         判断集合<key>是否为含有该<value>值，有1，没有0 </p>
+<p>scard <key>                      返回该集合的元素个数。</p>
+<p>srem <key> <value1> <value2> ….    删除集合中的某个元素。</p>
+<p>spop <key>                       <strong>随机从该集合中吐出一个值。</strong></p>
+<p>srandmember <key> <n>            随机从该集合中取出n个值。不会从集合中删除 。</p>
+<p>sinter <key1> <key2>              返回两个集合的交集元素。</p>
+<p>sunion <key1> <key2>             返回两个集合的并集元素。</p>
+<p>sdiff <key1> <key2>               返回两个集合的<strong>差集</strong>元素(key1中的，不包含key2中的)</p>
+</blockquote>
+</li>
+<li><p>Redis有序集合ZSet(sorted set)</p>
+<blockquote>
+<p>Redis有序集合zset与普通集合set非常相似，是一个没有重复元素的字符串集合。</p>
+<p>不同之处是有序集合的每个成员都关联了一个<strong>评分</strong>（score）,这个评分（score）被用来按照从最低分到最高分的方式排序集合中的成员。集合的成员是唯一的，但是评分可以是重复了 。</p>
+<p>因为元素是有序的, 所以你也可以很快的根据评分（score）或者次序（position）来获取一个范围的元素。</p>
+<p>访问有序集合的中间元素也是非常快的,因此你能够使用有序集合作为一个没有重复成员的智能列表。</p>
+<p>zadd  <key> <score1> <value1>  <score2> <value2>…</p>
+<p>将一个或多个 member 元素及其 score 值加入到有序集 key 当中。</p>
+<p><strong>zrange <key>  <start> <stop>  [WITHSCORES]</strong>   </p>
+<p>返回有序集 key 中，下标在<start> <stop>之间的元素</p>
+<p>带WITHSCORES，可以让分数一起和值返回到结果集。</p>
+<p>zrangebyscore key min max [withscores] [limit offset count]</p>
+<p>返回有序集 key 中，所有 score 值介于 min 和 max 之间(包括等于 min 或 max )的成员。有序集成员按 score 值递增(从小到大)次序排列。 </p>
+<p>zrevrangebyscore key max min [withscores] [limit offset count]               </p>
+<p>同上，改为从大到小排列。 </p>
+<p>zincrby <key> <increment> <value>      为元素的score加上增量</p>
+<p>zrem  <key>  <value>                删除该集合下，指定值的元素 </p>
+<p>zcount <key>  <min>  <max>          统计该集合，分数区间内的元素个数 </p>
+<p>zrank <key>  <value>                 返回该值在集合中的排名，从0开始。</p>
+</blockquote>
+</li>
+</ul>
+
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">随笔</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">redis</a>
         		</li>
       		
 		</ul>
 	</div>
 
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://example.com/2020/10/12/Redis-%E5%9F%BA%E6%9C%AC%E7%9F%A5%E8%AF%86(%E4%B8%80)/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
+  
+<nav id="article-nav">
   
   
-    </div></section>
+    <a href="/2020/10/11/JUC-%E6%9C%89%E5%85%B3%E4%BA%8E%E7%BA%BF%E7%A8%8B%E7%9A%84%E4%B8%80%E4%BA%9B%E5%B0%8F%E4%B8%9C%E8%A5%BF/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">JUC:有关于线程的一些小东西</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+  
+  
   
 
-    
+  
+
+  
+
+  
 
 
           </div>
@@ -217,9 +545,9 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
+		isPost: true,
 		isArchive: false,
-		isTag: true,
+		isTag: false,
 		isCategory: false,
 		open_in_new: false,
 		toc_hide_index: true,

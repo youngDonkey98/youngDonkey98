@@ -143,6 +143,109 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-Redis-基本知识(一)" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/10/12/Redis-%E5%9F%BA%E6%9C%AC%E7%9F%A5%E8%AF%86(%E4%B8%80)/">Redis:基本知识(一)</a>
+    </h1>
+  
+
+        
+        <a href="/2020/10/12/Redis-%E5%9F%BA%E6%9C%AC%E7%9F%A5%E8%AF%86(%E4%B8%80)/" class="archive-article-date">
+  	<time datetime="2020-10-12T08:19:40.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-10-12</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="本文主要记录有关Redis的知识点-用于日后个人学习使用"><a href="#本文主要记录有关Redis的知识点-用于日后个人学习使用" class="headerlink" title="本文主要记录有关Redis的知识点 用于日后个人学习使用"></a>本文主要记录有关Redis的知识点 用于日后个人学习使用</h3><h2 id="为什么"><a href="#为什么" class="headerlink" title="为什么"></a>为什么</h2><h3 id="非关系型数据库-产生起源"><a href="#非关系型数据库-产生起源" class="headerlink" title="非关系型数据库 产生起源"></a>非关系型数据库 产生起源</h3><blockquote>
+<blockquote>
+<ol>
+<li><p>Web1.0  数据访问量有限 用一夫当关的高性能的 单节点 服务器 可以解决大部分问题</p>
+</li>
+<li><p>Web2.0  用户访问量大幅度提升 同时产生了大量的用户数据 加上智能移动设备的普及所有的互联网平台面临巨大的性能挑战 （应用服务器：CPU及内存压力 数据库服务器 ：IO压力）</p>
+</li>
+<li><p>解决CPU及内存压力：</p>
+<ul>
+<li>session存哪里？</li>
+<li>方案一：存cookie （缺点：不安全  网络负担效率低）</li>
+<li>方案二：存文件服务器或者数据库 （大量IO效率问题）</li>
+<li>方案三：session复制 （session数据冗余 节点越多浪费越大）</li>
+<li>方案四：存缓存</li>
+</ul>
+</li>
+<li><p>解决IO压力：</p>
+<ul>
+<li>打破 <strong>传统关系型</strong>数据库以 业务逻辑 为依据的 存储模式 而 针对 不同数据结构类型改为以性能为最优先的存储方式</li>
+<li>缓存数据库 ： 减少IO操作</li>
+<li>水平切分</li>
+<li>垂直切分</li>
+<li>读写分离</li>
+</ul>
+</li>
+</ol>
+</blockquote>
+</blockquote>
+        
+          <a class="article-more-a" href="/2020/10/12/Redis-%E5%9F%BA%E6%9C%AC%E7%9F%A5%E8%AF%86(%E4%B8%80)/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">redis</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/10/12/Redis-%E5%9F%BA%E6%9C%AC%E7%9F%A5%E8%AF%86(%E4%B8%80)/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-JUC-有关于线程的一些小东西" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -483,6 +586,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
             <input type="checkbox" q-on="click:toggleTag(e)" q-attr="checked:showTags">
           </label>
           <ul class="article-tag-list" q-show="showTags">
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">redis</a>
+              </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">JUC</a>
