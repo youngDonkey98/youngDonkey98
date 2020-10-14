@@ -6,17 +6,21 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://example.com">
-  <title>Tag: 分布式锁 | 曾万鑫的博客</title>
+  <title>ES:ElasticSearch的基本使用 | 曾万鑫的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="一个懂一点java皮毛的弟弟">
-<meta property="og:type" content="website">
-<meta property="og:title" content="曾万鑫的博客">
-<meta property="og:url" content="http://example.com/tags/%E5%88%86%E5%B8%83%E5%BC%8F%E9%94%81/index.html">
+  <meta name="description" content="文本 主要是记录一些 有关于ElasticSearch的入门的使用  是什么？  ElasticSearch 简称 ES  是一个 开源的 高扩展的 分布式 全文检索 引擎 可以 近乎实时  的 存储 检索 数据 本身扩展性很好 可扩展到 上百台 服务器 处理 PB 级别的数据 ElasticSearch 可以使用 Java开发 并使用  Lucene【注:1】作为其核心 来实现 所有 检索 和">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ES:ElasticSearch的基本使用">
+<meta property="og:url" content="http://example.com/2020/10/14/ES-ElasticSearch%E7%9A%84%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8/index.html">
 <meta property="og:site_name" content="曾万鑫的博客">
-<meta property="og:description" content="一个懂一点java皮毛的弟弟">
+<meta property="og:description" content="文本 主要是记录一些 有关于ElasticSearch的入门的使用  是什么？  ElasticSearch 简称 ES  是一个 开源的 高扩展的 分布式 全文检索 引擎 可以 近乎实时  的 存储 检索 数据 本身扩展性很好 可扩展到 上百台 服务器 处理 PB 级别的数据 ElasticSearch 可以使用 Java开发 并使用  Lucene【注:1】作为其核心 来实现 所有 检索 和">
 <meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2020-10-14T08:18:40.000Z">
+<meta property="article:modified_time" content="2020-10-14T11:49:11.354Z">
 <meta property="article:author" content="donkey_zwx">
-<meta property="article:tag" content="java,后端,zwx,ZWX,开发者,donkey,youngdonkey,donkey_zwx,youngDonkey_zwx,程序猿,程序媛,程序员,开发者">
+<meta property="article:tag" content="ElasticSearch">
+<meta property="article:tag" content="搜索引擎">
+<meta property="article:tag" content="文档型数据库">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternative" href="/atom.xml" title="曾万鑫的博客" type="application/atom+xml">
@@ -141,206 +145,458 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-ES-ElasticSearch的基本使用" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      ES:ElasticSearch的基本使用
+    </h1>
+  
+
+        
+        <a href="/2020/10/14/ES-ElasticSearch%E7%9A%84%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8/" class="archive-article-date">
+  	<time datetime="2020-10-14T08:18:40.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-10-14</time>
+</a>
+        
+      </header>
     
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h4 id="文本-主要是记录一些-有关于ElasticSearch的入门的使用"><a href="#文本-主要是记录一些-有关于ElasticSearch的入门的使用" class="headerlink" title="文本 主要是记录一些 有关于ElasticSearch的入门的使用"></a>文本 主要是记录一些 有关于ElasticSearch的入门的使用</h4><br>
+
+<h3 id="是什么？"><a href="#是什么？" class="headerlink" title="是什么？"></a>是什么？</h3><blockquote>
+<ul>
+<li>ElasticSearch 简称 ES  是一个 <strong>开源的 高扩展的 分布式 全文检索 引擎</strong></li>
+<li>可以 <strong><em>近乎实时</em></strong>  的 存储 检索 数据 本身扩展性很好 可扩展到 上百台 服务器 处理 PB 级别的数据</li>
+<li>ElasticSearch 可以使用 Java开发 并使用  Lucene【注:1】作为其核心 来实现 所有 检索 和 搜索的功能 但是 它(ElasticSearch)的目的 是通过 简单的 RESTful API 来隐藏 Lucene 的 复杂性 从而 让 全文搜索变得简单</li>
+</ul>
+</blockquote>
+<h3 id="ElasticSearch-和-Solr-的-对比"><a href="#ElasticSearch-和-Solr-的-对比" class="headerlink" title="ElasticSearch 和 Solr 的 对比"></a>ElasticSearch 和 Solr 的 对比</h3><blockquote>
+<ul>
+<li>上面说到了 目前常见的 两款 搜索引擎服务软件 接下来说说两者的区别</li>
+</ul>
+<blockquote>
+<ul>
+<li>Solr <strong>利用Zookeeper</strong>  进行 分布式 管理  而 <strong>ElasticSearch 自身</strong>  带有 分布式 协调 管理功能</li>
+<li>Solr 支持 更多格式的数据  而 ElasticSearch 仅仅支持 JSON文件格式</li>
+<li>Solr 官方提供 的功能更多  而 ElasticSearch  本身更注重于核心功能  高级功能多由 第三方 插件提供</li>
+<li>Solr 在 传统的搜索 应用中表现 <strong>好于</strong> ElasticSearch  但 在处理 <strong>实时搜索</strong>  应用时 效率 <strong>明显低于</strong> ElasticSearch </li>
+</ul>
+</blockquote>
+</blockquote>
+<h3 id="应用场景"><a href="#应用场景" class="headerlink" title="应用场景"></a>应用场景</h3><blockquote>
+<ul>
+<li>为 用户 提供 按 <strong><em>关键字</em></strong>  查询 的 <strong><em>全文搜索功能</em></strong></li>
+<li>著名的ELK框架(<strong>ElasticSearch</strong>,<strong>Logstash</strong>,<strong>Kibana</strong>【注:2】)  <strong><em>实现企业海量日志的 处理 分析 的解决方案</em></strong>  是  <strong>大数据</strong>   领域的重要一份子</li>
+<li>分析用户的行为 精准营销 例如：用户鼠标在哪个商品上 图片上的停留时间 对商品的点击量 查看评论的条数</li>
+</ul>
+</blockquote>
+<br>
+
+<a id="more"></a>
+
+<h3 id="IK-分词器-【注-3】和-ElasticSearch-集成使用"><a href="#IK-分词器-【注-3】和-ElasticSearch-集成使用" class="headerlink" title="IK 分词器 【注:3】和 ElasticSearch 集成使用"></a>IK 分词器 【注:3】和 ElasticSearch 集成使用</h3><blockquote>
+<ul>
+<li>下载<ul>
+<li>GitHub仓库地址：<a target="_blank" rel="noopener" href="https://github.com/medcl/elasticsearch-analysis-ik">https://github.com/medcl/elasticsearch-analysis-ik</a></li>
+</ul>
+</li>
+<li>解压安装IK插件<ul>
+<li>直接解压到plugins\ik\目录下，注意目录结构，解压后的zip不要放在plugins目录下，删除掉</li>
+</ul>
+</li>
+<li>重新启动ElasticSearch之后，查看ElasticSearch启动日志 ，日志中加载了analysis-ik 代表安装成功</li>
+</ul>
+</blockquote>
+<br>
+
+<h3 id="ElasticSearch-的客户端使用"><a href="#ElasticSearch-的客户端使用" class="headerlink" title="ElasticSearch 的客户端使用"></a>ElasticSearch 的客户端使用</h3><blockquote>
+<p>​    安装好ElasticSearch后 在bin目录下 启动elasticsearch.bat(我这里是用的Windows版本)</p>
+<p>​    等待ElasticSearch启动完毕 发送http请求(RESTful风格) 到 9200端口</p>
+<p>​    Java代码 操作 9300端口</p>
+<p>​    启动Kibana 可视化工具 (在其安装目录bin下 双击kibana.bat)</p>
+<p>​    访问端口5061 在目录栏点击 开发工具</p>
+</blockquote>
+<br>
+
+<h3 id="具体操作"><a href="#具体操作" class="headerlink" title="具体操作"></a>具体操作</h3><blockquote>
+<h2 id="索引库操作"><a href="#索引库操作" class="headerlink" title="索引库操作"></a>索引库操作</h2><blockquote>
+<h3 id="创建索引库-index"><a href="#创建索引库-index" class="headerlink" title="创建索引库(index)"></a>创建索引库(index)</h3><p><del># 在kibana中，不用写地址和端口，/shopping是简化写法，真实请求地址是：</del></p>
+<p>发送请求 ：<a target="_blank" rel="noopener" href="http://127.0.0.1:9200/shopping">http://127.0.0.1:9200/shopping</a></p>
+<p><strong>PUT /shopping</strong></p>
+<h5 id="响应结果"><a href="#响应结果" class="headerlink" title="响应结果"></a>响应结果</h5><blockquote>
+<p><strong>#! Deprecation: the default number of shards will change from [5] to [1] in 7.0.0; if you wish to continue using the default of [5] shards, you must manage this on the create index request or with an index template</strong></p>
+<p>{</p>
+<p>  “acknowledged” : true,</p>
+<p>  “shards_acknowledged” : true,</p>
+<p>  “index” : “shopping”</p>
+<p>}</p>
+</blockquote>
+<p>“acknowledged” : true, 代表操作成功 </p>
+<p>“shards_acknowledged” : true, 代表分片操作成功 </p>
+<p>“index” : “shopping” 表示创建的索引库名称</p>
+<p>注意：创建索引库的分片数<strong>默认5片</strong>，在7.0.0之后的ElasticSearch版本中，默认1片；</p>
+<blockquote>
+<p><strong>重复添加：报错，已经存在</strong></p>
+</blockquote>
+<br>
+
+<h3 id="查看所有索引（index）"><a href="#查看所有索引（index）" class="headerlink" title="查看所有索引（index）"></a>查看所有索引（index）</h3><p>发送请求：<strong>GET /_cat/indices?v</strong>  </p>
+<p><del>表头的含义（查看帮助信息：GET/_cat/indices?help）</del></p>
+<blockquote>
+<ul>
+<li>health : 当前服务器健康状态（green集群完整  yellow单点正常 集群不完整  red单点不正常）</li>
+<li>status : 索引打开 关闭状态</li>
+<li>index ：索引名</li>
+<li>uuid : 索引统一编号</li>
+<li>pri : 主分片数量</li>
+<li>rep : 副分片数量</li>
+<li>docs.count : 可用文档数量</li>
+<li>docs.deleted : 文档删除状态 (逻辑删除  段合并时被清除)</li>
+<li>store.size : 主分片 和 副分片 整体 占 空间大小</li>
+<li>pri.store.size : 主分片 占 空间大小</li>
+</ul>
+</blockquote>
+<h3 id="查看某个索引（index）"><a href="#查看某个索引（index）" class="headerlink" title="查看某个索引（index）"></a>查看某个索引（index）</h3><p>发送请求 ：<strong>GET /shopping</strong></p>
+<p>响应结果</p>
+<blockquote>
+<p>{<br>  “shopping” : {<br>    “aliases” : { },<br>    “mappings” : { },<br>    “settings” : {<br>      “index” : {<br>        “creation_date” :<br>“1586587411462”,<br>        “number_of_shards” :<br>“5”,<br>        “number_of_replicas” :<br>“1”,<br>        “uuid” :<br>“VCl1hHsJQDe2p2dn46o0NA”,<br>        “version” : {<br>          “created” :<br>“6080199”<br>        },<br>        “provided_name” :<br>“shopping”<br>      }<br>    }<br>  }<br>}</p>
+<h5 id="内容解释："><a href="#内容解释：" class="headerlink" title="内容解释："></a>内容解释：</h5><p>{</p>
+<p>  “shopping【索引库名】” : {</p>
+<p>​    “aliases【别名】” : { },</p>
+<p>​    “mappings【映射】” : { },</p>
+<p>​    “settings”【索引库设置】 : {</p>
+<p>​      “index【索引】” : {</p>
+<p>​        “creation_date【创建时间】” : “1586587411462”,</p>
+<p>​        “number_of_shards【索引库分片数】” : “5”,</p>
+<p>​        “number_of_replicas【索引库副本数】” : “1”,</p>
+<p>​        “uuid【唯一标识】” : “VCl1hHsJQDe2p2dn46o0NA”,</p>
+<p>​        “version【版本】” : {</p>
+<p>​          “created” : “6080199”</p>
+<p>​        },</p>
+<p>​        “provided_name【索引库名称】” : “shopping”</p>
+<p>​      }</p>
+<p>​    }</p>
+<p>  }</p>
+<p>}</p>
+</blockquote>
+<h3 id="删除索引-index"><a href="#删除索引-index" class="headerlink" title="删除索引(index)"></a>删除索引(index)</h3><p>发送请求：<strong>DELETE /shopping</strong></p>
+<p>响应结果</p>
+<blockquote>
+<p>{</p>
+<p>  “acknowledged” : true</p>
+<p>}</p>
+</blockquote>
+</blockquote>
+<br>
+
+<h2 id="类型及映射操作"><a href="#类型及映射操作" class="headerlink" title="类型及映射操作"></a>类型及映射操作</h2><p>类型（type）及（mapping）操作</p>
+<blockquote>
+<h3 id="创建类型映射"><a href="#创建类型映射" class="headerlink" title="创建类型映射"></a>创建类型映射</h3><p>有了索引库，等于有了数据库中的database。</p>
+<p>接下来就需要建索引库(index)中的类型(type)了，类似于数据库(database)中的表(table)。创建数据库表需要设置字段名称，类型，长度，约束等；索引库也一样，在创建索引库的类型时，需要知道这个类型下有哪些字段，每个字段有哪些约束信息，这就叫做映射(mapping)。</p>
+<p>给shopping这个索引库添加了一个名为product的类型，并且在类型中设置了4个字段：</p>
+<ul>
+<li>​    title：商品标题</li>
+<li>​    subtitle: 商品子标题</li>
+<li>​    images：商品图片</li>
+<li>​    price：商品价格</li>
+</ul>
+<p>发送请求：</p>
+<blockquote>
+<p><strong>PUT /shopping/product/_mapping</strong></p>
+<p>{</p>
+<p>  “properties”: {</p>
+<p>​    “<strong>title</strong>“:{</p>
+<p>​      “type”: “text”,</p>
+<p>​      “analyzer”: “ik_max_word”      </p>
+<p>​    },</p>
+<p>​    “<strong>subtitle</strong>“:{</p>
+<p>​      “type”: “text”,</p>
+<p>​      “analyzer”: “ik_max_word”</p>
+<p>​    },</p>
+<p>​    “<strong>images</strong>“:{</p>
+<p>​      “type”: “keyword”,</p>
+<p>​      “index”: false</p>
+<p>​    },</p>
+<p>​    “<strong>price</strong>“:{</p>
+<p>​      “type”: “float”,</p>
+<p>​      “index”: true</p>
+<p>​    }</p>
+<p>  }</p>
+<p>}</p>
+<h5 id="内容解释：-1"><a href="#内容解释：-1" class="headerlink" title="内容解释："></a>内容解释：</h5><p><strong>PUT / 索引库名/_mapping/类型名称或 索引库名/类型名称/_mapping</strong></p>
+<p>{</p>
+<p>  “properties”: {</p>
+<p>​    “字段名称”:{</p>
+<p>​      “type【类型】”: “类型”,</p>
+<p>​      “index【是否索引】”: true,</p>
+<p>​      “store【是否存储】”: false,</p>
+<p>​      “analyzer【分词器】”: “具体分词器”</p>
+<p>​    }</p>
+<p>​    …</p>
+<p>  }</p>
+<p>}</p>
+<h5 id="响应结果-1"><a href="#响应结果-1" class="headerlink" title="响应结果"></a>响应结果</h5><p>#!Deprecation: [types removal] Specifying types in put mapping requests is<br>deprecated. To be compatible with 7.0, the mapping definition should not be<br>nested under the type name, and the parameter include_type_name must be<br>provided and set to false.<br>{<br>  “acknowledged” : true<br>}</p>
+<p>说明：<br>＃！ 弃用：[类型删除]不建议在放置映射请求中指定类型。 为了与7.0兼容，映射定义不应嵌套在类型名称下，并且必须提供参数include_type_name并将其设置为false。</p>
+<blockquote>
+<ul>
+<li><strong>类型名称</strong>：就是前面将的type的概念，类似于数据库中的表</li>
+<li><strong>字段名</strong>：任意填写，下面指定许多属性，例如：title、subtitle、images、price</li>
+<li><strong>type</strong>：类型，Elasticsearch中支持的数据类型非常丰富，说几个关键的<ul>
+<li>String类型，又分两种：<ul>
+<li>text：可分词</li>
+<li>keyword：不可分词，数据会作为完整字段进行匹配</li>
+</ul>
+</li>
+<li>Numerical：数值类型，分两类<ul>
+<li>基本数据类型：long、interger、short、byte、double、float、half_float</li>
+<li>浮点数的高精度类型：scaled_float</li>
+</ul>
+</li>
+<li>Date：日期类型</li>
+<li>Array：数组类型</li>
+<li>Object：对象</li>
+</ul>
+</li>
+<li><strong>index</strong>：是否索引，<strong>默认为**</strong>true**，也就是说你不进行任何配置，所有字段都会被索引。<ul>
+<li>true：字段会被索引，则可以用来进行搜索</li>
+<li>false：字段不会被索引，不能用来搜索</li>
+</ul>
+</li>
+<li><strong>store</strong>：是否将数据进行独立存储，默认为false<ul>
+<li>原始的文本会存储在<strong>_source</strong>里面，默认情况下其他提取出来的字段都不是独立存储的，是从_source里面提取出来的。当然你也可以独立的存储某个字段，只要设置”store”: true即可，获取独立存储的字段要比从_source中解析快得多，但是也会占用更多的空间，所以要根据实际业务需求来设置。</li>
+</ul>
+</li>
+<li><strong>analyzer</strong>：分词器，这里的<strong>ik_max_word</strong>即使用<strong>ik**</strong>分词器**</li>
+</ul>
+</blockquote>
+</blockquote>
+<h3 id="查看类型映射"><a href="#查看类型映射" class="headerlink" title="查看类型映射"></a>查看类型映射</h3><p>发送请求：<strong>GET /shopping/product/_mapping</strong></p>
+<p>响应结果: </p>
+<blockquote>
+<p>{<br>  “shopping” : {<br>    “mappings” : {<br>      “product” : {<br>        “properties” : {<br>          “images” : {<br>            “type” :<br>“keyword”,<br>            “index” : false<br>          },<br>          “price” : {<br>            “type” :<br>“float”<br>          },<br>          “subtitle” : {<br>            “type” :<br>“text”,<br>            “analyzer” :<br>“ik_max_word”<br>          },<br>          “title” : {<br>            “type” :<br>“text”,<br>            “analyzer” :<br>“ik_max_word”<br>          }<br>        }<br>      }<br>    }<br>  }<br>}</p>
+</blockquote>
+<h3 id="创建索引库同时进行映射配置（常用）"><a href="#创建索引库同时进行映射配置（常用）" class="headerlink" title="创建索引库同时进行映射配置（常用）"></a>创建索引库同时进行映射配置（常用）</h3><p>发送请求：</p>
+<blockquote>
+<p><strong>PUT /shopping2</strong></p>
+<p>{</p>
+<p>  “settings”: {},</p>
+<p>  “mappings”: {</p>
+<p>​    “<strong>product</strong>“:{</p>
+<p>​      “properties”: {</p>
+<p>​        “<strong>title</strong>“:{</p>
+<p>​          “type”: “text”,</p>
+<p>​          “analyzer”: “ik_max_word”</p>
+<p>​          </p>
+<p>​        },</p>
+<p>​        “<strong>subtitle</strong>“:{</p>
+<p>​          “type”: “text”,</p>
+<p>​          “analyzer”: “ik_max_word”</p>
+<p>​        },</p>
+<p>​        “<strong>images</strong>“:{</p>
+<p>​          “type”: “keyword”,</p>
+<p>​          “index”: false</p>
+<p>​        },</p>
+<p>​        “<strong>price</strong>“:{</p>
+<p>​          “type”: “float”,</p>
+<p>​          “index”: true</p>
+<p>​        }</p>
+<p>​      }</p>
+<p>​    }</p>
+<p>  }</p>
+<p>}</p>
+</blockquote>
+<p>响应结果：</p>
+<blockquote>
+<p>{</p>
+<p>  “acknowledged” : true,</p>
+<p>  “shards_acknowledged” : true,</p>
+<p>  “index” : “shopping2”</p>
+<p>}</p>
+</blockquote>
+</blockquote>
+</blockquote>
+<br>
+
+<h2 id="其他的-操作-下一篇-ElasticSearch-相关操作-再进行说明"><a href="#其他的-操作-下一篇-ElasticSearch-相关操作-再进行说明" class="headerlink" title="其他的 操作 下一篇 ElasticSearch 相关操作 再进行说明"></a>其他的 操作 下一篇 ElasticSearch 相关操作 再进行说明</h2><h4 id="Lucene【注-1】-是什么？"><a href="#Lucene【注-1】-是什么？" class="headerlink" title="Lucene【注:1】 是什么？"></a>Lucene【注:1】 是什么？</h4><blockquote>
+<ul>
+<li>Lucene 是一个 提供全文搜索功能类库的 <strong>核心工具包</strong>  (真正使用它 还需要完善的服务架构搭起来 进行应用)</li>
+<li>ElasticSearch 的 <strong>处理分词</strong>  <strong>构建倒排索引</strong> 等等 都是 Lucene做的 </li>
+<li>目前 市面上流行的 <strong>搜索引擎软件</strong>  主流：ElasticSearch 和 Solr  这两款都是 <strong>基于Lucene</strong> 搭建的 可以独立部署启动的 搜索引擎服务软件 <del>由于内核相同 两者 除了 服务器安装 部署 管理 集群外  对于数据的操作 修改 添加 保存 查询 都十分相似</del></li>
+</ul>
+</blockquote>
+<h4 id="ELK框架-ElasticSearch-Logstash-Kibana-【注-2】是什么？"><a href="#ELK框架-ElasticSearch-Logstash-Kibana-【注-2】是什么？" class="headerlink" title="ELK框架(ElasticSearch,Logstash,Kibana)【注:2】是什么？"></a>ELK框架(ElasticSearch,Logstash,Kibana)【注:2】是什么？</h4><blockquote>
+<ul>
+<li>ELK 是 三大开源架构的 首字母大写 简称  市面上 也称为 Elastic Stack</li>
+<li>Elasticsearch是一个基于Lucene、分布式、通过Restful方式进行交互的近实时搜索平台框架。应用于程序搜索、网站搜索、企业搜索、日志处理和分析、基础设施指标和容器监测、应用程序性能监测、地理空间数据分析和可视化、安全分析、业务分析等。</li>
+<li>Logstash 是Elastic Stack 的核心产品之一，可用来对数据进行聚合和处理，并将数据发送到ElasticSearch。Logstash是一个开源的服务器端数据处理管道，允许您在将数据索引到<br>Elasticsearch 之前同时从多个来源采集数据，并对数据进行充实和转换。</li>
+<li>Kibana 是一款适用于Elasticsearch 的数据可视化和管理工具，可以提供实时的直方图、线形图、饼状图和地图。Kibana 同时还包括诸如 Canvas 和 Elastic Maps 等高级应用程序；Canvas 允许用户基于自身数据创建定制的动态信息图表，而 Elastic Maps 则可用来对地理空间数据进行可视化。</li>
+</ul>
+</blockquote>
+<h4 id="IK分词器【注-3】是什么？"><a href="#IK分词器【注-3】是什么？" class="headerlink" title="IK分词器【注:3】是什么？"></a>IK分词器【注:3】是什么？</h4><blockquote>
+<ul>
+<li>IKAnalyzer是一个开源的，基于Java语言开发的轻量级的中文分词工具包。从2006年12月推出1.0版开始，IKAnalyzer已经推出 了3个大版本。最初，它是以开源项目Lucene为应用主体的，结合词典分词和文法分析算法的中文分词组件。新版本的IKAnalyzer3.0则发展为面向Java的公用分词组件，独立于Lucene项目，同时提供了对Lucene的默认优化实现。</li>
+<li>IK分词器3.0的特性如下<ul>
+<li>采用了特有的“正向迭代最细粒度切分算法“，具有60万字/秒的高速处理能力。</li>
+<li>采用了多子处理器分析模式，支持：英文字母（IP地址、Email、URL）、数字（日期，常用中文数量词，罗马数字，科学计数法），中文词汇（姓名、地名处理）等分词处理。</li>
+<li>对中英联合支持不是很好,在这方面的处理比较麻烦.需再做一次查询，同时是支持个人词条的优化的词典存储，更小的内存占用。</li>
+<li>支持用户词典扩展定义。</li>
+<li>针对Lucene全文检索优化的查询分析器IKQueryParser；采用歧义分析算法优化查询关键字的搜索排列组合，能极大的提高Lucene检索的命中率。</li>
+</ul>
+</li>
+</ul>
+</blockquote>
+
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
       
       
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2020" class="archive-year">2020</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/10/13/%E5%88%86%E5%B8%83%E5%BC%8F%E9%94%81%EF%BC%9A%E6%9C%89%E5%85%B3%E4%BA%8E%E5%88%86%E5%B8%83%E5%BC%8F%E9%94%81%E5%90%88%E9%9B%86-%E5%9B%9B/" class="archive-article-date">
-  	<time datetime="2020-10-13T09:26:12.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-10-13</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/10/13/%E5%88%86%E5%B8%83%E5%BC%8F%E9%94%81%EF%BC%9A%E6%9C%89%E5%85%B3%E4%BA%8E%E5%88%86%E5%B8%83%E5%BC%8F%E9%94%81%E5%90%88%E9%9B%86-%E5%9B%9B/">分布式锁：有关于分布式锁合集(四)</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">redis</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">ElasticSearch</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">分布式锁</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">搜索引擎</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">NoSQL</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">文档型数据库</a>
         		</li>
       		
 		</ul>
 	</div>
 
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://example.com/2020/10/14/ES-ElasticSearch%E7%9A%84%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/10/13/%E5%88%86%E5%B8%83%E5%BC%8F%E9%94%81%EF%BC%9A%E6%9C%89%E5%85%B3%E4%BA%8E%E5%88%86%E5%B8%83%E5%BC%8F%E9%94%81%E5%90%88%E9%9B%86-%E4%B8%89/" class="archive-article-date">
-  	<time datetime="2020-10-13T08:14:13.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-10-13</time>
-</a>
+<nav id="article-nav">
+  
+  
+    <a href="/2020/10/13/%E5%88%86%E5%B8%83%E5%BC%8F%E9%94%81%EF%BC%9A%E6%9C%89%E5%85%B3%E4%BA%8E%E5%88%86%E5%B8%83%E5%BC%8F%E9%94%81%E5%90%88%E9%9B%86-%E5%9B%9B/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">分布式锁：有关于分布式锁合集(四)</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
+        
+        
+    </div>
+</aside>
+
+
+
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/10/13/%E5%88%86%E5%B8%83%E5%BC%8F%E9%94%81%EF%BC%9A%E6%9C%89%E5%85%B3%E4%BA%8E%E5%88%86%E5%B8%83%E5%BC%8F%E9%94%81%E5%90%88%E9%9B%86-%E4%B8%89/">分布式锁：有关于分布式锁合集(三)</a>
-    </h1>
+  
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">redis</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">分布式锁</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">NoSQL</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/10/12/%E5%88%86%E5%B8%83%E5%BC%8F%E9%94%81%EF%BC%9A%E6%9C%89%E5%85%B3%E4%BA%8E%E5%88%86%E5%B8%83%E5%BC%8F%E9%94%81%E5%90%88%E9%9B%86-%E4%BA%8C/" class="archive-article-date">
-  	<time datetime="2020-10-12T15:15:18.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-10-12</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/10/12/%E5%88%86%E5%B8%83%E5%BC%8F%E9%94%81%EF%BC%9A%E6%9C%89%E5%85%B3%E4%BA%8E%E5%88%86%E5%B8%83%E5%BC%8F%E9%94%81%E5%90%88%E9%9B%86-%E4%BA%8C/">分布式锁：有关于分布式锁合集(二)</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">redis</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">分布式锁</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">NoSQL</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/10/12/%E5%88%86%E5%B8%83%E5%BC%8F%E9%94%81%EF%BC%9A%E6%9C%89%E5%85%B3%E4%BA%8E%E5%88%86%E5%B8%83%E5%BC%8F%E9%94%81%E5%90%88%E9%9B%86-%E4%B8%80/" class="archive-article-date">
-  	<time datetime="2020-10-12T11:45:47.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-10-12</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/10/12/%E5%88%86%E5%B8%83%E5%BC%8F%E9%94%81%EF%BC%9A%E6%9C%89%E5%85%B3%E4%BA%8E%E5%88%86%E5%B8%83%E5%BC%8F%E9%94%81%E5%90%88%E9%9B%86-%E4%B8%80/">分布式锁：有关于分布式锁合集(一)</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">redis</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">分布式锁</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">NoSQL</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
   
-  
-    </div></section>
-  
-
-    
 
 
           </div>
@@ -363,9 +619,9 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
+		isPost: true,
 		isArchive: false,
-		isTag: true,
+		isTag: false,
 		isCategory: false,
 		open_in_new: false,
 		toc_hide_index: true,

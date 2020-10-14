@@ -143,6 +143,119 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-ES-ElasticSearch的基本使用" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/10/14/ES-ElasticSearch%E7%9A%84%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8/">ES:ElasticSearch的基本使用</a>
+    </h1>
+  
+
+        
+        <a href="/2020/10/14/ES-ElasticSearch%E7%9A%84%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8/" class="archive-article-date">
+  	<time datetime="2020-10-14T08:18:40.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-10-14</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h4 id="文本-主要是记录一些-有关于ElasticSearch的入门的使用"><a href="#文本-主要是记录一些-有关于ElasticSearch的入门的使用" class="headerlink" title="文本 主要是记录一些 有关于ElasticSearch的入门的使用"></a>文本 主要是记录一些 有关于ElasticSearch的入门的使用</h4><br>
+
+<h3 id="是什么？"><a href="#是什么？" class="headerlink" title="是什么？"></a>是什么？</h3><blockquote>
+<ul>
+<li>ElasticSearch 简称 ES  是一个 <strong>开源的 高扩展的 分布式 全文检索 引擎</strong></li>
+<li>可以 <strong><em>近乎实时</em></strong>  的 存储 检索 数据 本身扩展性很好 可扩展到 上百台 服务器 处理 PB 级别的数据</li>
+<li>ElasticSearch 可以使用 Java开发 并使用  Lucene【注:1】作为其核心 来实现 所有 检索 和 搜索的功能 但是 它(ElasticSearch)的目的 是通过 简单的 RESTful API 来隐藏 Lucene 的 复杂性 从而 让 全文搜索变得简单</li>
+</ul>
+</blockquote>
+<h3 id="ElasticSearch-和-Solr-的-对比"><a href="#ElasticSearch-和-Solr-的-对比" class="headerlink" title="ElasticSearch 和 Solr 的 对比"></a>ElasticSearch 和 Solr 的 对比</h3><blockquote>
+<ul>
+<li>上面说到了 目前常见的 两款 搜索引擎服务软件 接下来说说两者的区别</li>
+</ul>
+<blockquote>
+<ul>
+<li>Solr <strong>利用Zookeeper</strong>  进行 分布式 管理  而 <strong>ElasticSearch 自身</strong>  带有 分布式 协调 管理功能</li>
+<li>Solr 支持 更多格式的数据  而 ElasticSearch 仅仅支持 JSON文件格式</li>
+<li>Solr 官方提供 的功能更多  而 ElasticSearch  本身更注重于核心功能  高级功能多由 第三方 插件提供</li>
+<li>Solr 在 传统的搜索 应用中表现 <strong>好于</strong> ElasticSearch  但 在处理 <strong>实时搜索</strong>  应用时 效率 <strong>明显低于</strong> ElasticSearch </li>
+</ul>
+</blockquote>
+</blockquote>
+<h3 id="应用场景"><a href="#应用场景" class="headerlink" title="应用场景"></a>应用场景</h3><blockquote>
+<ul>
+<li>为 用户 提供 按 <strong><em>关键字</em></strong>  查询 的 <strong><em>全文搜索功能</em></strong></li>
+<li>著名的ELK框架(<strong>ElasticSearch</strong>,<strong>Logstash</strong>,<strong>Kibana</strong>【注:2】)  <strong><em>实现企业海量日志的 处理 分析 的解决方案</em></strong>  是  <strong>大数据</strong>   领域的重要一份子</li>
+<li>分析用户的行为 精准营销 例如：用户鼠标在哪个商品上 图片上的停留时间 对商品的点击量 查看评论的条数</li>
+</ul>
+</blockquote>
+<br>
+        
+          <a class="article-more-a" href="/2020/10/14/ES-ElasticSearch%E7%9A%84%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">ElasticSearch</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">搜索引擎</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">文档型数据库</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/10/14/ES-ElasticSearch%E7%9A%84%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-分布式锁：有关于分布式锁合集-四" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -172,33 +285,9 @@
 <h3 id="Redisson-的-快速入门"><a href="#Redisson-的-快速入门" class="headerlink" title="Redisson 的 快速入门"></a>Redisson 的 快速入门</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 1. Create config object</span></span><br><span class="line"><span class="comment">// 创建一个配置类对象 （那么我前面肯定就现需要有一个配置类或者配置文件）</span></span><br><span class="line">Config config = <span class="keyword">new</span> Config();</span><br><span class="line">config.useClusterServers()</span><br><span class="line">       <span class="comment">// use &quot;rediss://&quot; for SSL connection</span></span><br><span class="line">      .addNodeAddress(<span class="string">&quot;redis://127.0.0.1:7181&quot;</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// or read config from file</span></span><br><span class="line"><span class="comment">// 配置信息 可以 通过 配置文件获取</span></span><br><span class="line">config = Config.fromYAML(<span class="keyword">new</span> File(<span class="string">&quot;config-file.yaml&quot;</span>)); </span><br></pre></td></tr></table></figure>
 
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 2. Create Redisson instance</span></span><br><span class="line"><span class="comment">// 创建Redisson实例对象</span></span><br><span class="line"><span class="comment">// Sync and Async API</span></span><br><span class="line"><span class="comment">// 使用静态 非静态的 api方法</span></span><br><span class="line">RedissonClient redisson = Redisson.create(config);</span><br><span class="line"></span><br><span class="line"><span class="comment">// Reactive API</span></span><br><span class="line">RedissonReactiveClient redissonReactive = Redisson.createReactive(config);</span><br><span class="line"></span><br><span class="line"><span class="comment">// RxJava2 API</span></span><br><span class="line">RedissonRxClient redissonRx = Redisson.createRx(config);</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 3. Get Redis based implementation of java.util.concurrent.ConcurrentMap</span></span><br><span class="line">RMap&lt;MyKey, MyValue&gt; map = redisson.getMap(<span class="string">&quot;myMap&quot;</span>);</span><br><span class="line"></span><br><span class="line">RMapReactive&lt;MyKey, MyValue&gt; mapReactive = redissonReactive.getMap(<span class="string">&quot;myMap&quot;</span>);</span><br><span class="line"></span><br><span class="line">RMapRx&lt;MyKey, MyValue&gt; mapRx = redissonRx.getMap(<span class="string">&quot;myMap&quot;</span>);</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 4. Get Redis based implementation of java.util.concurrent.locks.Lock</span></span><br><span class="line"><span class="comment">// 获得 redis lock锁对象</span></span><br><span class="line">RLock lock = redisson.getLock(<span class="string">&quot;myLock&quot;</span>);</span><br><span class="line"></span><br><span class="line">RLockReactive lockReactive = redissonReactive.getLock(<span class="string">&quot;myLock&quot;</span>);</span><br><span class="line"></span><br><span class="line">RLockRx lockRx = redissonRx.getLock(<span class="string">&quot;myLock&quot;</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 4. Get Redis based implementation of java.util.concurrent.ExecutorService</span></span><br><span class="line"><span class="comment">// 获得 redis 基础 执行服务</span></span><br><span class="line">RExecutorService executor = redisson.getExecutorService(<span class="string">&quot;myExecutorService&quot;</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// over 50 Redis based Java objects and services ...</span></span><br></pre></td></tr></table></figure>
-
-<h3 id="看-官方文档-是不是有点-懵懵的-没事-看下面慢慢捋"><a href="#看-官方文档-是不是有点-懵懵的-没事-看下面慢慢捋" class="headerlink" title="看 官方文档 是不是有点 懵懵的 没事 看下面慢慢捋"></a>看 官方文档 是不是有点 懵懵的 没事 看下面慢慢捋</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 自己定义的配置类</span></span><br><span class="line"><span class="meta">@Data</span></span><br><span class="line"><span class="meta">@Configuration</span></span><br><span class="line"><span class="meta">@ConfigurationProperties(&quot;spring.redis&quot;)</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">RedissonConfig</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> String host;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> String addresses;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> String password;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> String port;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> timeout = <span class="number">3000</span>;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> connectionPoolSize = <span class="number">64</span>;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> connectionMinimumIdleSize=<span class="number">10</span>;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> pingConnectionInterval = <span class="number">60000</span>;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> String ADDRESS_PREFIX = <span class="string">&quot;redis://&quot;</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 自动装配</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="meta">@Bean</span>        <span class="comment">// 返回一个 RedissonClient  意味着 注入进容器的 直接调用即可用</span></span><br><span class="line">    <span class="function">RedissonClient <span class="title">redissonSingle</span><span class="params">()</span> </span>&#123;   </span><br><span class="line">        Config config = <span class="keyword">new</span> Config();</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span>(StringUtils.isEmpty(host))&#123;</span><br><span class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> RuntimeException(<span class="string">&quot;host is  empty&quot;</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// useSingleServer ：单机</span></span><br><span class="line">        <span class="comment">// clusterServersConfig ：集群</span></span><br><span class="line">        SingleServerConfig serverConfig = config.useSingleServer()</span><br><span class="line">                .setAddress(ADDRESS_PREFIX + <span class="keyword">this</span>.host + <span class="string">&quot;:&quot;</span> + port) <span class="comment">// 设置ip地址端口号</span></span><br><span class="line">                .setTimeout(<span class="keyword">this</span>.timeout)                            <span class="comment">// 设置 超时时间</span></span><br><span class="line">                .setPingConnectionInterval(pingConnectionInterval)  <span class="comment">// redis 命令发送时间间隔</span></span><br><span class="line">                .setConnectionPoolSize(<span class="keyword">this</span>.connectionPoolSize)     <span class="comment">// redis 连接池大小</span></span><br><span class="line">                .setConnectionMinimumIdleSize(<span class="keyword">this</span>.connectionMinimumIdleSize); <span class="comment">// redis 最小空闲的链接数量</span></span><br><span class="line">        <span class="keyword">if</span>(!StringUtils.isEmpty(<span class="keyword">this</span>.password)) &#123;</span><br><span class="line">            serverConfig.setPassword(<span class="keyword">this</span>.password);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// RedissonClient redisson = Redisson.create(config);</span></span><br><span class="line">        <span class="comment">// 直接 将 拿到的RedissonClient 直接 返回回去 注入 spring IOC 容器</span></span><br><span class="line">        <span class="keyword">return</span> Redisson.create(config);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Service</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">TestServiceImpl</span> <span class="keyword">implements</span> <span class="title">TestService</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Autowired</span></span><br><span class="line">    <span class="keyword">private</span> RedissonClient redissonClient;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 使用 redisson 做 分布式锁</span></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">testLock</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="comment">// 1. 拿到redissonClient 使用getLock(传入锁) 得到 RLock 可重入锁 对象</span></span><br><span class="line">        RLock lock = redissonClient.getLock(<span class="string">&quot;lock&quot;</span>);</span><br><span class="line">        <span class="comment">// 2. 使用 锁对象 上锁</span></span><br><span class="line">        lock.lock();</span><br><span class="line">        <span class="comment">// 执行业务逻辑</span></span><br><span class="line">        <span class="comment">// 3. 解锁</span></span><br><span class="line">        lock.unlock();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// redisson 的 三种 加锁方式</span></span><br><span class="line"><span class="comment">// 1. lock.lock();  和 lock.unlock(); 成对出现</span></span><br><span class="line"><span class="comment">// 2. lock.lock(设置过期时间，TimeUnit.SECONDS)； 不需要手动释放锁</span></span><br><span class="line"><span class="comment">// 3. lock.tryLock(最大等待时间，设置过期时间，TimeUnit.SECONDS)； 需要在finally里面 设置解锁</span></span><br><span class="line"><span class="meta">@Service</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">TestServiceImpl</span> <span class="keyword">implements</span> <span class="title">TestService</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Autowired</span></span><br><span class="line">    <span class="keyword">private</span> RedissonClient redissonClient;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 使用 redisson 做 分布式锁</span></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">testLock</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="comment">// 1. 拿到redissonClient 使用getLock(传入锁) 得到 RLock 可重入锁 对象</span></span><br><span class="line">        RLock lock = redissonClient.getLock(<span class="string">&quot;lock&quot;</span>);</span><br><span class="line">        <span class="comment">// 2. 使用 锁对象 上锁</span></span><br><span class="line">        <span class="comment">//lock.lock();</span></span><br><span class="line">        <span class="comment">//lock.lock(10,TimeUnit.SECONDS); // 添加过期时间</span></span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            <span class="comment">// 设置 过期时间</span></span><br><span class="line">            <span class="keyword">boolean</span> result = lock.tryLock( <span class="number">10</span>, TimeUnit.SECONDS);</span><br><span class="line"></span><br><span class="line">            <span class="keyword">if</span> (result) &#123;</span><br><span class="line">                <span class="comment">// 获得 锁 成功</span></span><br><span class="line"></span><br><span class="line">                <span class="comment">// 执行业务逻辑</span></span><br><span class="line">                <span class="comment">// 查询redis中的num值</span></span><br><span class="line">                <span class="comment">// 直接获取缓存中的数据</span></span><br><span class="line">                String value = (String)<span class="keyword">this</span>.redisTemplate.opsForValue().get(<span class="string">&quot;num&quot;</span>);</span><br><span class="line">                <span class="comment">// 没有该值return</span></span><br><span class="line">                <span class="keyword">if</span> (StringUtils.isBlank(value))&#123;</span><br><span class="line">                    <span class="keyword">return</span> ;</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="comment">// 有值就转成成int</span></span><br><span class="line">                <span class="keyword">int</span> num = Integer.parseInt(value);</span><br><span class="line">                <span class="comment">// 把redis中的num值+1</span></span><br><span class="line">                <span class="keyword">this</span>.redisTemplate.opsForValue().set(<span class="string">&quot;num&quot;</span>, String.valueOf(++num));</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                <span class="comment">// 失败 去数据库查 自旋</span></span><br><span class="line">                <span class="keyword">try</span> &#123;</span><br><span class="line">                    Thread.sleep(<span class="number">500</span>);</span><br><span class="line">                    testLock();</span><br><span class="line">                &#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line">                    e.printStackTrace();</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125; <span class="keyword">finally</span> &#123;</span><br><span class="line">            <span class="comment">// 解锁</span></span><br><span class="line">            lock.unlock();</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 3. 解锁</span></span><br><span class="line">        <span class="comment">//lock.unlock();</span></span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
-
-<blockquote>
-<p>使用ab压力测试工具</p>
-<blockquote>
-<p>启动网关微服务 使用网关 启用负载均衡 访问数据</p>
-<p>ab -n 5000 -c<br>100 <a target="_blank" rel="noopener" href="http://192.168.200.1/admin/product/test/testLock">http://192.168.200.1/admin/product/test/testLock</a></p>
-</blockquote>
-<p>使用redis桌面管理工具连接上此redis  最后显示的num数为 5000 上锁成功</p>
-</blockquote>
-<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><ul>
-<li>常见的分布式锁 两种<ul>
-<li>redis + lua脚本 单机情况下够用 但是在 集群环境下失效</li>
-<li>redisson </li>
-</ul>
-</li>
-</ul>
-
+        
+          <a class="article-more-a" href="/2020/10/13/%E5%88%86%E5%B8%83%E5%BC%8F%E9%94%81%EF%BC%9A%E6%9C%89%E5%85%B3%E4%BA%8E%E5%88%86%E5%B8%83%E5%BC%8F%E9%94%81%E5%90%88%E9%9B%86-%E5%9B%9B/#more">more >></a>
+        
       
 
       
@@ -1069,6 +1158,18 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
             <input type="checkbox" q-on="click:toggleTag(e)" q-attr="checked:showTags">
           </label>
           <ul class="article-tag-list" q-show="showTags">
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">ElasticSearch</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">搜索引擎</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">文档型数据库</a>
+              </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">JUC</a>
