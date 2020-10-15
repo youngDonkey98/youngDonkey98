@@ -6,17 +6,21 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://example.com">
-  <title>Tag: 搜索引擎 | 曾万鑫的博客</title>
+  <title>ES:ElasticSearch的基本使用之DSL | 曾万鑫的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="一个懂一点java皮毛的弟弟">
-<meta property="og:type" content="website">
-<meta property="og:title" content="曾万鑫的博客">
-<meta property="og:url" content="http://example.com/tags/%E6%90%9C%E7%B4%A2%E5%BC%95%E6%93%8E/index.html">
+  <meta name="description" content="文本 主要是记录一些 有关于ElasticSearch的DSL语句的使用上一篇文章 说明了 索引库操作 以及 类型及映射操作 本文将详细说明其他的使用语法具体操作 1.文档操作【基本的CURD】 1.1 新建文档 发送请求  POST &#x2F;shopping&#x2F;product { ​    “title”:”小米手机”, ​    “images”:”http:&#x2F;&#x2F;www.gulixueyuan.com">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ES:ElasticSearch的基本使用之DSL">
+<meta property="og:url" content="http://example.com/2020/10/14/ES-ElasticSearch%E7%9A%84%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8%E4%B9%8BDSL/index.html">
 <meta property="og:site_name" content="曾万鑫的博客">
-<meta property="og:description" content="一个懂一点java皮毛的弟弟">
+<meta property="og:description" content="文本 主要是记录一些 有关于ElasticSearch的DSL语句的使用上一篇文章 说明了 索引库操作 以及 类型及映射操作 本文将详细说明其他的使用语法具体操作 1.文档操作【基本的CURD】 1.1 新建文档 发送请求  POST &#x2F;shopping&#x2F;product { ​    “title”:”小米手机”, ​    “images”:”http:&#x2F;&#x2F;www.gulixueyuan.com">
 <meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2020-10-14T11:51:31.000Z">
+<meta property="article:modified_time" content="2020-10-14T16:25:58.219Z">
 <meta property="article:author" content="donkey_zwx">
-<meta property="article:tag" content="java,后端,zwx,ZWX,开发者,donkey,youngdonkey,donkey_zwx,youngDonkey_zwx,程序猿,程序媛,程序员,开发者">
+<meta property="article:tag" content="ElasticSearch">
+<meta property="article:tag" content="搜索引擎">
+<meta property="article:tag" content="文档型数据库">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternative" href="/atom.xml" title="曾万鑫的博客" type="application/atom+xml">
@@ -141,82 +145,397 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-ES-ElasticSearch的基本使用之DSL" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2020" class="archive-year">2020</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/10/15/ES-ElasticSearch%E7%9A%84%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8%E4%B9%8BDSL-%E4%BA%8C/" class="archive-article-date">
-  	<time datetime="2020-10-15T01:40:24.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-10-15</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/10/15/ES-ElasticSearch%E7%9A%84%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8%E4%B9%8BDSL-%E4%BA%8C/">ES:ElasticSearch的基本使用之DSL(二)</a>
+    <h1 class="article-title" itemprop="name">
+      ES:ElasticSearch的基本使用之DSL
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">ElasticSearch</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">搜索引擎</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">文档型数据库</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/10/14/ES-ElasticSearch%E7%9A%84%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8%E4%B9%8BDSL/" class="archive-article-date">
+        
+        <a href="/2020/10/14/ES-ElasticSearch%E7%9A%84%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8%E4%B9%8BDSL/" class="archive-article-date">
   	<time datetime="2020-10-14T11:51:31.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-10-14</time>
 </a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/10/14/ES-ElasticSearch%E7%9A%84%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8%E4%B9%8BDSL/">ES:ElasticSearch的基本使用之DSL</a>
-    </h1>
-  
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h4 id="文本-主要是记录一些-有关于ElasticSearch的DSL语句的使用"><a href="#文本-主要是记录一些-有关于ElasticSearch的DSL语句的使用" class="headerlink" title="文本 主要是记录一些 有关于ElasticSearch的DSL语句的使用"></a>文本 主要是记录一些 有关于ElasticSearch的DSL语句的使用</h4><h2 id="上一篇文章-说明了-索引库操作-以及-类型及映射操作-本文将详细说明其他的使用语法"><a href="#上一篇文章-说明了-索引库操作-以及-类型及映射操作-本文将详细说明其他的使用语法" class="headerlink" title="上一篇文章 说明了 索引库操作 以及 类型及映射操作 本文将详细说明其他的使用语法"></a>上一篇文章 说明了 索引库操作 以及 类型及映射操作 本文将详细说明其他的使用语法</h2><h3 id="具体操作"><a href="#具体操作" class="headerlink" title="具体操作"></a>具体操作</h3><blockquote>
+<h4 id="1-文档操作【基本的CURD】"><a href="#1-文档操作【基本的CURD】" class="headerlink" title="1.文档操作【基本的CURD】"></a>1.文档操作【基本的CURD】</h4><blockquote>
+<h3 id="1-1-新建文档"><a href="#1-1-新建文档" class="headerlink" title="1.1 新建文档"></a>1.1 新建文档</h3><blockquote>
+<p>发送请求</p>
+</blockquote>
+<p><strong>POST /shopping/product</strong></p>
+<p>{</p>
+<p>​    “title”:”小米手机”,</p>
+<p>​    “images”:”<a target="_blank" rel="noopener" href="http://www.gulixueyuan.com/xm.jpg&quot;">http://www.gulixueyuan.com/xm.jpg&quot;</a>,</p>
+<p>​    “price”:3999.00</p>
+<p>}</p>
+<blockquote>
+<p>响应结果</p>
+</blockquote>
+<p>{<br>  “_index” : “shopping”,<br>  “_type” : “product”,<br>  “_id” :<br>“indGaHEB1ahbZ0SRrXt3”,<br>  “_version” : 1,<br>  “result” : “created”,<br>  “_shards” : {<br>    “total” : 2,<br>    “successful” : 1,<br>    “failed” : 0<br>  },<br>  “_seq_no” : 0,<br>  “_primary_term” : 1<br>}</p>
+<blockquote>
+<p>响应结果解释</p>
+</blockquote>
+<p>{<br>  “_index【索引库】” : “shopping”,<br>  “_type【类型】” : “product”,<br>  “_id【主键id】” :<br>“indGaHEB1ahbZ0SRrXt3”,<br>  “_version【版本】” : 1,<br>  “result【操作结果】” : “created”,<br>  “_shards【分片】” : {<br>    “total【总数】” : 2,<br>    “successful【成功】” : 1,<br>    “failed【失败】” : 0<br>  },<br>  “_seq_no” : 0,<br>  “_primary_term” : 1<br>}</p>
+<blockquote>
+<p>可以看到结果显示为：<code>created</code>，是创建成功了。</p>
+<p>另外，需要注意的是，在响应结果中有个<code>_id</code>字段，这个就是这条文档数据的<code>唯一标识</code>，以后的增删改查都依赖这个id作为唯一标示。可以看到id的值为：indGaHEB1ahbZ0SRrXt3，这里我们新增时没有指定id，所以是ES帮我们随机生成的id。</p>
+</blockquote>
+<p>多创建几条数据：<br><strong>POST /shopping/product/2</strong><br>{<br>    “title”:”华为手机”,</p>
+<p>“images”:”<a target="_blank" rel="noopener" href="http://www.gulixueyuan.com/hw.jpg&quot;">http://www.gulixueyuan.com/hw.jpg&quot;</a>,<br>    “price”:4999.00<br>}</p>
+<p><strong>POST /shopping/product/3</strong><br>{<br>    “title”:”小米电视”,</p>
+<p>“images”:”<a target="_blank" rel="noopener" href="http://www.gulixueyuan.com/xmds.jpg&quot;">http://www.gulixueyuan.com/xmds.jpg&quot;</a>,<br>    “price”:5999.00<br>}</p>
+<br>
 
-        <div class="article-info info-on-right">
-          
+<a id="more"></a>
+
+<h3 id="1-2-查看文档"><a href="#1-2-查看文档" class="headerlink" title="1.2 查看文档"></a>1.2 查看文档</h3><blockquote>
+<p>发送请求</p>
+</blockquote>
+<p>GET /shopping/product/indGaHEB1ahbZ0SRrXt3</p>
+<blockquote>
+<p>响应结果</p>
+</blockquote>
+<p>{<br>  “_index” : “shopping”,<br>  “_type” : “product”,<br>  “_id” : “<strong>indGaHEB1ahbZ0SRrXt3</strong>“,<br>  “_version” : 1,<br>  “_seq_no” : 0,<br>  “_primary_term” : 1,<br>  “found” : true,<br>  “_source” : {<br>    “title” : “小米手机”,<br>    “images” : “<a target="_blank" rel="noopener" href="http://www.gulixueyuan.com/xm.jpg">http://www.gulixueyuan.com/xm.jpg</a>“,<br>    “price” : 3999.0<br>  }<br>}</p>
+<blockquote>
+<p>响应结果解释</p>
+</blockquote>
+<p>{<br>  “_index【索引库】” : “shopping”,<br>  “_type【类型】” : “product”,<br>  “_id【主键id】” : “indGaHEB1ahbZ0SRrXt3”,<br>  “_version【版本】” : 1,<br>  “_seq_no” : 0,<br>  “_primary_term” : 1,<br>  “found【查询结果】” : true,<br>  “_source【源文档信息】” : {<br>    “title” : “小米手机”,<br>    “images” : “<a target="_blank" rel="noopener" href="http://www.gulixueyuan.com/xm.jpg">http://www.gulixueyuan.com/xm.jpg</a>“,<br>    “price” : 3999.0<br>  }<br>}</p>
+<blockquote>
+<ul>
+<li>_source：源文档信息，所有的数据都在里面。</li>
+<li>_id：这条文档的唯一标示</li>
+<li>found：查询结果，返回true代表查到，false代表没有</li>
+</ul>
+</blockquote>
+<br>
+
+<h3 id="1-3-自定义id新建文档"><a href="#1-3-自定义id新建文档" class="headerlink" title="1.3 自定义id新建文档"></a>1.3 自定义id新建文档</h3><blockquote>
+<p>发送请求</p>
+</blockquote>
+<p><strong>POST /shopping/product/1</strong></p>
+<p>{</p>
+<p>​    “title”:”小米手机”,</p>
+<p>​    “images”:”<a target="_blank" rel="noopener" href="http://www.gulixueyuan.com/xm.jpg&quot;">http://www.gulixueyuan.com/xm.jpg&quot;</a>,</p>
+<p>​    “price”:3999.00</p>
+<p>}</p>
+<blockquote>
+<p>响应结果</p>
+</blockquote>
+<dl><dt>{<br>  “_index” : “shopping”,<br>  “_type” : “product”,<br>  “_id”</dt><dd>“1”,<br>  “_version” : 1,<br>  “result” : “created”,<br>  “_shards” : {<br>    “total” : 2,<br>    “successful” : 1,<br>    “failed” : 0<br>  },<br>  “_seq_no” : 1,<br>  “_primary_term” : 1<br>}</dd></dl><blockquote>
+<p><strong>主键id变为指定的id</strong></p>
+</blockquote>
+<br>
+
+<h3 id="1-4-修改文档-覆盖方式"><a href="#1-4-修改文档-覆盖方式" class="headerlink" title="1.4 修改文档(覆盖方式)"></a>1.4 修改文档(覆盖方式)</h3><p>请求url不变，请求体变化，会将原有数据内容覆盖。</p>
+<blockquote>
+<p>发送请求</p>
+</blockquote>
+<p><strong>POST /shopping/product/1</strong></p>
+<p>{</p>
+<p>​    “title”:”华为手机”,</p>
+<p>​    “images”:”<a target="_blank" rel="noopener" href="http://www.gulixueyuan.com/hw.jpg&quot;">http://www.gulixueyuan.com/hw.jpg&quot;</a>,</p>
+<p>​    “price”:4999.00</p>
+<p>}</p>
+<blockquote>
+<p>响应结果</p>
+</blockquote>
+<p>{<br>  “_index” : “shopping”,<br>  “_type” : “product”,<br>  “_id” : “1”,<br>  <strong>“_version” :</strong> <strong>2**</strong>,**<br>  “result” : “updated”,<br>  “_shards” : {<br>    “total” : 2,<br>    “successful” : 1,<br>    “failed” : 0<br>  },<br>  “_seq_no” : 2,<br>  “_primary_term” : 1<br>}</p>
+<blockquote>
+<p>可以看到result结果是：updated，使用<strong>GET /shopping/product/1</strong>查询，发现数据被更新。</p>
+</blockquote>
+<br>
+
+<h3 id="1-5-根据id修改某一字段"><a href="#1-5-根据id修改某一字段" class="headerlink" title="1.5 根据id修改某一字段"></a>1.5 根据id修改某一字段</h3><blockquote>
+<p>发送请求</p>
+</blockquote>
+<p>POST /shopping/product/1/_update</p>
+<p>{ </p>
+<p>  “doc”: {</p>
+<p>​    “price”:3000.00</p>
+<p>  } </p>
+<p>}</p>
+<blockquote>
+<p>响应结果</p>
+</blockquote>
+<p>{</p>
+<p>  “_index” : “shopping”,</p>
+<p>  “_type” : “product”,</p>
+<p>  “_id” : “1”,</p>
+<p>  “_version” : 2,</p>
+<p>  “result” : “updated”,</p>
+<p>  “_shards” : {</p>
+<p>​    “total” : 2,</p>
+<p>​    “successful” : 1,</p>
+<p>​    “failed” : 0</p>
+<p>  },</p>
+<p>  “_seq_no” : 8,</p>
+<p>  “_primary_term” : 1</p>
+<p>}</p>
+<br>
+
+<h3 id="1-6-删除一条文档"><a href="#1-6-删除一条文档" class="headerlink" title="1.6 删除一条文档"></a>1.6 删除一条文档</h3><p>删除一个文档不会立即从磁盘上移除，它只是被标记成已删除（逻辑删除）。</p>
+<p>Elasticsearch会在段合并时（磁盘碎片整理）进行删除内容的清理。</p>
+<blockquote>
+<p>发送请求</p>
+</blockquote>
+<p>DELETE /shopping/product/JjauJ3UBlTmhEoyGRo1A</p>
+<blockquote>
+<p>响应结果</p>
+</blockquote>
+<p>{<br>  “_index” : “shopping”,<br>  “_type” : “product”,<br>  “_id” : “JjauJ3UBlTmhEoyGRo1A”,<br>  “_version” : 2,<br>  “result” : “deleted”,<br>  “_shards” : {<br>    “total” : 2,<br>    “successful” : 1,<br>    “failed” : 0<br>  },<br>  “_seq_no” : 7,<br>  “_primary_term” : 5<br>}</p>
+<blockquote>
+<p>可以看到result结果是：deleted，数据被删除。如果删除不存在的文档，result：not_found</p>
+</blockquote>
+<p>{</p>
+<p>  “_index” : “shopping”,</p>
+<p>  “_type” : “product”,</p>
+<p>  “_id” : “11”,</p>
+<p>  “_version” : 1,</p>
+<p>  “result” : “not_found”,</p>
+<p>  “_shards” : {</p>
+<p>​    “total” : 2,</p>
+<p>​    “successful” : 1,</p>
+<p>​    “failed” : 0</p>
+<p>  },</p>
+<p>  “_seq_no” : 0,</p>
+<p>  “_primary_term” : 1</p>
+<p>}</p>
+<h3 id="1-7-根据条件-删除文档"><a href="#1-7-根据条件-删除文档" class="headerlink" title="1.7 根据条件 删除文档"></a>1.7 根据条件 删除文档</h3><blockquote>
+<p>发送请求</p>
+</blockquote>
+<p>POST /shopping/product/_delete_by_query<br>{<br>  “query”:{<br>    “match”:{<br>      “title”:”手机”<br>    }<br>  }<br>}</p>
+<blockquote>
+<p>响应结果</p>
+</blockquote>
+<p>{<br>  “took” : 23,<br>  “timed_out” : false,<br>  “total” : 4,<br>  “deleted” : 4,<br>  “batches” : 1,<br>  “version_conflicts” : 0,<br>  “noops” : 0,<br>  “retries” : {<br>    “bulk” : 0,<br>    “search” : 0<br>  },<br>  “throttled_millis” : 0,<br>  “requests_per_second” : -1.0,<br>  “throttled_until_millis” : 0,<br>  “failures” : [ ]<br>}</p>
+<blockquote>
+<p>响应结果解释</p>
+</blockquote>
+<p>{</p>
+<p>  “took【耗时】” : 23,</p>
+<p>  “timed_out【是否超时】” : false,</p>
+<p>  “total【总数】” : 4,</p>
+<p>  “deleted【删除总数】” : 4,</p>
+<p>  “batches” : 1,</p>
+<p>  “version_conflicts” : 0,</p>
+<p>  “noops” : 0,</p>
+<p>  “retries” : {</p>
+<p>​    “bulk” : 0,</p>
+<p>​    “search” : 0</p>
+<p>  },</p>
+<p>  “throttled_millis” : 0,</p>
+<p>  “requests_per_second” : -1.0,</p>
+<p>  “throttled_until_millis” : 0,</p>
+<p>  “failures” : [ ]</p>
+<p>}</p>
+</blockquote>
+<br>
+
+<h4 id="2-请求体查询-【基本查询】"><a href="#2-请求体查询-【基本查询】" class="headerlink" title="2.请求体查询 【基本查询】"></a>2.请求体查询 【基本查询】</h4><blockquote>
+<h3 id="2-1-请求体查询"><a href="#2-1-请求体查询" class="headerlink" title="2.1 请求体查询"></a>2.1 请求体查询</h3><p>Elasticsearch基于JSON提供完整的查询DSL来定义查询。</p>
+<p>DSL（Domain Specific Language）：领域特定语言</p>
+</blockquote>
+<blockquote>
+<h3 id="2-2-基础数据"><a href="#2-2-基础数据" class="headerlink" title="2.2 基础数据"></a>2.2 基础数据</h3><p>POST /shopping/product/1</p>
+<p>{</p>
+<p>​    “title”:”小米手机”,</p>
+<p>​    “images”:”<a target="_blank" rel="noopener" href="http://www.gulixueyuan.com/xm.jpg&quot;">http://www.gulixueyuan.com/xm.jpg&quot;</a>,</p>
+<p>​    “price”:3999.00</p>
+<p>}</p>
+<p>POST /shopping/product/2</p>
+<p>{</p>
+<p>​    “title”:”华为手机”,</p>
+<p>​    “images”:”<a target="_blank" rel="noopener" href="http://www.gulixueyuan.com/hw.jpg&quot;">http://www.gulixueyuan.com/hw.jpg&quot;</a>,</p>
+<p>​    “price”:4999.00</p>
+<p>}</p>
+<p>POST /shopping/product/3</p>
+<p>{</p>
+<p>​    “title”:”小米电视”,</p>
+<p>​    “images”:”<a target="_blank" rel="noopener" href="http://www.gulixueyuan.com/xmds.jpg&quot;">http://www.gulixueyuan.com/xmds.jpg&quot;</a>,</p>
+<p>​    “price”:5999.00</p>
+<p>}</p>
+</blockquote>
+<blockquote>
+<h3 id="2-3-基本查询"><a href="#2-3-基本查询" class="headerlink" title="2.3 基本查询"></a>2.3 基本查询</h3><blockquote>
+<h3 id="2-3-1-查询所有（match-all）"><a href="#2-3-1-查询所有（match-all）" class="headerlink" title="2.3.1 查询所有（match_all）"></a>2.3.1 查询所有（match_all）</h3><blockquote>
+<p>发送请求：</p>
+</blockquote>
+<p>GET /shopping/_search<br>{<br>  “query”: {<br>    “match_all”: {}<br>  }<br>}</p>
+<blockquote>
+<p>响应结果</p>
+</blockquote>
+<p>{<br>  “took” : 0,<br>  “timed_out” : false,<br>  “_shards” : {<br>    “total” : 5,<br>    “successful” : 5,<br>    “skipped” : 0,<br>    “failed” : 0<br>  },<br>  “hits” : {<br>    “total” : 3,<br>    “max_score” : 1.0,<br>    “hits” : [<br>      {<br>        “_index” : “shopping”,<br>        “_type” : “product”,<br>        “_id” : “2”,<br>        “_score” : 1.0,<br>        “_source” : {<br>          “title” : “华为手机”,<br>          “images” : “<a target="_blank" rel="noopener" href="http://www.gulixueyuan.com/hw.jpg&quot;">http://www.gulixueyuan.com/hw.jpg&quot;</a>,<br>          “price” : 4999.0<br>        }<br>      },<br>      {<br>        “_index” : “shopping”,<br>        “_type” : “product”,<br>        “_id” : “1”,<br>        “_score” : 1.0,<br>        “_source” : {<br>          “title” : “小米手机”,<br>          “images” : “<a target="_blank" rel="noopener" href="http://www.gulixueyuan.com/xm.jpg&quot;">http://www.gulixueyuan.com/xm.jpg&quot;</a>,<br>          “price” : 3999.0<br>        }<br>      },<br>      {<br>        “_index” : “shopping”,<br>        “_type” : “product”,<br>        “_id” : “3”,<br>        “_score” : 1.0,<br>        “_source” : {<br>          “title” : “小米电视”,<br>          “images” : “<a target="_blank" rel="noopener" href="http://www.gulixueyuan.com/xmds.jpg&quot;">http://www.gulixueyuan.com/xmds.jpg&quot;</a>,<br>          “price” : 5999.0<br>        }<br>      }<br>    ]<br>  }<br>}</p>
+<blockquote>
+<p>请求解释</p>
+</blockquote>
+<p>GET  /{索引库}/_search</p>
+<p>{</p>
+<p>​    “query”:{</p>
+<p>​        “查询类型”:{</p>
+<p>​            “查询条件”:”查询条件值”</p>
+<p>​        }</p>
+<p>​    }</p>
+<p>}</p>
+<p>“query”：这里的query代表一个查询对象，里面可以有不同的查询属性</p>
+<p>“查询类型”：例如：match_all(代表查询所有)， match，term ， range 等等</p>
+<p>“查询条件”：查询条件会根据类型的不同，写法也有差异</p>
+<blockquote>
+<p>响应结果解释</p>
+</blockquote>
+<p>{<br>  “took【查询花费时间，单位毫秒】” : 1,<br>  “timed_out【是否超时】” : false,<br>  “_shards【分片信息】” : {<br>    “total【总数】” : 5,<br>    “successful【成功】” : 5,<br>    “skipped【忽略】” : 0,<br>    “failed【失败】” : 0<br>  },<br>  “hits【搜索命中结果】” : {<br>    “total【命中总数】” : 3,<br>    “max_score【所有查询结果中，文档的最高得分】” : 1.0,<br>    “hits【命中结果集合】” : [<br>      {<br>        “_index” :<br>“shopping”,<br>        “_type” :<br>“product”,<br>        “_id” : “2”,<br>        “_score” : 1.0,<br>        “_source” : {<br>          “title” : “华为手机”,<br>          “images” : “<a target="_blank" rel="noopener" href="http://www.gulixueyuan.com/hw.jpg">http://www.gulixueyuan.com/hw.jpg</a>“,<br>          “price” : 4999.0<br>        }<br>      },<br>       。。。<br>      }<br>    ]<br>  }<br>}</p>
+<br>
+
+<h3 id="2-3-2-匹配查询（match）"><a href="#2-3-2-匹配查询（match）" class="headerlink" title="2.3.2 匹配查询（match）"></a>2.3.2 匹配查询（match）</h3><p>match类型查询，会把查询条件进行分词，然后进行查询，多个词条之间是or的关系</p>
+<blockquote>
+<p>发送请求</p>
+</blockquote>
+<p><strong>GET /shopping/_search</strong></p>
+<p>{</p>
+<p>  “query”: {</p>
+<p>​    “match”: {</p>
+<p>​      “title”: “小米手机”</p>
+<p>​    }</p>
+<p>  }</p>
+<p>}</p>
+<blockquote>
+<p>响应结果</p>
+</blockquote>
+<p>{<br>  “took” : 2,<br>  “timed_out” : false,<br>  “_shards” : {<br>    “total” : 5,<br>    “successful” : 5,<br>    “skipped” : 0,<br>    “failed” : 0<br>  },<br>  “hits” : {<br>    “total” : 3,<br>    “max_score” : 0.5753642,<br>    “hits” : [<br>      {<br>        “_index” :<br>“shopping”,<br>        “_type” :<br>“product”,<br>        “_id” : “1”,<br>        “_score” : 0.5753642,<br>        “_source” : {<br>          “title” : “小米手机”,<br>          “images” : “<a target="_blank" rel="noopener" href="http://www.gulixueyuan.com/xm.jpg">http://www.gulixueyuan.com/xm.jpg</a>“,<br>          “price” : 3999.0<br>        }<br>      },<br>      {<br>        “_index” :<br>“shopping”,<br>        “_type” :<br>“product”,<br>        “_id” : “2”,<br>        “_score” : 0.2876821,<br>        “_source” : {<br>          “title” : “华为手机”,<br>          “images” : “<a target="_blank" rel="noopener" href="http://www.gulixueyuan.com/hw.jpg">http://www.gulixueyuan.com/hw.jpg</a>“,<br>          “price” : 4999.0<br>        }<br>      },<br>      {<br>        “_index” :<br>“shopping”,<br>        “_type” :<br>“product”,<br>        “_id” : “3”,<br>        “_score” : 0.2876821,<br>        “_source” : {<br>          “title” : “小米电视”,<br>          “images” : “<a target="_blank" rel="noopener" href="http://www.gulixueyuan.com/xmds.jpg">http://www.gulixueyuan.com/xmds.jpg</a>“,<br>          “price” : 5999.0<br>        }<br>      }<br>    ]<br>  }<br>}</p>
+<blockquote>
+<p>在上面的案例中，不仅会查询到电视，而且与小米相关的都会查询到。</p>
+<p>某些情况下，我们需要更精确查找，我们希望这个关系变成and，可以这样做：</p>
+</blockquote>
+<p>GET /shopping/_search<br>{<br>  “query”: {<br>    “match”: {<br>      “title”: {<br>        “query”: “小米手机”,<br>        “operator”:<br>“and”<br>      }<br>    }<br>  }<br>}</p>
+<blockquote>
+<p>响应结果</p>
+</blockquote>
+<p>{</p>
+<p>  “took” : 11,</p>
+<p>  “timed_out” : false,</p>
+<p>  “_shards” : {</p>
+<p>​    “total” : 5,</p>
+<p>​    “successful” : 5,</p>
+<p>​    “skipped” : 0,</p>
+<p>​    “failed” : 0</p>
+<p>  },</p>
+<p>  “hits” : {</p>
+<p>​    “total” : 1,</p>
+<p>​    “max_score” : 0.5753642,</p>
+<p>​    “hits” : [</p>
+<p>​      {</p>
+<p>​        “_index” : “shopping”,</p>
+<p>​        “_type” : “product”,</p>
+<p>​        “_id” : “1”,</p>
+<p>​        “_score” : 0.5753642,</p>
+<p>​        “_source” : {</p>
+<p>​          “title” : “小米手机”,</p>
+<p>​          “images” : “<a target="_blank" rel="noopener" href="http://www.gulixueyuan.com/xm.jpg">http://www.gulixueyuan.com/xm.jpg</a>“,</p>
+<p>​          “price” : 3999.0</p>
+<p>​        }</p>
+<p>​      }</p>
+<p>​    ]</p>
+<p>  }</p>
+<p>}</p>
+<h3 id="2-3-3-多字段匹配查询-multi-match"><a href="#2-3-3-多字段匹配查询-multi-match" class="headerlink" title="2.3.3 多字段匹配查询(multi_match)"></a>2.3.3 多字段匹配查询(multi_match)</h3><p>multi_match与match类似，不同的是它可以在多个字段中查询。</p>
+<blockquote>
+<p>发送请求</p>
+</blockquote>
+<p>GET /shopping/_search<br>{<br>  “query”: {<br>    “multi_match”: {<br>      “query”: “小米”,<br>      “fields”: [“title”,”subtitle”]<br>    }<br>  }<br>}</p>
+<blockquote>
+<p>响应结果</p>
+</blockquote>
+<p>{<br>  “took” : 2,<br>  “timed_out” : false,<br>  “_shards” : {<br>    “total” : 5,<br>    “successful” : 5,<br>    “skipped” : 0,<br>    “failed” : 0<br>  },<br>  “hits” : {<br>    “total” : 2,<br>    “max_score” : 0.2876821,<br>    “hits” : [<br>      {<br>        “_index” : “shopping”,<br>        “_type” : “product”,<br>        “_id” : “1”,<br>        “_score” : 0.2876821,<br>        “_source” : {<br>          “title” : “小米手机”,<br>          “images” : “<a target="_blank" rel="noopener" href="http://www.gulixueyuan.com/xm.jpg&quot;">http://www.gulixueyuan.com/xm.jpg&quot;</a>,<br>          “price” : 3999.0<br>        }<br>      },<br>      {<br>        “_index” : “shopping”,<br>        “_type” : “product”,<br>        “_id” : “3”,<br>        “_score” : 0.2876821,<br>        “_source” : {<br>          “title” : “小米电视”,<br>          “images” : “<a target="_blank" rel="noopener" href="http://www.gulixueyuan.com/xmds.jpg&quot;">http://www.gulixueyuan.com/xmds.jpg&quot;</a>,<br>          “price” : 5999.0<br>        }<br>      }<br>    ]<br>  }<br>}</p>
+<h3 id="2-3-4-关键词-精准查询（term"><a href="#2-3-4-关键词-精准查询（term" class="headerlink" title="2.3.4 关键词 精准查询（term)"></a>2.3.4 关键词 精准查询（term)</h3><p>term查询，精确的关键词匹配查询，不对查询条件进行分词。</p>
+<blockquote>
+<p>发送请求</p>
+</blockquote>
+<p>GET /shopping/_search<br>{<br>  “query”: {<br>    “term”: {<br>      “title”: {<br>        “value”: “小米”<br>      }<br>    }<br>  }<br>}</p>
+<blockquote>
+<p>响应结果</p>
+</blockquote>
+<p>{<br>  “took” : 0,<br>  “timed_out” : false,<br>  “_shards” : {<br>    “total” : 5,<br>    “successful” : 5,<br>    “skipped” : 0,<br>    “failed” : 0<br>  },<br>  “hits” : {<br>    “total” : 2,<br>    “max_score” : 0.2876821,<br>    “hits” : [<br>      {<br>        “_index” : “shopping”,<br>        “_type” : “product”,<br>        “_id” : “1”,<br>        “_score” : 0.2876821,<br>        “_source” : {<br>          “title” : “小米手机”,<br>          “images” : “<a target="_blank" rel="noopener" href="http://www.gulixueyuan.com/xm.jpg&quot;">http://www.gulixueyuan.com/xm.jpg&quot;</a>,<br>          “price” : 3999.0<br>        }<br>      },<br>      {<br>        “_index” : “shopping”,<br>        “_type” : “product”,<br>        “_id” : “3”,<br>        “_score” : 0.2876821,<br>        “_source” : {<br>          “title” : “小米电视”,<br>          “images” : “<a target="_blank" rel="noopener" href="http://www.gulixueyuan.com/xmds.jpg&quot;">http://www.gulixueyuan.com/xmds.jpg&quot;</a>,<br>          “price” : 5999.0<br>        }<br>      }<br>    ]<br>  }<br>}</p>
+<br>
+
+<h3 id="2-3-5-多关键词-准确查询（terms）"><a href="#2-3-5-多关键词-准确查询（terms）" class="headerlink" title="2.3.5 多关键词 准确查询（terms）"></a>2.3.5 多关键词 准确查询（terms）</h3><p>terms 查询和 term 查询一样，但它允许你指定多值进行匹配。</p>
+<p>如果这个字段包含了指定值中的任何一个值，那么这个文档满足条件，类似于mysql的 in</p>
+<blockquote>
+<p>发送请求</p>
+</blockquote>
+<p>GET /shopping/_search<br>{<br>  “query”: {<br>    “terms”: {<br>      “price”: [<br>        “3999”,<br>        “5999”<br>      ]<br>    }<br>  }<br>}</p>
+<blockquote>
+<p>响应结果</p>
+</blockquote>
+<p>{<br>  “took” : 3,<br>  “timed_out” : false,<br>  “_shards” : {<br>    “total” : 5,<br>    “successful” : 5,<br>    “skipped” : 0,<br>    “failed” : 0<br>  },<br>  “hits” : {<br>    “total” : 2,<br>    “max_score” : 1.0,<br>    “hits” : [<br>      {<br>        “_index” : “shopping”,<br>        “_type” : “product”,<br>        “_id” : “1”,<br>        “_score” : 1.0,<br>        “_source” : {<br>          “title” : “小米手机”,<br>          “images” : “<a target="_blank" rel="noopener" href="http://www.gulixueyuan.com/xm.jpg&quot;">http://www.gulixueyuan.com/xm.jpg&quot;</a>,<br>          “price” : 3999.0<br>        }<br>      },<br>      {<br>        “_index” : “shopping”,<br>        “_type” : “product”,<br>        “_id” : “3”,<br>        “_score” : 1.0,<br>        “_source” : {<br>          “title” : “小米电视”,<br>          “images” : “<a target="_blank" rel="noopener" href="http://www.gulixueyuan.com/xmds.jpg&quot;">http://www.gulixueyuan.com/xmds.jpg&quot;</a>,<br>          “price” : 5999.0<br>        }<br>      }<br>    ]<br>  }<br>}</p>
+</blockquote>
+<br>
+
+<h3 id="3-请求体查询-【结果过滤】"><a href="#3-请求体查询-【结果过滤】" class="headerlink" title="3 请求体查询 【结果过滤】"></a>3 请求体查询 【结果过滤】</h3><blockquote>
+<h3 id="3-1-指定查询字段"><a href="#3-1-指定查询字段" class="headerlink" title="3.1 指定查询字段"></a>3.1 指定查询字段</h3><p>默认情况下，ElasticSearch在搜索的结果中，会把文档中保存在_source的所有字段都返回。</p>
+<p>如果我们只想获取其中的部分字段，我们可以添加_source的过滤</p>
+<blockquote>
+<p>发送请求</p>
+</blockquote>
+<p>GET /shopping/_search<br>{<br>  “_source”: [“title”,”price”],<br>  “query”: {<br>    “terms”: {<br>      “price”: [<br>        “3999”<br>      ]<br>    }<br>  }<br>}</p>
+<blockquote>
+<p>响应结果</p>
+</blockquote>
+<p>{<br>  “took” : 1,<br>  “timed_out” : false,<br>  “_shards” : {<br>    “total” : 5,<br>    “successful” : 5,<br>    “skipped” : 0,<br>    “failed” : 0<br>  },<br>  “hits” : {<br>    “total” : 1,<br>    “max_score” : 1.0,<br>    “hits” : [<br>      {<br>        “_index” : “shopping”,<br>        “_type” : “product”,<br>        “_id” : “1”,<br>        “_score” : 1.0,<br>        “_source” : {<br>          “price” : 3999.0,<br>          “title” : “小米手机”<br>        }<br>      }<br>    ]<br>  }<br>}</p>
+<br>
+
+<h3 id="3-2-过滤-指定-字段-includes-和-excludes"><a href="#3-2-过滤-指定-字段-includes-和-excludes" class="headerlink" title="3.2 过滤 指定 字段 includes 和 excludes"></a>3.2 过滤 指定 字段 includes 和 excludes</h3><p>也可以通过</p>
+<ul>
+<li>includes：指定 想要显示的 字段</li>
+<li>excludes：指定 想要排除的 字段</li>
+</ul>
+<p>二者是可选的</p>
+<blockquote>
+<p>发送请求</p>
+</blockquote>
+<p>GET /shopping/_search<br>{<br>  “_source”: {“includes”:[“title”,”price”]},<br>  “query”: {<br>    “terms”: {<br>      “price”: [<br>        “3999”<br>      ]<br>    }<br>  }<br>}</p>
+<blockquote>
+<p>响应结果</p>
+</blockquote>
+<p>{<br>  “took” : 1,<br>  “timed_out” : false,<br>  “_shards” : {<br>    “total” : 5,<br>    “successful” : 5,<br>    “skipped” : 0,<br>    “failed” : 0<br>  },<br>  “hits” : {<br>    “total” : 1,<br>    “max_score” : 1.0,<br>    “hits” : [<br>      {<br>        “_index” : “shopping”,<br>        “_type” : “product”,<br>        “_id” : “1”,<br>        “_score” : 1.0,<br>        “_source” : {<br>          “price” : 3999.0,<br>          “title” : “小米手机”<br>        }<br>      }<br>    ]<br>  }<br>}</p>
+</blockquote>
+</blockquote>
+</blockquote>
+<h2 id="剩下的-其他ElasticSearch语法使用-下篇文章再说明"><a href="#剩下的-其他ElasticSearch语法使用-下篇文章再说明" class="headerlink" title="剩下的 其他ElasticSearch语法使用 下篇文章再说明"></a>剩下的 其他ElasticSearch语法使用 下篇文章再说明</h2>
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
@@ -236,65 +555,115 @@
 		</ul>
 	</div>
 
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://example.com/2020/10/14/ES-ElasticSearch%E7%9A%84%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8%E4%B9%8BDSL/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/10/14/ES-ElasticSearch%E7%9A%84%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8/" class="archive-article-date">
-  	<time datetime="2020-10-14T08:18:40.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-10-14</time>
-</a>
+<nav id="article-nav">
+  
+    <a href="/2020/10/15/ES-ElasticSearch%E7%9A%84%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8%E4%B9%8BDSL-%E4%BA%8C/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          ES:ElasticSearch的基本使用之DSL(二)
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2020/10/14/ES-ElasticSearch%E7%9A%84%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">ES:ElasticSearch的基本使用</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
+        
+        
+    </div>
+</aside>
+
+
+
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/10/14/ES-ElasticSearch%E7%9A%84%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8/">ES:ElasticSearch的基本使用</a>
-    </h1>
+  
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">ElasticSearch</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">搜索引擎</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">文档型数据库</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
   
 
-    
+  
+
+  
 
 
           </div>
@@ -317,9 +686,9 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
+		isPost: true,
 		isArchive: false,
-		isTag: true,
+		isTag: false,
 		isCategory: false,
 		open_in_new: false,
 		toc_hide_index: true,

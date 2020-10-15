@@ -143,6 +143,212 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-ES-ElasticSearch的基本使用之DSL-二" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/10/15/ES-ElasticSearch%E7%9A%84%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8%E4%B9%8BDSL-%E4%BA%8C/">ES:ElasticSearch的基本使用之DSL(二)</a>
+    </h1>
+  
+
+        
+        <a href="/2020/10/15/ES-ElasticSearch%E7%9A%84%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8%E4%B9%8BDSL-%E4%BA%8C/" class="archive-article-date">
+  	<time datetime="2020-10-15T01:40:24.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-10-15</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h4 id="文本-主要是记录一些-有关于ElasticSearch的DSL语句的使用"><a href="#文本-主要是记录一些-有关于ElasticSearch的DSL语句的使用" class="headerlink" title="文本 主要是记录一些 有关于ElasticSearch的DSL语句的使用"></a>文本 主要是记录一些 有关于ElasticSearch的DSL语句的使用</h4><h2 id="上一篇-说明了-文档操作-请求体查询-基本查询-结果过滤-本文将继续说明其他的语法"><a href="#上一篇-说明了-文档操作-请求体查询-基本查询-结果过滤-本文将继续说明其他的语法" class="headerlink" title="上一篇 说明了 文档操作 请求体查询(基本查询 结果过滤) 本文将继续说明其他的语法"></a>上一篇 说明了 文档操作 请求体查询(基本查询 结果过滤) 本文将继续说明其他的语法</h2><h3 id="具体操作"><a href="#具体操作" class="headerlink" title="具体操作"></a>具体操作</h3><blockquote>
+<h3 id="1-请求体查询（高级查询）"><a href="#1-请求体查询（高级查询）" class="headerlink" title="1. 请求体查询（高级查询）"></a>1. 请求体查询（高级查询）</h3><blockquote>
+<h3 id="1-1-布尔组合（bool）"><a href="#1-1-布尔组合（bool）" class="headerlink" title="1.1 布尔组合（bool）"></a>1.1 布尔组合（bool）</h3><p>bool 把 各种 其他查询 通过 must ，must_not ， should 的方式进行组合</p>
+<blockquote>
+<p>发送请求</p>
+</blockquote>
+<p>GET /shopping/_search<br>{<br>  “query”: {<br>    “bool”: {<br>      “must”: [<br>        {“match”: {<br>          “title”: “小米”<br>        }}<br>      ],<br>      “must_not”: [<br>        {“match”: {<br>          “title”: “电视”<br>        }}<br>      ],<br>      “should”: [<br>        {“match”: {<br>          “title”: “手机”<br>        }}<br>      ]<br>    }<br>  }<br>}</p>
+<blockquote>
+<p>响应结果</p>
+</blockquote>
+<p>{<br>  “took” : 9,<br>  “timed_out” : false,<br>  “_shards” : {<br>    “total” : 5,<br>    “successful” : 5,<br>    “skipped” : 0,<br>    “failed” : 0<br>  },<br>  “hits” : {<br>    “total” : 1,<br>    “max_score” : 0.5753642,<br>    “hits” : [<br>      {<br>        “_index” : “shopping”,<br>        “_type” : “product”,<br>        “_id” : “1”,<br>        “_score” : 0.5753642,<br>        “_source” : {<br>          “title” : “小米手机”,<br>          “images” : “<a target="_blank" rel="noopener" href="http://www.gulixueyuan.com/xm.jpg&quot;">http://www.gulixueyuan.com/xm.jpg&quot;</a>,<br>          “price” : 3999.0<br>        }<br>      }<br>    ]<br>  }<br>}</p>
+<br>
+        
+          <a class="article-more-a" href="/2020/10/15/ES-ElasticSearch%E7%9A%84%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8%E4%B9%8BDSL-%E4%BA%8C/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">ElasticSearch</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">搜索引擎</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">文档型数据库</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/10/15/ES-ElasticSearch%E7%9A%84%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8%E4%B9%8BDSL-%E4%BA%8C/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-ES-ElasticSearch的基本使用之DSL" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/10/14/ES-ElasticSearch%E7%9A%84%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8%E4%B9%8BDSL/">ES:ElasticSearch的基本使用之DSL</a>
+    </h1>
+  
+
+        
+        <a href="/2020/10/14/ES-ElasticSearch%E7%9A%84%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8%E4%B9%8BDSL/" class="archive-article-date">
+  	<time datetime="2020-10-14T11:51:31.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-10-14</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h4 id="文本-主要是记录一些-有关于ElasticSearch的DSL语句的使用"><a href="#文本-主要是记录一些-有关于ElasticSearch的DSL语句的使用" class="headerlink" title="文本 主要是记录一些 有关于ElasticSearch的DSL语句的使用"></a>文本 主要是记录一些 有关于ElasticSearch的DSL语句的使用</h4><h2 id="上一篇文章-说明了-索引库操作-以及-类型及映射操作-本文将详细说明其他的使用语法"><a href="#上一篇文章-说明了-索引库操作-以及-类型及映射操作-本文将详细说明其他的使用语法" class="headerlink" title="上一篇文章 说明了 索引库操作 以及 类型及映射操作 本文将详细说明其他的使用语法"></a>上一篇文章 说明了 索引库操作 以及 类型及映射操作 本文将详细说明其他的使用语法</h2><h3 id="具体操作"><a href="#具体操作" class="headerlink" title="具体操作"></a>具体操作</h3><blockquote>
+<h4 id="1-文档操作【基本的CURD】"><a href="#1-文档操作【基本的CURD】" class="headerlink" title="1.文档操作【基本的CURD】"></a>1.文档操作【基本的CURD】</h4><blockquote>
+<h3 id="1-1-新建文档"><a href="#1-1-新建文档" class="headerlink" title="1.1 新建文档"></a>1.1 新建文档</h3><blockquote>
+<p>发送请求</p>
+</blockquote>
+<p><strong>POST /shopping/product</strong></p>
+<p>{</p>
+<p>​    “title”:”小米手机”,</p>
+<p>​    “images”:”<a target="_blank" rel="noopener" href="http://www.gulixueyuan.com/xm.jpg&quot;">http://www.gulixueyuan.com/xm.jpg&quot;</a>,</p>
+<p>​    “price”:3999.00</p>
+<p>}</p>
+<blockquote>
+<p>响应结果</p>
+</blockquote>
+<p>{<br>  “_index” : “shopping”,<br>  “_type” : “product”,<br>  “_id” :<br>“indGaHEB1ahbZ0SRrXt3”,<br>  “_version” : 1,<br>  “result” : “created”,<br>  “_shards” : {<br>    “total” : 2,<br>    “successful” : 1,<br>    “failed” : 0<br>  },<br>  “_seq_no” : 0,<br>  “_primary_term” : 1<br>}</p>
+<blockquote>
+<p>响应结果解释</p>
+</blockquote>
+<p>{<br>  “_index【索引库】” : “shopping”,<br>  “_type【类型】” : “product”,<br>  “_id【主键id】” :<br>“indGaHEB1ahbZ0SRrXt3”,<br>  “_version【版本】” : 1,<br>  “result【操作结果】” : “created”,<br>  “_shards【分片】” : {<br>    “total【总数】” : 2,<br>    “successful【成功】” : 1,<br>    “failed【失败】” : 0<br>  },<br>  “_seq_no” : 0,<br>  “_primary_term” : 1<br>}</p>
+<blockquote>
+<p>可以看到结果显示为：<code>created</code>，是创建成功了。</p>
+<p>另外，需要注意的是，在响应结果中有个<code>_id</code>字段，这个就是这条文档数据的<code>唯一标识</code>，以后的增删改查都依赖这个id作为唯一标示。可以看到id的值为：indGaHEB1ahbZ0SRrXt3，这里我们新增时没有指定id，所以是ES帮我们随机生成的id。</p>
+</blockquote>
+<p>多创建几条数据：<br><strong>POST /shopping/product/2</strong><br>{<br>    “title”:”华为手机”,</p>
+<p>“images”:”<a target="_blank" rel="noopener" href="http://www.gulixueyuan.com/hw.jpg&quot;">http://www.gulixueyuan.com/hw.jpg&quot;</a>,<br>    “price”:4999.00<br>}</p>
+<p><strong>POST /shopping/product/3</strong><br>{<br>    “title”:”小米电视”,</p>
+<p>“images”:”<a target="_blank" rel="noopener" href="http://www.gulixueyuan.com/xmds.jpg&quot;">http://www.gulixueyuan.com/xmds.jpg&quot;</a>,<br>    “price”:5999.00<br>}</p>
+<br>
+        
+          <a class="article-more-a" href="/2020/10/14/ES-ElasticSearch%E7%9A%84%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8%E4%B9%8BDSL/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">ElasticSearch</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">搜索引擎</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">文档型数据库</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/10/14/ES-ElasticSearch%E7%9A%84%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8%E4%B9%8BDSL/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-ES-ElasticSearch的基本使用" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -987,86 +1193,10 @@
 
 
   
-    <article id="post-终于有了自己的博客" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/10/11/%E7%BB%88%E4%BA%8E%E6%9C%89%E4%BA%86%E8%87%AA%E5%B7%B1%E7%9A%84%E5%8D%9A%E5%AE%A2/">终于有了自己的博客</a>
-    </h1>
-  
-
-        
-        <a href="/2020/10/11/%E7%BB%88%E4%BA%8E%E6%9C%89%E4%BA%86%E8%87%AA%E5%B7%B1%E7%9A%84%E5%8D%9A%E5%AE%A2/" class="archive-article-date">
-  	<time datetime="2020-10-10T17:43:07.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-10-11</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3> 终于有了自己的博客 </h3>
-
-
-
-<p>​    想自己弄个博客很久了，花费了一番功夫，总算是把东西搭了个差不多。</p>
-<p>以后要给自己定个小目标，有事没事的时候写写博客。记录一下自己的成长。</p>
-<p><del>小声比比：作为一个程序猿，没有自己的博客，还叫程序猿嘛</del></p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">随笔</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/10/11/%E7%BB%88%E4%BA%8E%E6%9C%89%E4%BA%86%E8%87%AA%E5%B7%B1%E7%9A%84%E5%8D%9A%E5%AE%A2/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
+    <nav id="page-nav">
+      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">Next &amp;raquo;</a>
+    </nav>
   
 
 

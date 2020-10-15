@@ -6,17 +6,21 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://example.com">
-  <title>Tag: 搜索引擎 | 曾万鑫的博客</title>
+  <title>ES:ElasticSearch的基本使用之DSL(二) | 曾万鑫的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="一个懂一点java皮毛的弟弟">
-<meta property="og:type" content="website">
-<meta property="og:title" content="曾万鑫的博客">
-<meta property="og:url" content="http://example.com/tags/%E6%90%9C%E7%B4%A2%E5%BC%95%E6%93%8E/index.html">
+  <meta name="description" content="文本 主要是记录一些 有关于ElasticSearch的DSL语句的使用上一篇 说明了 文档操作 请求体查询(基本查询 结果过滤) 本文将继续说明其他的语法具体操作 1. 请求体查询（高级查询） 1.1 布尔组合（bool）bool 把 各种 其他查询 通过 must ，must_not ， should 的方式进行组合  发送请求  GET &#x2F;shopping&#x2F;_search{  “query”">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ES:ElasticSearch的基本使用之DSL(二)">
+<meta property="og:url" content="http://example.com/2020/10/15/ES-ElasticSearch%E7%9A%84%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8%E4%B9%8BDSL-%E4%BA%8C/index.html">
 <meta property="og:site_name" content="曾万鑫的博客">
-<meta property="og:description" content="一个懂一点java皮毛的弟弟">
+<meta property="og:description" content="文本 主要是记录一些 有关于ElasticSearch的DSL语句的使用上一篇 说明了 文档操作 请求体查询(基本查询 结果过滤) 本文将继续说明其他的语法具体操作 1. 请求体查询（高级查询） 1.1 布尔组合（bool）bool 把 各种 其他查询 通过 must ，must_not ， should 的方式进行组合  发送请求  GET &#x2F;shopping&#x2F;_search{  “query”">
 <meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2020-10-15T01:40:24.000Z">
+<meta property="article:modified_time" content="2020-10-15T13:01:27.256Z">
 <meta property="article:author" content="donkey_zwx">
-<meta property="article:tag" content="java,后端,zwx,ZWX,开发者,donkey,youngdonkey,donkey_zwx,youngDonkey_zwx,程序猿,程序媛,程序员,开发者">
+<meta property="article:tag" content="ElasticSearch">
+<meta property="article:tag" content="搜索引擎">
+<meta property="article:tag" content="文档型数据库">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternative" href="/atom.xml" title="曾万鑫的博客" type="application/atom+xml">
@@ -141,36 +145,320 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
+            <article id="post-ES-ElasticSearch的基本使用之DSL-二" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
   
+    <h1 class="article-title" itemprop="name">
+      ES:ElasticSearch的基本使用之DSL(二)
+    </h1>
   
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2020" class="archive-year">2020</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/10/15/ES-ElasticSearch%E7%9A%84%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8%E4%B9%8BDSL-%E4%BA%8C/" class="archive-article-date">
+
+        
+        <a href="/2020/10/15/ES-ElasticSearch%E7%9A%84%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8%E4%B9%8BDSL-%E4%BA%8C/" class="archive-article-date">
   	<time datetime="2020-10-15T01:40:24.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-10-15</time>
 </a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/10/15/ES-ElasticSearch%E7%9A%84%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8%E4%B9%8BDSL-%E4%BA%8C/">ES:ElasticSearch的基本使用之DSL(二)</a>
-    </h1>
-  
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h4 id="文本-主要是记录一些-有关于ElasticSearch的DSL语句的使用"><a href="#文本-主要是记录一些-有关于ElasticSearch的DSL语句的使用" class="headerlink" title="文本 主要是记录一些 有关于ElasticSearch的DSL语句的使用"></a>文本 主要是记录一些 有关于ElasticSearch的DSL语句的使用</h4><h2 id="上一篇-说明了-文档操作-请求体查询-基本查询-结果过滤-本文将继续说明其他的语法"><a href="#上一篇-说明了-文档操作-请求体查询-基本查询-结果过滤-本文将继续说明其他的语法" class="headerlink" title="上一篇 说明了 文档操作 请求体查询(基本查询 结果过滤) 本文将继续说明其他的语法"></a>上一篇 说明了 文档操作 请求体查询(基本查询 结果过滤) 本文将继续说明其他的语法</h2><h3 id="具体操作"><a href="#具体操作" class="headerlink" title="具体操作"></a>具体操作</h3><blockquote>
+<h3 id="1-请求体查询（高级查询）"><a href="#1-请求体查询（高级查询）" class="headerlink" title="1. 请求体查询（高级查询）"></a>1. 请求体查询（高级查询）</h3><blockquote>
+<h3 id="1-1-布尔组合（bool）"><a href="#1-1-布尔组合（bool）" class="headerlink" title="1.1 布尔组合（bool）"></a>1.1 布尔组合（bool）</h3><p>bool 把 各种 其他查询 通过 must ，must_not ， should 的方式进行组合</p>
+<blockquote>
+<p>发送请求</p>
+</blockquote>
+<p>GET /shopping/_search<br>{<br>  “query”: {<br>    “bool”: {<br>      “must”: [<br>        {“match”: {<br>          “title”: “小米”<br>        }}<br>      ],<br>      “must_not”: [<br>        {“match”: {<br>          “title”: “电视”<br>        }}<br>      ],<br>      “should”: [<br>        {“match”: {<br>          “title”: “手机”<br>        }}<br>      ]<br>    }<br>  }<br>}</p>
+<blockquote>
+<p>响应结果</p>
+</blockquote>
+<p>{<br>  “took” : 9,<br>  “timed_out” : false,<br>  “_shards” : {<br>    “total” : 5,<br>    “successful” : 5,<br>    “skipped” : 0,<br>    “failed” : 0<br>  },<br>  “hits” : {<br>    “total” : 1,<br>    “max_score” : 0.5753642,<br>    “hits” : [<br>      {<br>        “_index” : “shopping”,<br>        “_type” : “product”,<br>        “_id” : “1”,<br>        “_score” : 0.5753642,<br>        “_source” : {<br>          “title” : “小米手机”,<br>          “images” : “<a target="_blank" rel="noopener" href="http://www.gulixueyuan.com/xm.jpg&quot;">http://www.gulixueyuan.com/xm.jpg&quot;</a>,<br>          “price” : 3999.0<br>        }<br>      }<br>    ]<br>  }<br>}</p>
+<br>
 
-        <div class="article-info info-on-right">
-          
+<a id="more"></a>
+
+<h3 id="1-2-范围查询-range"><a href="#1-2-范围查询-range" class="headerlink" title="1.2 范围查询(range)"></a>1.2 范围查询(range)</h3><p>range 查询 找出那些 落在 指定区间内的 数字 或 时间  range查询允许 以下字符</p>
+<ul>
+<li>gt（greater than）大于</li>
+<li>gte（greater than equal）大于等于</li>
+<li>lt（less than）小于</li>
+<li>lte（less than equal）小于等于</li>
+</ul>
+<blockquote>
+<p>发送请求</p>
+</blockquote>
+<p><strong>GET /shopping/_search</strong></p>
+<p>{</p>
+<p>  “query”: {</p>
+<p>​    “<strong>range</strong>“: {</p>
+<p>​      “price”: {</p>
+<p>​        “gte”: 2500,</p>
+<p>​        “lte”: 4000</p>
+<p>​      }</p>
+<p>​    }</p>
+<p>  }</p>
+<p>}</p>
+<blockquote>
+<p>响应结果</p>
+</blockquote>
+<p>{<br>  “took” : 0,<br>  “timed_out” : false,<br>  “_shards” : {<br>    “total” : 5,<br>    “successful” : 5,<br>    “skipped” : 0,<br>    “failed” : 0<br>  },<br>  “hits” : {<br>    “total” : 1,<br>    “max_score” : 1.0,<br>    “hits” : [<br>      {<br>        “_index” :<br>“shopping”,<br>        “_type” :<br>“product”,<br>        “_id” : “1”,<br>        “_score” : 1.0,<br>        “_source” : {<br>          “title” : “小米手机”,<br>          “images” : “<a target="_blank" rel="noopener" href="http://www.gulixueyuan.com/xm.jpg">http://www.gulixueyuan.com/xm.jpg</a>“,<br>          “price” : 3999.0<br>        }<br>      }<br>    ]<br>  }<br>}</p>
+<br>
+
+<h3 id="1-3-模糊查询（fuzzy）"><a href="#1-3-模糊查询（fuzzy）" class="headerlink" title="1.3 模糊查询（fuzzy）"></a>1.3 模糊查询（fuzzy）</h3><p>返回包含与搜索字词<strong>相似</strong>的字词的文档</p>
+<p>编辑距离是将一个术语转换为另一个术语所需的一个字符更改的次数。这些更改可以包括</p>
+<ul>
+<li>更改字符（box -&gt; fox）</li>
+<li>删除字符 (black -&gt; lack)</li>
+<li>插入字符（sic -&gt; sick）</li>
+<li>转置两个相邻字符（act -&gt; cat）</li>
+</ul>
+<p>为了找到相似的术语，fuzzy查询会在指定的编辑距离内创建一组搜索词的所有可能的变体或扩展。然后查询返回每个扩展的完全匹配</p>
+<p>通过fuzziness修改编辑距离。一般使用默认值AUTO，根据术语的长度生成编辑距离。</p>
+<ul>
+<li>0-2  必须完全匹配</li>
+<li>3-5  允许编辑一次</li>
+<li>大于5 允许编辑两次</li>
+</ul>
+<blockquote>
+<p>添加数据</p>
+</blockquote>
+<p>POST /shopping/product/4<br>{<br>  “title”:”apple手机”,<br>  “image”:”apple.jpg”,<br>  “price”:5999.00<br>}<br>POST /shopping/product/5<br>{<br>  “title”:”apple”,<br>  “image”:”apple.jpg”,<br>  “price”:6999.00<br>}</p>
+<blockquote>
+<p>发送请求</p>
+</blockquote>
+<p>GET /shopping/_search<br>{<br>  “query”: {<br>    “fuzzy”: {<br>      “title”: {<br>        “value”: “ccple”<br>      }<br>    }<br>  }<br>}</p>
+<blockquote>
+<p>响应结果</p>
+</blockquote>
+<p>{<br>  “took” : 12,<br>  “timed_out” : false,<br>  “_shards” : {<br>    “total” : 5,<br>    “successful” : 5,<br>    “skipped” : 0,<br>    “failed” : 0<br>  },<br>  “hits” : {<br>    “total” : 0,<br>    “max_score” : null,<br>    “hits” : [ ]<br>  }<br>}</p>
+<blockquote>
+<p>如果只有一个字符错误</p>
+</blockquote>
+<blockquote>
+<p>发送请求</p>
+</blockquote>
+<p>GET /shopping/_search<br>{<br>  “query”: {<br>    “fuzzy”: {<br>      “title”: {<br>        “value”: “cpple”<br>      }<br>    }<br>  }<br>}</p>
+<blockquote>
+<p>响应结果</p>
+</blockquote>
+<p>{<br>  “took” : 2,<br>  “timed_out” : false,<br>  “_shards” : {<br>    “total” : 5,<br>    “successful” : 5,<br>    “skipped” : 0,<br>    “failed” : 0<br>  },<br>  “hits” : {<br>    “total” : 2,<br>    “max_score” : 0.55451775,<br>    “hits” : [<br>      {<br>        “_index” : “shopping”,<br>        “_type” : “product”,<br>        “_id” : “4”,<br>        “_score” : 0.55451775,<br>        “_source” : {<br>          “title” : “apple手机”,<br>          “image” : “apple.jpg”,<br>          “price” : 5999.0<br>        }<br>      },<br>      {<br>        “_index” : “shopping”,<br>        “_type” : “product”,<br>        “_id” : “5”,<br>        “_score” : 0.23014566,<br>        “_source” : {<br>          “title” : “apple”,<br>          “image” : “apple.jpg”,<br>          “price” : 6999.0<br>        }<br>      }<br>    ]<br>  }<br>}</p>
+</blockquote>
+<h3 id="2-请求体查询-（查询排序）"><a href="#2-请求体查询-（查询排序）" class="headerlink" title="2 请求体查询 （查询排序）"></a>2 请求体查询 （查询排序）</h3><blockquote>
+<h3 id="2-1-单字段排序"><a href="#2-1-单字段排序" class="headerlink" title="2.1 单字段排序"></a>2.1 单字段排序</h3><p>sort 可以让我们按照不同的字段进行排序，并且通过order指定排序的方式。desc降序，asc升序。</p>
+<blockquote>
+<p>发送请求</p>
+</blockquote>
+<p><strong>GET /shopping/_search</strong></p>
+<p>{</p>
+<p>  “query”: {</p>
+<p>​    “match_all”: {}</p>
+<p>  },</p>
+<p>  “sort”: [</p>
+<p>​    {</p>
+<p>​      “price”: {</p>
+<p>​        “order”: “desc”</p>
+<p>​      }</p>
+<p>​    }</p>
+<p>  ]</p>
+<p>}</p>
+<blockquote>
+<p>响应结果</p>
+</blockquote>
+<p>{<br>  “took” : 4,<br>  “timed_out” : false,<br>  “_shards” : {<br>    “total” : 5,<br>    “successful” : 5,<br>    “skipped” : 0,<br>    “failed” : 0<br>  },<br>  “hits” : {<br>    “total” : 5,<br>    “max_score” : null,<br>    “hits” : [<br>      {<br>        “_index” :<br>“shopping”,<br>        “_type” :<br>“product”,<br>        “_id” : “4”,<br>        “_score” : null,<br>        “_source” : {<br>          “title” : “apple手机”,<br>          “images” : “<a target="_blank" rel="noopener" href="http://www.gulixueyuan.com/apple.jpg">http://www.gulixueyuan.com/apple.jpg</a>“,<br>          “price” : 5999.0<br>        },<br>        “sort” : [<br>          5999.0<br>        ]<br>      },<br>      {<br>        “_index” :<br>“shopping”,<br>        “_type” :<br>“product”,<br>        “_id” : “3”,<br>        “_score” : null,<br>        “_source” : {<br>          “title” : “小米电视”,<br>          “images” : “<a target="_blank" rel="noopener" href="http://www.gulixueyuan.com/xmds.jpg">http://www.gulixueyuan.com/xmds.jpg</a>“,<br>          “price” : 5999.0<br>        },<br>        “sort” : [<br>          5999.0<br>        ]<br>      },<br>      {<br>        “_index” :<br>“shopping”,<br>        “_type” :<br>“product”,<br>        “_id” : “5”,<br>        “_score” : null,<br>        “_source” : {<br>          “title” :<br>“apple”,<br>          “images” : “<a target="_blank" rel="noopener" href="http://www.gulixueyuan.com/apple.jpg">http://www.gulixueyuan.com/apple.jpg</a>“,<br>          “price” : 4999.0<br>        },<br>        “sort” : [<br>          4999.0<br>        ]<br>      },<br>      {<br>        “_index” :<br>“shopping”,<br>        “_type” :<br>“product”,<br>        “_id” : “2”,<br>        “_score” : null,<br>        “_source” : {<br>          “title” : “华为手机”,<br>          “images” : “<a target="_blank" rel="noopener" href="http://www.gulixueyuan.com/hw.jpg">http://www.gulixueyuan.com/hw.jpg</a>“,<br>          “price” : 4999.0<br>        },<br>        “sort” : [<br>          4999.0<br>        ]<br>      },<br>      {<br>        “_index” :<br>“shopping”,<br>        “_type” :<br>“product”,<br>        “_id” : “1”,<br>        “_score” : null,<br>        “_source” : {<br>          “title” : “小米手机”,<br>          “images” : “<a target="_blank" rel="noopener" href="http://www.gulixueyuan.com/xm.jpg">http://www.gulixueyuan.com/xm.jpg</a>“,<br>          “price” : 3999.0<br>        },<br>        “sort” : [<br>          3999.0<br>        ]<br>      }<br>    ]<br>  }<br>}</p>
+<br>
+
+<h3 id="2-2-多字段排序"><a href="#2-2-多字段排序" class="headerlink" title="2.2 多字段排序"></a>2.2 多字段排序</h3><p>假定我们想要结合使用 price和 _score（得分） 进行查询，并且匹配的结果首先按照价格排序，然后按照相关性得分排序：</p>
+<blockquote>
+<p>发送请求</p>
+</blockquote>
+<p>GET /shopping/_search<br>{<br>  “query”: {<br>    “match_all”: {}<br>  },<br>  “sort”: [<br>    {<br>      “price”: {<br>        “order”: “desc”<br>      }<br>    },<br>    {<br>      “_score”:{<br>        “order”: “desc”<br>      }<br>    }<br>  ]<br>}</p>
+<blockquote>
+<p>响应结果</p>
+</blockquote>
+<p>{<br>  “took” : 4,<br>  “timed_out” : false,<br>  “_shards” : {<br>    “total” : 5,<br>    “successful” : 5,<br>    “skipped” : 0,<br>    “failed” : 0<br>  },<br>  “hits” : {<br>    “total” : 5,<br>    “max_score” : null,<br>    “hits” : [<br>      {<br>        “_index” : “shopping”,<br>        “_type” : “product”,<br>        “_id” : “5”,<br>        “_score” : 1.0,<br>        “_source” : {<br>          “title” : “apple”,<br>          “image” : “apple.jpg”,<br>          “price” : 6999.0<br>        },<br>        “sort” : [<br>          6999.0,<br>          1.0<br>        ]<br>      },<br>      {<br>        “_index” : “shopping”,<br>        “_type” : “product”,<br>        “_id” : “4”,<br>        “_score” : 1.0,<br>        “_source” : {<br>          “title” : “apple手机”,<br>          “image” : “apple.jpg”,<br>          “price” : 5999.0<br>        },<br>        “sort” : [<br>          5999.0,<br>          1.0<br>        ]<br>      },<br>      {<br>        “_index” : “shopping”,<br>        “_type” : “product”,<br>        “_id” : “3”,<br>        “_score” : 1.0,<br>        “_source” : {<br>          “title” : “小米电视”,<br>          “images” : “<a target="_blank" rel="noopener" href="http://www.gulixueyuan.com/xmds.jpg&quot;">http://www.gulixueyuan.com/xmds.jpg&quot;</a>,<br>          “price” : 5999.0<br>        },<br>        “sort” : [<br>          5999.0,<br>          1.0<br>        ]<br>      },<br>      {<br>        “_index” : “shopping”,<br>        “_type” : “product”,<br>        “_id” : “2”,<br>        “_score” : 1.0,<br>        “_source” : {<br>          “title” : “华为手机”,<br>          “images” : “<a target="_blank" rel="noopener" href="http://www.gulixueyuan.com/hw.jpg&quot;">http://www.gulixueyuan.com/hw.jpg&quot;</a>,<br>          “price” : 4999.0<br>        },<br>        “sort” : [<br>          4999.0,<br>          1.0<br>        ]<br>      },<br>      {<br>        “_index” : “shopping”,<br>        “_type” : “product”,<br>        “_id” : “1”,<br>        “_score” : 1.0,<br>        “_source” : {<br>          “title” : “小米手机”,<br>          “images” : “<a target="_blank" rel="noopener" href="http://www.gulixueyuan.com/xm.jpg&quot;">http://www.gulixueyuan.com/xm.jpg&quot;</a>,<br>          “price” : 3999.0<br>        },<br>        “sort” : [<br>          3999.0,<br>          1.0<br>        ]<br>      }<br>    ]<br>  }<br>}</p>
+</blockquote>
+<h3 id="3-请求体查询-【高亮查询】"><a href="#3-请求体查询-【高亮查询】" class="headerlink" title="3 请求体查询 【高亮查询】"></a>3 请求体查询 【高亮查询】</h3><blockquote>
+<p>在进行关键字搜索时，搜索出的内容中的关键字会显示不同的颜色，称之为<strong>高亮。</strong></p>
+<ul>
+<li>高亮查询请求</li>
+</ul>
+<p>ElasticSearch可以对查询内容中的关键字部分，进行标签和样式(高亮)的设置。在使用match查询的同时，加上一个highlight属性：</p>
+<ul>
+<li>pre_tags : 前置标签</li>
+<li>post_tags : 后置标签</li>
+<li>fields : 需要高亮的字段</li>
+<li>title : 这里声明title字段需要高亮，后面可以为这个字段设置特有配置，也可以空</li>
+</ul>
+<blockquote>
+<p>发送请求</p>
+</blockquote>
+<p>GET /shopping/_search<br>{<br>  “query”: {<br>    “match”: {<br>      “title”: “华为”<br>    }<br>  },<br>  “highlight”: {<br>    “pre_tags”: “<code>&lt;font color=&#39;red&#39;&gt;</code>“,<br>    “post_tags”: “<code>&lt;/font&gt;</code>“,<br>    “fields”: {<br>      “title”: {}<br>    }<br>  }<br>}</p>
+<blockquote>
+<p>响应结果</p>
+</blockquote>
+<p>{<br>  “took” : 29,<br>  “timed_out” : false,<br>  “_shards” : {<br>    “total” : 5,<br>    “successful” : 5,<br>    “skipped” : 0,<br>    “failed” : 0<br>  },<br>  “hits” : {<br>    “total” : 1,<br>    “max_score” : 0.6931472,<br>    “hits” : [<br>      {<br>        “_index” : “shopping”,<br>        “_type” : “product”,<br>        “_id” : “2”,<br>        “_score” : 0.6931472,<br>        “_source” : {<br>          “title” : “华为手机”,<br>          “images” : “<a target="_blank" rel="noopener" href="http://www.gulixueyuan.com/hw.jpg&quot;">http://www.gulixueyuan.com/hw.jpg&quot;</a>,<br>          “price” : 4999.0<br>        },<br>        “highlight” : {<br>          “title” : [<br>            “<code>&lt;font color=&#39;red&#39;&gt;</code>华为<code>&lt;/font&gt;</code>手机”<br>          ]<br>        }<br>      }<br>    ]<br>  }<br>}</p>
+</blockquote>
+<h3 id="4-请求体查询-分页查询"><a href="#4-请求体查询-分页查询" class="headerlink" title="4 请求体查询 分页查询"></a>4 请求体查询 分页查询</h3><blockquote>
+<p>from : 当前页的起始索引 默认从0开始  from = (pageNum - 1) * size</p>
+<p>size ：每页显示多少条</p>
+<blockquote>
+<p>发送请求</p>
+</blockquote>
+<p>GET /shopping/_search<br>{<br>  “query”: {<br>    “match_all”: {}<br>  },<br>  “sort”: [<br>    {<br>      “price”: {<br>        “order”: “desc”<br>      }<br>    },<br>    {<br>      “_score”:{<br>        “order”: “desc”<br>      }<br>    }<br>  ],<br>  “from”: 0,<br>  “size”: 2<br>}</p>
+<blockquote>
+<p>响应结果</p>
+</blockquote>
+<p>{<br>  “took” : 1,<br>  “timed_out” : false,<br>  “_shards” : {<br>    “total” : 5,<br>    “successful” : 5,<br>    “skipped” : 0,<br>    “failed” : 0<br>  },<br>  “hits” : {<br>    “total” : 5,<br>    “max_score” : null,<br>    “hits” : [<br>      {<br>        “_index” : “shopping”,<br>        “_type” : “product”,<br>        “_id” : “5”,<br>        “_score” : 1.0,<br>        “_source” : {<br>          “title” : “apple”,<br>          “image” : “apple.jpg”,<br>          “price” : 6999.0<br>        },<br>        “sort” : [<br>          6999.0,<br>          1.0<br>        ]<br>      },<br>      {<br>        “_index” : “shopping”,<br>        “_type” : “product”,<br>        “_id” : “4”,<br>        “_score” : 1.0,<br>        “_source” : {<br>          “title” : “apple手机”,<br>          “image” : “apple.jpg”,<br>          “price” : 5999.0<br>        },<br>        “sort” : [<br>          5999.0,<br>          1.0<br>        ]<br>      }<br>    ]<br>  }<br>}</p>
+</blockquote>
+<h3 id="5-聚合（aggs）"><a href="#5-聚合（aggs）" class="headerlink" title="5 聚合（aggs）"></a>5 聚合（aggs）</h3><blockquote>
+<p>类似于MySQL的group by</p>
+<blockquote>
+<p>发送请求</p>
+</blockquote>
+<p>GET /shopping/_search<br>{<br>  “aggs”: {<br>    “abc”: {<br>      “terms”: {<br>        “field”: “price”<br>      }<br>    }<br>  }<br>}</p>
+<blockquote>
+<p>响应结果</p>
+</blockquote>
+<p>{<br>  “took” : 5,<br>  “timed_out” : false,<br>  “_shards” : {<br>    “total” : 5,<br>    “successful” : 5,<br>    “skipped” : 0,<br>    “failed” : 0<br>  },<br>  “hits” : {<br>    “total” : 5,<br>    “max_score” : 1.0,<br>    “hits” : [<br>      {<br>        “_index” : “shopping”,<br>        “_type” : “product”,<br>        “_id” : “5”,<br>        “_score” : 1.0,<br>        “_source” : {<br>          “title” : “apple”,<br>          “image” : “apple.jpg”,<br>          “price” : 6999.0<br>        }<br>      },<br>      {<br>        “_index” : “shopping”,<br>        “_type” : “product”,<br>        “_id” : “2”,<br>        “_score” : 1.0,<br>        “_source” : {<br>          “title” : “华为手机”,<br>          “images” : “<a target="_blank" rel="noopener" href="http://www.gulixueyuan.com/hw.jpg&quot;">http://www.gulixueyuan.com/hw.jpg&quot;</a>,<br>          “price” : 4999.0<br>        }<br>      },<br>      {<br>        “_index” : “shopping”,<br>        “_type” : “product”,<br>        “_id” : “4”,<br>        “_score” : 1.0,<br>        “_source” : {<br>          “title” : “apple手机”,<br>          “image” : “apple.jpg”,<br>          “price” : 5999.0<br>        }<br>      },<br>      {<br>        “_index” : “shopping”,<br>        “_type” : “product”,<br>        “_id” : “1”,<br>        “_score” : 1.0,<br>        “_source” : {<br>          “title” : “小米手机”,<br>          “images” : “<a target="_blank" rel="noopener" href="http://www.gulixueyuan.com/xm.jpg&quot;">http://www.gulixueyuan.com/xm.jpg&quot;</a>,<br>          “price” : 3999.0<br>        }<br>      },<br>      {<br>        “_index” : “shopping”,<br>        “_type” : “product”,<br>        “_id” : “3”,<br>        “_score” : 1.0,<br>        “_source” : {<br>          “title” : “小米电视”,<br>          “images” : “<a target="_blank" rel="noopener" href="http://www.gulixueyuan.com/xmds.jpg&quot;">http://www.gulixueyuan.com/xmds.jpg&quot;</a>,<br>          “price” : 5999.0<br>        }<br>      }<br>    ]<br>  },<br>  “aggregations” : {<br>    “abc” : {<br>      “doc_count_error_upper_bound” : 0,<br>      “sum_other_doc_count” : 0,<br>      “buckets” : [<br>        {<br>          “key” : 5999.0,<br>          “doc_count” : 2<br>        },<br>        {<br>          “key” : 3999.0,<br>          “doc_count” : 1<br>        },<br>        {<br>          “key” : 4999.0,<br>          “doc_count” : 1<br>        },<br>        {<br>          “key” : 6999.0,<br>          “doc_count” : 1<br>        }<br>      ]<br>    }<br>  }<br>}</p>
+<blockquote>
+<p>请求说明</p>
+</blockquote>
+<p>GET /shopping/_search<br>{<br>  “aggs”: {  # 关键字<br>    “abc”: {   # 查询出来接收的名称<br>      “terms”: {  # 多值匹配      term 单值匹配<br>        “field”: “price” # field固定语法 ：分组条件(此处 为价格pirce)<br>      }<br>    }<br>  }<br>}</p>
+<br>
+
+<h3 id="6-查询前-先过滤"><a href="#6-查询前-先过滤" class="headerlink" title="6 查询前 先过滤"></a>6 查询前 先过滤</h3><p>符合条件的 留下  不符合条件的 过滤掉</p>
+<blockquote>
+<p>发送请求</p>
+</blockquote>
+<p>GET /shopping/_search<br>{<br>  “query”: {<br>    “bool”: {<br>      “filter”: {<br>        “term”: {<br>          “title”: “apple”<br>        }<br>      }<br>    }<br>  }<br>}</p>
+<blockquote>
+<p>响应结果</p>
+</blockquote>
+<p>{<br>  “took” : 0,<br>  “timed_out” : false,<br>  “_shards” : {<br>    “total” : 5,<br>    “successful” : 5,<br>    “skipped” : 0,<br>    “failed” : 0<br>  },<br>  “hits” : {<br>    “total” : 2,<br>    “max_score” : 0.0,<br>    “hits” : [<br>      {<br>        “_index” : “shopping”,<br>        “_type” : “product”,<br>        “_id” : “5”,<br>        “_score” : 0.0,<br>        “_source” : {<br>          “title” : “apple”,<br>          “image” : “apple.jpg”,<br>          “price” : 6999.0<br>        }<br>      },<br>      {<br>        “_index” : “shopping”,<br>        “_type” : “product”,<br>        “_id” : “4”,<br>        “_score” : 0.0,<br>        “_source” : {<br>          “title” : “apple手机”,<br>          “image” : “apple.jpg”,<br>          “price” : 5999.0<br>        }<br>      }<br>    ]<br>  }<br>}</p>
+<blockquote>
+<p>发送请求</p>
+</blockquote>
+<p>GET /shopping/_search<br>{<br>  “query”: {<br>    “bool”: {<br>      “filter”: {<br>        “term”: {<br>          “title”: “apple”<br>        }<br>      }<br>      , “must”: [  <strong># 过滤后 查询条件 价格必须为5999</strong><br>        {<br>          “term”: {<br>            “price”:”5999”<br>          }<br>        }<br>      ]<br>    }<br>  }<br>}</p>
+<blockquote>
+<p>查询结果</p>
+</blockquote>
+<p>{<br>  “took” : 0,<br>  “timed_out” : false,<br>  “_shards” : {<br>    “total” : 5,<br>    “successful” : 5,<br>    “skipped” : 0,<br>    “failed” : 0<br>  },<br>  “hits” : {<br>    “total” : 1,<br>    “max_score” : 1.0,<br>    “hits” : [<br>      {<br>        “_index” : “shopping”,<br>        “_type” : “product”,<br>        “_id” : “4”,<br>        “_score” : 1.0,<br>        “_source” : {<br>          “title” : “apple手机”,<br>          “image” : “apple.jpg”,<br>          “price” : 5999.0<br>        }<br>      }<br>    ]<br>  }<br>}</p>
+</blockquote>
+</blockquote>
+<h3 id="数据类型补充（特殊的数据类型nested）"><a href="#数据类型补充（特殊的数据类型nested）" class="headerlink" title="数据类型补充（特殊的数据类型nested）"></a>数据类型补充（特殊的数据类型nested）</h3><blockquote>
+<h3 id="是什么？"><a href="#是什么？" class="headerlink" title="是什么？"></a>是什么？</h3><blockquote>
+<p>nested : 类型 是一种 特殊的 对象object数据类型 （specialised version of the object datatype） 允许 对象数组 彼此 独立地 进行索引 和 查询 </p>
+</blockquote>
+<blockquote>
+<ul>
+<li>添加数据</li>
+</ul>
+</blockquote>
+<p>PUT my_index/_doc/1<br>{<br>  “group”:”fans”,<br>  “user”:[<br>    {<br>      “first”:”John”,<br>      “last”:”Smith”<br>    },{<br>      “first”:”Alice”,<br>      “last”:”White”<br>    }<br>  ]<br>}</p>
+<blockquote>
+<ul>
+<li>返回结果</li>
+</ul>
+</blockquote>
+<p>#! Deprecation: the default number of shards will change from [5] to [1] in 7.0.0; if you wish to continue using the default of [5] shards, you must manage this on the create index request or with an index template<br>{<br>  “_index” : “my_index”,<br>  “_type” : “_doc”,<br>  “_id” : “1”,<br>  “_version” : 1,<br>  “result” : “created”,<br>  “_shards” : {<br>    “total” : 2,<br>    “successful” : 1,<br>    “failed” : 0<br>  },<br>  “_seq_no” : 0,<br>  “_primary_term” : 1<br>}</p>
+<blockquote>
+<ul>
+<li>执行请求</li>
+</ul>
+</blockquote>
+<p>GET my_index/_search<br>{<br>  “query”: {<br>    “bool”: {<br>      “must”: [<br>        {“match”: {<br>          “user.first”: “Alice”<br>        }},<br>        {“match”: {<br>          “user.last”: “Smith”<br>        }}<br>      ]<br>    }<br>  }<br>}</p>
+<blockquote>
+<ul>
+<li>响应结果</li>
+</ul>
+</blockquote>
+<p>{<br>  “took” : 12,<br>  “timed_out” : false,<br>  “_shards” : {<br>    “total” : 5,<br>    “successful” : 5,<br>    “skipped” : 0,<br>    “failed” : 0<br>  },<br>  “hits” : {<br>    “total” : 1,<br>    “max_score” : 0.5753642,<br>    “hits” : [<br>      {<br>        “_index” : “my_index”,<br>        “_type” : “_doc”,<br>        “_id” : “1”,<br>        “_score” : 0.5753642,<br>        “_source” : {<br>          “group” : “fans”,<br>          “user” : [<br>            {<br>              “first” : “John”,<br>              “last” : “Smith”<br>            },<br>            {<br>              “first” : “Alice”,<br>              “last” : “White”<br>            }<br>          ]<br>        }<br>      }<br>    ]<br>  }<br>}</p>
+<blockquote>
+<h3 id="此时问题来了-我所需要的是-叫-Alice-Smith-的这个-此时-并没有这个数据-在-ElasticSearch"><a href="#此时问题来了-我所需要的是-叫-Alice-Smith-的这个-此时-并没有这个数据-在-ElasticSearch" class="headerlink" title="此时问题来了 我所需要的是 叫 Alice Smith 的这个 此时 并没有这个数据 在 ElasticSearch"></a>此时问题来了 我所需要的是 叫 Alice Smith 的这个 此时 并没有这个数据 在 ElasticSearch</h3></blockquote>
+<blockquote>
+<h3 id="为什么会出现这种情形？"><a href="#为什么会出现这种情形？" class="headerlink" title="为什么会出现这种情形？"></a>为什么会出现这种情形？</h3></blockquote>
+<blockquote>
+<p>建立my_index的时候 它默认的数据类型是Object{user.first:”John , Alice”} {user.last:”Smith,White”}</p>
+<p><strong>实际上 从业务的角度出发应该没有数据</strong></p>
+<p>因为 User1{John,Smith} User2{Alice,White}</p>
+</blockquote>
+<blockquote>
+<p>删除 此 索引  DELETE my_index</p>
+<ul>
+<li>执行新请求</li>
+</ul>
+</blockquote>
+<p>PUT my_index<br>{<br>  “mappings”: {<br>    “_doc”:{<br>      “properties”:{<br>        “user”:{<br>          “type”:”nested”<br>        }<br>      }<br>    }<br>  }<br>}</p>
+<blockquote>
+<ul>
+<li>响应结果</li>
+</ul>
+</blockquote>
+<p>#! Deprecation: the default number of shards will change from [5] to [1] in 7.0.0; if you wish to continue using the default of [5] shards, you must manage this on the create index request or with an index template<br>#! Deprecation: [types removal] The parameter include_type_name should be explicitly specified in create index requests to prepare for 7.0. In 7.0 include_type_name will default to ‘false’, and requests are expected to omit the type name in mapping definitions.<br>{<br>  “acknowledged” : true,<br>  “shards_acknowledged” : true,<br>  “index” : “my_index”<br>}</p>
+<blockquote>
+<p>再次执行 前面查询 是否有 Alice Smith 数据</p>
+</blockquote>
+<blockquote>
+<ul>
+<li>发送请求</li>
+</ul>
+</blockquote>
+<p>GET my_index/_search<br>{<br>  “query”: {<br>    “bool”: {<br>      “must”: [<br>        {“match”: {<br>          “user.first”: “Alice”<br>        }},<br>        {“match”: {<br>          “user.last”: “Smith”<br>        }}<br>      ]<br>    }<br>  }<br>}</p>
+<blockquote>
+<ul>
+<li>响应结果</li>
+</ul>
+</blockquote>
+<p>{<br>  “took” : 3,<br>  “timed_out” : false,<br>  “_shards” : {<br>    “total” : 5,<br>    “successful” : 5,<br>    “skipped” : 0,<br>    “failed” : 0<br>  },<br>  “hits” : {<br>    “total” : 0,<br>    “max_score” : null,<br>    “hits” : [ ]<br>  }<br>}</p>
+<blockquote>
+<h3 id="结论：第二次执行-获取不到数据-加上nested-将会将nested里面的每一个对象中的属性-看成一个整体-数组对象-可以独立的-被检索"><a href="#结论：第二次执行-获取不到数据-加上nested-将会将nested里面的每一个对象中的属性-看成一个整体-数组对象-可以独立的-被检索" class="headerlink" title="结论：第二次执行 获取不到数据 加上nested 将会将nested里面的每一个对象中的属性 看成一个整体 数组对象 可以独立的 被检索"></a>结论：第二次执行 获取不到数据 加上nested 将会将nested里面的每一个对象中的属性 看成一个整体 数组对象 可以独立的 被检索</h3></blockquote>
+<br>
+
+<blockquote>
+<h3 id="将nested-和-group-结合使用"><a href="#将nested-和-group-结合使用" class="headerlink" title="将nested 和 group 结合使用"></a>将nested 和 group 结合使用</h3></blockquote>
+<blockquote>
+<p>发送请求</p>
+</blockquote>
+<p>GET my_index/_search<br>{<br>  “query”: {<br>    “match”: {<br>      “group”: “fans”<br>    }<br>  },<br>  “aggs”: {<br>    “fan”: {<br>      “nested”: {<br>        “path”: “user”<br>      }<br>    }<br>  }<br>}</p>
+<blockquote>
+<p>响应结果</p>
+</blockquote>
+<p>{<br>  “took” : 2,<br>  “timed_out” : false,<br>  “_shards” : {<br>    “total” : 5,<br>    “successful” : 5,<br>    “skipped” : 0,<br>    “failed” : 0<br>  },<br>  “hits” : {<br>    “total” : 1,<br>    “max_score” : 0.2876821,<br>    “hits” : [<br>      {<br>        “_index” : “my_index”,<br>        “_type” : “_doc”,<br>        “_id” : “1”,<br>        “_score” : 0.2876821,<br>        “_source” : {<br>          “group” : “fans”,<br>          “user” : [<br>            {<br>              “first” : “John”,<br>              “last” : “Smith”<br>            },<br>            {<br>              “first” : “Alice”,<br>              “last” : “White”<br>            }<br>          ]<br>        }<br>      }<br>    ]<br>  },<br>  “aggregations” : {<br>    “fan” : {<br>      “doc_count” : 2<br>    }<br>  }<br>}</p>
+<blockquote>
+<h3 id="nested的总结-：可以查询，也可以进行聚合；-查询时-nested-将查询条件-看做-是一个整体"><a href="#nested的总结-：可以查询，也可以进行聚合；-查询时-nested-将查询条件-看做-是一个整体" class="headerlink" title="nested的总结 ：可以查询，也可以进行聚合； 查询时 nested 将查询条件 看做 是一个整体"></a>nested的总结 ：可以查询，也可以进行聚合； 查询时 nested 将查询条件 看做 是一个整体</h3></blockquote>
+</blockquote>
+
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
@@ -190,111 +478,106 @@
 		</ul>
 	</div>
 
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://example.com/2020/10/15/ES-ElasticSearch%E7%9A%84%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8%E4%B9%8BDSL-%E4%BA%8C/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/10/14/ES-ElasticSearch%E7%9A%84%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8%E4%B9%8BDSL/" class="archive-article-date">
-  	<time datetime="2020-10-14T11:51:31.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-10-14</time>
-</a>
+<nav id="article-nav">
+  
+  
+    <a href="/2020/10/14/ES-ElasticSearch%E7%9A%84%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8%E4%B9%8BDSL/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">ES:ElasticSearch的基本使用之DSL</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
+        
+        
+    </div>
+</aside>
+
+
+
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/10/14/ES-ElasticSearch%E7%9A%84%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8%E4%B9%8BDSL/">ES:ElasticSearch的基本使用之DSL</a>
-    </h1>
+  
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">ElasticSearch</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">搜索引擎</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">文档型数据库</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/10/14/ES-ElasticSearch%E7%9A%84%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8/" class="archive-article-date">
-  	<time datetime="2020-10-14T08:18:40.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-10-14</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/10/14/ES-ElasticSearch%E7%9A%84%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8/">ES:ElasticSearch的基本使用</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">ElasticSearch</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">搜索引擎</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">文档型数据库</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
   
 
-    
+  
 
 
           </div>
@@ -317,9 +600,9 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
+		isPost: true,
 		isArchive: false,
-		isTag: true,
+		isTag: false,
 		isCategory: false,
 		open_in_new: false,
 		toc_hide_index: true,
