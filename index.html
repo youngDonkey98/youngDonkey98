@@ -143,6 +143,97 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-生产者消费者问题" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/10/18/%E7%94%9F%E4%BA%A7%E8%80%85%E6%B6%88%E8%B4%B9%E8%80%85%E9%97%AE%E9%A2%98/">生产者消费者问题</a>
+    </h1>
+  
+
+        
+        <a href="/2020/10/18/%E7%94%9F%E4%BA%A7%E8%80%85%E6%B6%88%E8%B4%B9%E8%80%85%E9%97%AE%E9%A2%98/" class="archive-article-date">
+  	<time datetime="2020-10-18T12:39:52.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-10-18</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="生产者-消费者-问题"><a href="#生产者-消费者-问题" class="headerlink" title="生产者/消费者 问题"></a>生产者/消费者 问题</h3><h2 id="生产者-消费者-问题-是线程模型中的经典问题"><a href="#生产者-消费者-问题-是线程模型中的经典问题" class="headerlink" title="生产者 / 消费者 问题 是线程模型中的经典问题"></a>生产者 / 消费者 问题 是线程模型中的经典问题</h2><h4 id="问题概述（为什么？）："><a href="#问题概述（为什么？）：" class="headerlink" title="问题概述（为什么？）："></a>问题概述（为什么？）：</h4><p>​    生产者 和 消费者 在<strong>同一时间段</strong>内 <strong>共用</strong> <strong>同一个存储空间</strong> 如果不加以协调 可能出现以下情况 存储空间已满 而生产者占用着它 消费者等待着 生产者 让出资源 从而去除产品 而 生产者 等待着 消费者 去消费产品 从而向空间中 新增产品  <strong><em>相互等待 产生死锁</em></strong></p>
+<h4 id="产什么死锁的四个必要条件："><a href="#产什么死锁的四个必要条件：" class="headerlink" title="产什么死锁的四个必要条件："></a>产什么死锁的四个必要条件：</h4><ul>
+<li>互斥条件 ： 一个资源一次只能被一个线程使用</li>
+<li>请求与保持条件： 一个线程因请求资源 而 阻塞时 对已经获得的资源 保持 不放</li>
+<li>不剥夺条件： 线程已经获得资源 在未使用完后之前 不能强行剥夺</li>
+<li>循环等待条件：若干线程之间 形成一种 头尾相接的 循环等待资源关系</li>
+<li>上述问题简而言之：同一时刻 统一资源 被两个线程(多个线程)使用 并且 两个线程相互等待对方执行结束 从而释放资源 另一方 接着使用 共享资源</li>
+</ul>
+        
+          <a class="article-more-a" href="/2020/10/18/%E7%94%9F%E4%BA%A7%E8%80%85%E6%B6%88%E8%B4%B9%E8%80%85%E9%97%AE%E9%A2%98/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">JUC</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">面试题</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">多线程</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/10/18/%E7%94%9F%E4%BA%A7%E8%80%85%E6%B6%88%E8%B4%B9%E8%80%85%E9%97%AE%E9%A2%98/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-ES-ElasticSearch的基本使用之DSL-二" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -1112,87 +1203,6 @@
 
 
   
-    <article id="post-微服务：feign远程调用" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/10/11/%E5%BE%AE%E6%9C%8D%E5%8A%A1%EF%BC%9Afeign%E8%BF%9C%E7%A8%8B%E8%B0%83%E7%94%A8/">微服务：feign远程调用</a>
-    </h1>
-  
-
-        
-        <a href="/2020/10/11/%E5%BE%AE%E6%9C%8D%E5%8A%A1%EF%BC%9Afeign%E8%BF%9C%E7%A8%8B%E8%B0%83%E7%94%A8/" class="archive-article-date">
-  	<time datetime="2020-10-11T11:51:57.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-10-11</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p><strong>本片文章主要记录的是有关于Feign的远程调用的一些相关问题</strong></p>
-<h1 id="废话少说-先上例子"><a href="#废话少说-先上例子" class="headerlink" title="废话少说 先上例子"></a>废话少说 先上例子</h1><h3 id="现有A-B两个微服务-需要从-A-服务-调用-B的微服务"><a href="#现有A-B两个微服务-需要从-A-服务-调用-B的微服务" class="headerlink" title="现有A B两个微服务 需要从 A 服务 调用 B的微服务"></a>现有A B两个微服务 需要从 A 服务 调用 B的微服务</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">A微服务主启动类</span><br><span class="line"><span class="meta">@SpringBootApplication</span></span><br><span class="line"><span class="meta">@EnableFeignClients</span>     <span class="comment">// 启用openFeign</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">OrderFeignMain80</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        SpringApplication.run(OrderFeignMain80.class,args);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">A微服务controller</span><br><span class="line"></span><br><span class="line"><span class="meta">@RestController</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">OrderFeignController</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Resource</span></span><br><span class="line">    <span class="keyword">private</span> PaymentFeignService paymentFeignService;  <span class="comment">//调用远程的微服接口</span></span><br><span class="line"></span><br><span class="line">    <span class="meta">@GetMapping(value = &quot;/consumer/payment/get/&#123;id&#125;&quot;)</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> CommonResult&lt;Payment&gt; <span class="title">getPaymentById</span><span class="params">(<span class="meta">@PathVariable(&quot;id&quot;)</span> Long id)</span></span>&#123;</span><br><span class="line">       <span class="keyword">return</span> paymentFeignService.getPaymentById(id);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-        
-          <a class="article-more-a" href="/2020/10/11/%E5%BE%AE%E6%9C%8D%E5%8A%A1%EF%BC%9Afeign%E8%BF%9C%E7%A8%8B%E8%B0%83%E7%94%A8/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">微服务</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/10/11/%E5%BE%AE%E6%9C%8D%E5%8A%A1%EF%BC%9Afeign%E8%BF%9C%E7%A8%8B%E8%B0%83%E7%94%A8/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
       <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">Next &amp;raquo;</a>
@@ -1302,10 +1312,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">JUC</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">redis</a>
               </li>
              
@@ -1318,7 +1324,19 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">JUC</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">微服务</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">面试题</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">多线程</a>
               </li>
              
               <li class="article-tag-list-item">
