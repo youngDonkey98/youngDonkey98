@@ -6,18 +6,27 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://example.com">
-  <title>Tag: ElasticSearch | 曾万鑫的博客</title>
+  <title>SSO:单点登录 | 曾万鑫的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="一个懂一点java皮毛的弟弟">
-<meta property="og:type" content="website">
-<meta property="og:title" content="曾万鑫的博客">
-<meta property="og:url" content="http://example.com/tags/ElasticSearch/index.html">
+  <meta name="description" content="为什么？ 单一架构 演变到 分布式集群项目 需要解决session共享问题   SSO（Single Sign On）模式CAS单点登录、OAuth2   如图所示 图中有三个系统 分别为业务A B 和SSO 业务A 和 B 没有登录模块 只有SSO有登录模块 没有其他的业务模块   一般过程：   当业务A B 需要登录的时候 跳转到 SSO系统 SSO从用户信息数据库中 获取用户信息 并且 校">
+<meta property="og:type" content="article">
+<meta property="og:title" content="SSO:单点登录">
+<meta property="og:url" content="http://example.com/2020/10/19/SSO-%E5%8D%95%E7%82%B9%E7%99%BB%E5%BD%95/index.html">
 <meta property="og:site_name" content="曾万鑫的博客">
-<meta property="og:description" content="一个懂一点java皮毛的弟弟">
+<meta property="og:description" content="为什么？ 单一架构 演变到 分布式集群项目 需要解决session共享问题   SSO（Single Sign On）模式CAS单点登录、OAuth2   如图所示 图中有三个系统 分别为业务A B 和SSO 业务A 和 B 没有登录模块 只有SSO有登录模块 没有其他的业务模块   一般过程：   当业务A B 需要登录的时候 跳转到 SSO系统 SSO从用户信息数据库中 获取用户信息 并且 校">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/.com//IdeaProjects/hexo/source_posts/SSO-单点登录/1-1.jpg">
+<meta property="og:image" content="http://example.com/.com//IdeaProjects/hexo/source_posts/SSO-单点登录/单点登录流程图.png">
+<meta property="og:image" content="http://example.com/.com//IdeaProjects/hexo/source_posts/SSO-单点登录/token模式.png">
+<meta property="og:image" content="http://example.com/.com//IdeaProjects/hexo/source_posts/SSO-单点登录/令牌类型.jpg">
+<meta property="og:image" content="http://example.com/.com//IdeaProjects/hexo/source_posts/SSO-单点登录/JWT认证过程.png">
+<meta property="article:published_time" content="2020-10-19T10:22:05.000Z">
+<meta property="article:modified_time" content="2020-10-19T11:44:27.853Z">
 <meta property="article:author" content="donkey_zwx">
-<meta property="article:tag" content="java,后端,zwx,ZWX,开发者,donkey,youngdonkey,donkey_zwx,youngDonkey_zwx,程序猿,程序媛,程序员,开发者">
+<meta property="article:tag" content="面试">
+<meta property="article:tag" content="流程图">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/.com//IdeaProjects/hexo/source_posts/SSO-单点登录/1-1.jpg">
   
     <link rel="alternative" href="/atom.xml" title="曾万鑫的博客" type="application/atom+xml">
   
@@ -141,160 +150,291 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-SSO-单点登录" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      SSO:单点登录
+    </h1>
+  
+
+        
+        <a href="/2020/10/19/SSO-%E5%8D%95%E7%82%B9%E7%99%BB%E5%BD%95/" class="archive-article-date">
+  	<time datetime="2020-10-19T10:22:05.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-10-19</time>
+</a>
+        
+      </header>
     
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="为什么？"><a href="#为什么？" class="headerlink" title="为什么？"></a>为什么？</h3><blockquote>
+<p>单一架构 演变到 分布式集群项目 需要解决session共享问题</p>
+</blockquote>
+<blockquote>
+<h2 id="SSO（Single-Sign-On）模式"><a href="#SSO（Single-Sign-On）模式" class="headerlink" title="SSO（Single Sign On）模式"></a>SSO（Single Sign On）模式</h2><p>CAS单点登录、OAuth2</p>
+<p><img src="/.com//IdeaProjects\hexo\source_posts\SSO-单点登录\1-1.jpg" alt="1-1"></p>
+<ul>
+<li>如图所示 图中有三个系统 分别为业务A B 和SSO</li>
+<li>业务A 和 B 没有登录模块</li>
+<li>只有SSO有登录模块 没有其他的业务模块</li>
+</ul>
+<blockquote>
+<p>一般过程：</p>
+</blockquote>
+<ul>
+<li>当业务A B 需要登录的时候 跳转到 SSO系统</li>
+<li>SSO从用户信息数据库中 获取用户信息 并且 校验 校验通过 SSO完成登录</li>
+<li>将校验的用户信息存入缓存（如：redis）</li>
+<li>当用户访问其他业务时 如果需要登录 将跳转到SSO系统中 进行用户身份认证 SSO判断缓存中是否存在用户身份信息</li>
+<li>只要在其中一个业务中 完成了 用户登录 其他的应用系统 都不需要登录</li>
+</ul>
+<blockquote>
+<p>优点：</p>
+</blockquote>
+<p>用户身份信息独立管理，更好的分布式管理。可以自己扩展安全策略</p>
+<blockquote>
+<p>缺点：</p>
+</blockquote>
+<p>认证服务器访问压力较大。</p>
+<a id="more"></a>
+
+<p><img src="/.com//IdeaProjects\hexo\source_posts\SSO-单点登录\单点登录流程图.png" alt="单点登录业务流程"></p>
+<h2 id="Token模式"><a href="#Token模式" class="headerlink" title="Token模式"></a>Token模式</h2><p><img src="/.com//IdeaProjects\hexo\source_posts\SSO-单点登录\token模式.png" alt="token模式"></p>
+<blockquote>
+<p>优点：</p>
+</blockquote>
+<ul>
+<li>无状态：token是无状态的 session是有状态的</li>
+<li>基于标准化 ：API是基于标准化 JSON Web Token（JWT）</li>
+</ul>
+<blockquote>
+<p>缺点：</p>
+</blockquote>
+<ul>
+<li>占用带宽</li>
+<li>无法在服务器端销毁</li>
+</ul>
+<h1 id="访问令牌的类型"><a href="#访问令牌的类型" class="headerlink" title="访问令牌的类型"></a>访问令牌的类型</h1><p><img src="/.com//IdeaProjects\hexo\source_posts\SSO-单点登录\令牌类型.jpg" alt="访问令牌的类型"></p>
+<h3 id="JWT令牌"><a href="#JWT令牌" class="headerlink" title="JWT令牌"></a>JWT令牌</h3><blockquote>
+<p>是什么？</p>
+</blockquote>
+<p>JWT 是JSON Web Token的缩写 即：JSON Web令牌 是一种<strong>自包含令牌</strong></p>
+<blockquote>
+<p>使用场景</p>
+</blockquote>
+<ul>
+<li>一种情况：web API 类似于 阿里云播放凭证功能</li>
+<li>另一种情况 多web服务器下 实现 无状态 分布式 身份验证</li>
+</ul>
+<p><img src="/.com//IdeaProjects\hexo\source_posts\SSO-单点登录\JWT认证过程.png" alt="JWT官网认证过程"></p>
+<blockquote>
+<p>JWT的作用</p>
+</blockquote>
+<ul>
+<li>JWT最重要的作用 就是对 token 信息的防伪作用</li>
+</ul>
+<blockquote>
+<p>JWT的原理</p>
+</blockquote>
+<ul>
+<li>一个JWT由 三个 部分组成 ：JWT头  有效载荷  签名哈希</li>
+<li>最后由这三者 组合 进行base64 编码 得到 JWT</li>
+</ul>
+<h3 id="JWT-令牌的组成"><a href="#JWT-令牌的组成" class="headerlink" title="JWT 令牌的组成"></a>JWT 令牌的组成</h3><ul>
+<li>令牌的三部分 每个部分通过 “.” 分割 成为三个子串</li>
+<li>每个子串代表一个功能块 总共三个部分 JWT头  有效载荷  签名</li>
+</ul>
+<blockquote>
+<h3 id="JWT-头"><a href="#JWT-头" class="headerlink" title="JWT 头"></a>JWT 头</h3></blockquote>
+<p>头部分 是一个 描述 JWT 元数据 的 JSON 对象</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="string">&quot;alg&quot;</span>: <span class="string">&quot;HS256&quot;</span>,</span><br><span class="line">  <span class="string">&quot;typ&quot;</span>: <span class="string">&quot;JWT&quot;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>在上面的代码中，alg属性表示签名使用的算法，默认为HMAC SHA256（写为HS256）；typ属性表示令牌的类型，JWT令牌统一写为JWT。最后，使用Base64 URL算法将上述JSON对象转换为字符串保存。</p>
+<blockquote>
+<h3 id="有效载荷"><a href="#有效载荷" class="headerlink" title="有效载荷"></a>有效载荷</h3></blockquote>
+<p>有效载荷部分，是JWT的主体内容部分，也是一个JSON对象，包含需要传递的数据。 JWT指定七个默认字段供选择。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">iss: jwt签发者</span><br><span class="line">sub: 主题</span><br><span class="line">aud: 接收jwt的一方</span><br><span class="line">exp: jwt的过期时间，这个过期时间必须要大于签发时间</span><br><span class="line">nbf: 定义在什么时间之前，该jwt都是不可用的.</span><br><span class="line">iat: jwt的签发时间</span><br><span class="line">jti: jwt的唯一身份标识，主要用来作为一次性token,从而回避重放攻击。</span><br></pre></td></tr></table></figure>
+
+<p>除以上默认字段外，我们还可以自定义私有字段，如下例:</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="string">&quot;name&quot;</span>: <span class="string">&quot;Helen&quot;</span>,</span><br><span class="line">  <span class="string">&quot;admin&quot;</span>: <span class="keyword">true</span>,</span><br><span class="line">  <span class="string">&quot;avatar&quot;</span>: <span class="string">&quot;helen.jpg&quot;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>请注意，默认情况下JWT是未加密的，任何人都可以解读其内容，因此不要构建隐私信息字段，存放保密信息，以防止信息泄露。</p>
+<p>JSON对象也使用<strong>Base64 URL算法</strong>转换为字符串保存。</p>
+<blockquote>
+<h3 id="签名哈希"><a href="#签名哈希" class="headerlink" title="签名哈希"></a>签名哈希</h3></blockquote>
+<p>签名哈希部分是对上面两部分数据签名，通过指定的算法生成哈希，以确保数据不会被篡改。</p>
+<p>首先，需要指定一个密码（secret）。该密码仅仅为保存在服务器中，并且不能向用户公开。然后，使用标头中指定的签名算法（默认情况下为HMAC SHA256）根据以下公式生成签名。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">HMACSHA256(base64UrlEncode(header) + <span class="string">&quot;.&quot;</span> + base64UrlEncode(claims), secret)    ==&gt;   签名hash</span><br></pre></td></tr></table></figure>
+
+<p>在计算出签名哈希后，JWT头，有效载荷和签名哈希的三个部分组合成一个字符串，每个部分用”.”分隔，就构成整个JWT对象。</p>
+<blockquote>
+<h3 id="Base64URL算法"><a href="#Base64URL算法" class="headerlink" title="Base64URL算法"></a>Base64URL算法</h3></blockquote>
+<p>如前所述，JWT头和有效载荷序列化的算法都用到了Base64URL。该算法和常见Base64算法类似，稍有差别。</p>
+<p>作为令牌的JWT可以放在URL中（例如api.example/?token=xxx）。 Base64中用的三个字符是”+”，”/“和”=”，由于在URL中有特殊含义，因此Base64URL中对他们做了替换：”=”去掉，”+”用”-“替换，”/“用”_”替换，这就是Base64URL算法。</p>
+<p><strong>注意：</strong>base64编码，并不是加密，只是把明文信息变成了不可见的字符串。但是其实只要用一些工具就可以把base64编码解成明文，所以不要在JWT中放入涉及私密的信息。</p>
+<blockquote>
+<h3 id="JWT的用法"><a href="#JWT的用法" class="headerlink" title="JWT的用法"></a>JWT的用法</h3></blockquote>
+<p>客户端接收服务器返回的JWT，将其存储在Cookie或localStorage中。</p>
+<p>此后，客户端将在与服务器交互中都会带JWT。如果将它存储在Cookie中，就可以自动发送，但是不会跨域，因此一般是将它放入HTTP请求的Header Authorization字段中。</p>
+<p>当跨域时，也可以将JWT放置于POST请求的数据主体中。</p>
+<blockquote>
+<h3 id="JWT-的-问题-和-趋势"><a href="#JWT-的-问题-和-趋势" class="headerlink" title="JWT 的 问题 和 趋势"></a>JWT 的 问题 和 趋势</h3></blockquote>
+<ul>
+<li>JWT默认不加密，但可以加密。生成原始令牌后，可以使用该令牌再次对其进行加密。</li>
+<li>当JWT未加密时，一些私密数据无法通过JWT传输。</li>
+<li>JWT不仅可用于认证，还可用于信息交换。善用JWT有助于减少服务器请求数据库的次数。</li>
+<li>JWT的最大缺点是服务器不保存会话状态，所以在使用期间不可能取消令牌或更改令牌的权限。也就是说，一旦JWT签发，在有效期内将会一直有效。</li>
+<li>JWT本身包含认证信息，因此一旦信息泄露，任何人都可以获得令牌的所有权限。为了减少盗用，JWT的有效期不宜设置太长。对于某些重要操作，用户在使用时应该每次都进行身份验证。</li>
+<li>为了减少盗用和窃取，JWT不建议使用HTTP协议来传输代码，而是使用加密的HTTPS协议进行传输。</li>
+</ul>
+</blockquote>
+
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
       
       
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2020" class="archive-year">2020</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/10/15/ES-ElasticSearch%E7%9A%84%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8%E4%B9%8BDSL-%E4%BA%8C/" class="archive-article-date">
-  	<time datetime="2020-10-15T01:40:24.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-10-15</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/10/15/ES-ElasticSearch%E7%9A%84%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8%E4%B9%8BDSL-%E4%BA%8C/">ES:ElasticSearch的基本使用之DSL(二)</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">ElasticSearch</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">面试</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">搜索引擎</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">文档型数据库</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">流程图</a>
         		</li>
       		
 		</ul>
 	</div>
 
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://example.com/2020/10/19/SSO-%E5%8D%95%E7%82%B9%E7%99%BB%E5%BD%95/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/10/14/ES-ElasticSearch%E7%9A%84%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8%E4%B9%8BDSL/" class="archive-article-date">
-  	<time datetime="2020-10-14T11:51:31.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-10-14</time>
-</a>
+<nav id="article-nav">
+  
+  
+    <a href="/2020/10/18/%E7%BA%BF%E7%A8%8B%E5%AE%9A%E5%88%B6%E5%8C%96%E9%80%9A%E8%AE%AF/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">线程定制化通讯</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
+        
+        
+    </div>
+</aside>
+
+
+
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/10/14/ES-ElasticSearch%E7%9A%84%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8%E4%B9%8BDSL/">ES:ElasticSearch的基本使用之DSL</a>
-    </h1>
+  
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">ElasticSearch</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">搜索引擎</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">文档型数据库</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/10/14/ES-ElasticSearch%E7%9A%84%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8/" class="archive-article-date">
-  	<time datetime="2020-10-14T08:18:40.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-10-14</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/10/14/ES-ElasticSearch%E7%9A%84%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8/">ES:ElasticSearch的基本使用</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">ElasticSearch</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">搜索引擎</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">文档型数据库</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
   
 
-    
+  
 
 
           </div>
@@ -317,9 +457,9 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
+		isPost: true,
 		isArchive: false,
-		isTag: true,
+		isTag: false,
 		isCategory: false,
 		open_in_new: false,
 		toc_hide_index: true,
