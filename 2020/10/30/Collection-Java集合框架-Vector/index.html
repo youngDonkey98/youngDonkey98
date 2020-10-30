@@ -8,15 +8,15 @@
   <link rel="dns-prefetch" href="http://example.com">
   <title>Collection:Java集合框架-Vector | 曾万鑫的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Vector(基于JDK1.8)Vector 底层是由数组存储的 是java早期 list接口的 实现类   依赖关系123public class Vector&lt;E&gt; extends AbstractList&lt;E&gt; implements List&lt;E&gt;, RandomAccess, Cloneable, java.io.Serializable   实现了li">
+  <meta name="description" content="Vector(基于JDK1.8)Vector 底层是由数组存储的 是java早期 list接口的 线程安全的 实现类   依赖关系123public class Vector&lt;E&gt; extends AbstractList&lt;E&gt; implements List&lt;E&gt;, RandomAccess, Cloneable, java.io.Serializable">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Collection:Java集合框架-Vector">
 <meta property="og:url" content="http://example.com/2020/10/30/Collection-Java%E9%9B%86%E5%90%88%E6%A1%86%E6%9E%B6-Vector/index.html">
 <meta property="og:site_name" content="曾万鑫的博客">
-<meta property="og:description" content="Vector(基于JDK1.8)Vector 底层是由数组存储的 是java早期 list接口的 实现类   依赖关系123public class Vector&lt;E&gt; extends AbstractList&lt;E&gt; implements List&lt;E&gt;, RandomAccess, Cloneable, java.io.Serializable   实现了li">
+<meta property="og:description" content="Vector(基于JDK1.8)Vector 底层是由数组存储的 是java早期 list接口的 线程安全的 实现类   依赖关系123public class Vector&lt;E&gt; extends AbstractList&lt;E&gt; implements List&lt;E&gt;, RandomAccess, Cloneable, java.io.Serializable">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2020-10-30T09:48:04.000Z">
-<meta property="article:modified_time" content="2020-10-30T11:56:29.199Z">
+<meta property="article:modified_time" content="2020-10-30T13:11:38.908Z">
 <meta property="article:author" content="donkey_zwx">
 <meta property="article:tag" content="Java源码分析">
 <meta property="article:tag" content="Java集合框架">
@@ -166,7 +166,7 @@
       
         <h2 id="Vector-基于JDK1-8"><a href="#Vector-基于JDK1-8" class="headerlink" title="Vector(基于JDK1.8)"></a>Vector(基于JDK1.8)</h2><h3 id="Vector"><a href="#Vector" class="headerlink" title="Vector"></a>Vector</h3><ul>
 <li>底层是由数组存储的</li>
-<li>是java早期 list接口的 实现类</li>
+<li>是java早期 list接口的 线程安全的 实现类</li>
 </ul>
 <blockquote>
 <h3 id="依赖关系"><a href="#依赖关系" class="headerlink" title="依赖关系"></a>依赖关系</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Vector</span>&lt;<span class="title">E</span>&gt;</span></span><br><span class="line"><span class="class"> <span class="keyword">extends</span> <span class="title">AbstractList</span>&lt;<span class="title">E</span>&gt;</span></span><br><span class="line"><span class="class"> <span class="keyword">implements</span> <span class="title">List</span>&lt;<span class="title">E</span>&gt;, <span class="title">RandomAccess</span>, <span class="title">Cloneable</span>, <span class="title">java</span>.<span class="title">io</span>.<span class="title">Serializable</span></span></span><br></pre></td></tr></table></figure>
