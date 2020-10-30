@@ -17,7 +17,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://youngdonkey.cn/assets/Collection-Java%E9%9B%86%E5%90%88%E6%A1%86%E6%9E%B6-LinkedList/LinkedList%E5%BA%95%E5%B1%82%E7%BB%93%E6%9E%84%E5%9B%BE.jpg">
 <meta property="article:published_time" content="2020-10-21T14:02:54.000Z">
-<meta property="article:modified_time" content="2020-10-21T15:53:04.255Z">
+<meta property="article:modified_time" content="2020-10-30T09:59:21.717Z">
 <meta property="article:author" content="donkey_zwx">
 <meta property="article:tag" content="Java源码分析">
 <meta property="article:tag" content="Java集合框架">
@@ -183,7 +183,7 @@
 <li>链表 引入了 指针（或者 引用）的概念</li>
 </ul>
 <p><img src="http://youngdonkey.cn/assets/Collection-Java%E9%9B%86%E5%90%88%E6%A1%86%E6%9E%B6-LinkedList/LinkedList%E5%BA%95%E5%B1%82%E7%BB%93%E6%9E%84%E5%9B%BE.jpg" alt="LinkedList底层基本结构"></p>
-<h3 id="类注解说明"><a href="#类注解说明" class="headerlink" title="类注解说明"></a>类注解说明</h3><ul>
+<h3 id="类注释说明"><a href="#类注释说明" class="headerlink" title="类注释说明"></a>类注释说明</h3><ul>
 <li>双向链表实现list 和deque 并且可以操作 null</li>
 <li>LinkedList 是线程不安全的 如果多个线程池并发地访问一个链表 至少其中一个线程在 结构上修改链表 它必须外部同步（链表修改可以是任意操作：添加，删除一个或多个元素 但是 设置元素的值 不是结构修改）通常通过对链表进行封装来完成的</li>
 <li>推荐使用 Collections.synchronizedList 访问非同步链表  例子：List list = Collections.synchronizedList(new LinkedList(…));</li>
@@ -352,6 +352,15 @@
   
 <nav id="article-nav">
   
+    <a href="/2020/10/30/Collection-Java%E9%9B%86%E5%90%88%E6%A1%86%E6%9E%B6-Vector/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          Collection:Java集合框架-Vector
+        
+      </div>
+    </a>
+  
   
     <a href="/2020/10/21/Collection-Java%E9%9B%86%E5%90%88%E6%A1%86%E6%9E%B6-ArrayList/" id="article-nav-older" class="article-nav-link-wrap">
       <div class="article-nav-title">Collection:Java集合框架-ArrayList</div>
@@ -508,14 +517,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">面试题</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">流程图</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">分布式锁</a>
               </li>
              
@@ -524,11 +525,19 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">微服务</a>
+                <a href="javascript:void(0)" class="js-tag color4">面试题</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">流程图</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">多线程</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">微服务</a>
               </li>
              
               <li class="article-tag-list-item">
