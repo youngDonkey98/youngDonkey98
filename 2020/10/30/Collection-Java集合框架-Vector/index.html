@@ -16,7 +16,7 @@
 <meta property="og:description" content="Vector(基于JDK1.8)Vector 底层是由数组存储的 是java早期 list接口的 线程安全的 实现类   依赖关系123public class Vector&lt;E&gt; extends AbstractList&lt;E&gt; implements List&lt;E&gt;, RandomAccess, Cloneable, java.io.Serializable">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2020-10-30T09:48:04.000Z">
-<meta property="article:modified_time" content="2020-10-30T13:11:38.908Z">
+<meta property="article:modified_time" content="2020-10-31T00:53:33.010Z">
 <meta property="article:author" content="donkey_zwx">
 <meta property="article:tag" content="Java源码分析">
 <meta property="article:tag" content="Java集合框架">
@@ -180,7 +180,7 @@
 <h3 id="类注释说明"><a href="#类注释说明" class="headerlink" title="类注释说明"></a>类注释说明</h3><ol>
 <li>底层是个动态数组存储</li>
 <li>Vector底层使用 容量 和 容量增量(capacityIncrement) 来优化存储管理  容量大于等于Vector的size  Vector的存储以 容量增量大小增加  可以在插入大量组件前增加 size的容量 减少了增量重新分配的数量</li>
-<li>since：1.0</li>
+<li>since：1.2</li>
 </ol>
 <a id="more"></a>
 
@@ -467,14 +467,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">面试题</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">流程图</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">分布式锁</a>
               </li>
              
@@ -483,15 +475,23 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">面试题</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">流程图</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">随笔</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">微服务</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">多线程</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">随笔</a>
               </li>
             
             <div class="clearfix"></div>
