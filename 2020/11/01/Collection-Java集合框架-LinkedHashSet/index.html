@@ -6,17 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://example.com">
-  <title>Archives | 曾万鑫的博客</title>
+  <title>Collection:Java集合框架-LinkedHashSet | 曾万鑫的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="一个懂一点java皮毛的弟弟">
-<meta property="og:type" content="website">
-<meta property="og:title" content="曾万鑫的博客">
-<meta property="og:url" content="http://example.com/archives/page/2/index.html">
+  <meta name="description" content="LinkedHashSet(基于JDK1.8)LinkedHashSet依赖关系123public class LinkedHashSet&lt;E&gt;    extends HashSet&lt;E&gt;    implements Set&lt;E&gt;, Cloneable, java.io.Serializable &amp;#123;   类注释说明 LinkedHashSet 继承了H">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Collection:Java集合框架-LinkedHashSet">
+<meta property="og:url" content="http://example.com/2020/11/01/Collection-Java%E9%9B%86%E5%90%88%E6%A1%86%E6%9E%B6-LinkedHashSet/index.html">
 <meta property="og:site_name" content="曾万鑫的博客">
-<meta property="og:description" content="一个懂一点java皮毛的弟弟">
+<meta property="og:description" content="LinkedHashSet(基于JDK1.8)LinkedHashSet依赖关系123public class LinkedHashSet&lt;E&gt;    extends HashSet&lt;E&gt;    implements Set&lt;E&gt;, Cloneable, java.io.Serializable &amp;#123;   类注释说明 LinkedHashSet 继承了H">
 <meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2020-11-01T12:36:42.000Z">
+<meta property="article:modified_time" content="2020-11-01T14:44:44.717Z">
 <meta property="article:author" content="donkey_zwx">
-<meta property="article:tag" content="java,后端,zwx,ZWX,开发者,donkey,youngdonkey,donkey_zwx,youngDonkey_zwx,程序猿,程序媛,程序员,开发者">
+<meta property="article:tag" content="Java源码分析">
+<meta property="article:tag" content="Java集合框架">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternative" href="/atom.xml" title="曾万鑫的博客" type="application/atom+xml">
@@ -141,453 +144,186 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-Collection-Java集合框架-LinkedHashSet" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Collection:Java集合框架-LinkedHashSet
+    </h1>
+  
+
+        
+        <a href="/2020/11/01/Collection-Java%E9%9B%86%E5%90%88%E6%A1%86%E6%9E%B6-LinkedHashSet/" class="archive-article-date">
+  	<time datetime="2020-11-01T12:36:42.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-11-01</time>
+</a>
+        
+      </header>
     
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="LinkedHashSet-基于JDK1-8"><a href="#LinkedHashSet-基于JDK1-8" class="headerlink" title="LinkedHashSet(基于JDK1.8)"></a>LinkedHashSet(基于JDK1.8)</h2><h3 id="LinkedHashSet"><a href="#LinkedHashSet" class="headerlink" title="LinkedHashSet"></a>LinkedHashSet</h3><h3 id="依赖关系"><a href="#依赖关系" class="headerlink" title="依赖关系"></a>依赖关系</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">LinkedHashSet</span>&lt;<span class="title">E</span>&gt;</span></span><br><span class="line"><span class="class">    <span class="keyword">extends</span> <span class="title">HashSet</span>&lt;<span class="title">E</span>&gt;</span></span><br><span class="line"><span class="class">    <span class="keyword">implements</span> <span class="title">Set</span>&lt;<span class="title">E</span>&gt;, <span class="title">Cloneable</span>, <span class="title">java</span>.<span class="title">io</span>.<span class="title">Serializable</span> </span>&#123;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<h3 id="类注释说明"><a href="#类注释说明" class="headerlink" title="类注释说明"></a>类注释说明</h3><ul>
+<li>LinkedHashSet 继承了HashSet 但是 底层增加了 双向链表 所以 LinkedHashSet 是有序 并且 不重复的</li>
+<li>允许元素为null 基本操作 add contains remove 与 HashSet一样 如果哈希函数将元素散列到桶中 性能可能略低于 HashSet 因为增加了维护链表的开销 但是 有一个例外 在LinkedHashSet 上的迭代时间 与 集合大小成正比 不管其容量如何 而 HashSet 上的迭代 可能更长 需要的时间和 HashSet的容量 成正比</li>
+<li>影响性能的两个参数 初始容量  负载因子 对于LinkedHashSet 来说 初始容量选择过高值的后果要小于HashSet 因为 LinkedHashSet 迭代时间不受 容量 的影响</li>
+<li>LinkedHashSet 线程不安全的 需要外部同步 或者使用 Collections#synchronizedSet 例子：Set s = Collections.synchronizedSet(new LinkedHashSet(…));</li>
+<li>since：1.4</li>
+</ul>
+</blockquote>
+<a id="more"></a>
+
+<h3 id="构造器"><a href="#构造器" class="headerlink" title="构造器"></a>构造器</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">   <span class="comment">// 入参 初始容量 加载因子</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="title">LinkedHashSet</span><span class="params">(<span class="keyword">int</span> initialCapacity, <span class="keyword">float</span> loadFactor)</span> </span>&#123;</span><br><span class="line">      <span class="comment">// new HashSet(initialCapacity, loadFactor, true)</span></span><br><span class="line">       <span class="keyword">super</span>(initialCapacity, loadFactor, <span class="keyword">true</span>);</span><br><span class="line">   &#125;</span><br><span class="line">   </span><br><span class="line"><span class="comment">// 初始容量 默认 哈希因子0.75</span></span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="title">LinkedHashSet</span><span class="params">(<span class="keyword">int</span> initialCapacity)</span> </span>&#123;</span><br><span class="line">       <span class="comment">// new HashSet(initialCapacity, .75f, true)</span></span><br><span class="line">       <span class="keyword">super</span>(initialCapacity, .<span class="number">75f</span>, <span class="keyword">true</span>);</span><br><span class="line">   &#125;</span><br><span class="line">   </span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="title">LinkedHashSet</span><span class="params">()</span> </span>&#123;</span><br><span class="line">       <span class="keyword">super</span>(<span class="number">16</span>, .<span class="number">75f</span>, <span class="keyword">true</span>);</span><br><span class="line">   &#125;</span><br><span class="line">   </span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="title">LinkedHashSet</span><span class="params">(Collection&lt;? extends E&gt; c)</span> </span>&#123;</span><br><span class="line">       <span class="comment">// new HashSet(Math.max(2*c.size(), 11), .75f, true);</span></span><br><span class="line">       <span class="keyword">super</span>(Math.max(<span class="number">2</span>*c.size(), <span class="number">11</span>), .<span class="number">75f</span>, <span class="keyword">true</span>);</span><br><span class="line">       addAll(c);</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+
+
+
+
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
       
       
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2020" class="archive-year">2020</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/10/14/ES-ElasticSearch%E7%9A%84%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8%E4%B9%8BDSL/" class="archive-article-date">
-  	<time datetime="2020-10-14T11:51:31.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-10-14</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/10/14/ES-ElasticSearch%E7%9A%84%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8%E4%B9%8BDSL/">ES:ElasticSearch的基本使用之DSL</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">ElasticSearch</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">Java源码分析</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">搜索引擎</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">文档型数据库</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">Java集合框架</a>
         		</li>
       		
 		</ul>
 	</div>
 
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://example.com/2020/11/01/Collection-Java%E9%9B%86%E5%90%88%E6%A1%86%E6%9E%B6-LinkedHashSet/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/10/14/ES-ElasticSearch%E7%9A%84%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8/" class="archive-article-date">
-  	<time datetime="2020-10-14T08:18:40.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-10-14</time>
-</a>
+<nav id="article-nav">
+  
+  
+    <a href="/2020/11/01/Collection-Java%E9%9B%86%E5%90%88%E6%A1%86%E6%9E%B6-TreeSet/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Collection:Java集合框架-TreeSet</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
+        
+        
+    </div>
+</aside>
+
+
+
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/10/14/ES-ElasticSearch%E7%9A%84%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8/">ES:ElasticSearch的基本使用</a>
-    </h1>
+  
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">ElasticSearch</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">搜索引擎</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">文档型数据库</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/10/13/%E5%88%86%E5%B8%83%E5%BC%8F%E9%94%81%EF%BC%9A%E6%9C%89%E5%85%B3%E4%BA%8E%E5%88%86%E5%B8%83%E5%BC%8F%E9%94%81%E5%90%88%E9%9B%86-%E5%9B%9B/" class="archive-article-date">
-  	<time datetime="2020-10-13T09:26:12.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-10-13</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/10/13/%E5%88%86%E5%B8%83%E5%BC%8F%E9%94%81%EF%BC%9A%E6%9C%89%E5%85%B3%E4%BA%8E%E5%88%86%E5%B8%83%E5%BC%8F%E9%94%81%E5%90%88%E9%9B%86-%E5%9B%9B/">分布式锁：有关于分布式锁合集(四)</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">redis</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">分布式锁</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">NoSQL</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/10/13/%E5%88%86%E5%B8%83%E5%BC%8F%E9%94%81%EF%BC%9A%E6%9C%89%E5%85%B3%E4%BA%8E%E5%88%86%E5%B8%83%E5%BC%8F%E9%94%81%E5%90%88%E9%9B%86-%E4%B8%89/" class="archive-article-date">
-  	<time datetime="2020-10-13T08:14:13.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-10-13</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/10/13/%E5%88%86%E5%B8%83%E5%BC%8F%E9%94%81%EF%BC%9A%E6%9C%89%E5%85%B3%E4%BA%8E%E5%88%86%E5%B8%83%E5%BC%8F%E9%94%81%E5%90%88%E9%9B%86-%E4%B8%89/">分布式锁：有关于分布式锁合集(三)</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">redis</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">分布式锁</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">NoSQL</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/10/12/%E5%88%86%E5%B8%83%E5%BC%8F%E9%94%81%EF%BC%9A%E6%9C%89%E5%85%B3%E4%BA%8E%E5%88%86%E5%B8%83%E5%BC%8F%E9%94%81%E5%90%88%E9%9B%86-%E4%BA%8C/" class="archive-article-date">
-  	<time datetime="2020-10-12T15:15:18.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-10-12</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/10/12/%E5%88%86%E5%B8%83%E5%BC%8F%E9%94%81%EF%BC%9A%E6%9C%89%E5%85%B3%E4%BA%8E%E5%88%86%E5%B8%83%E5%BC%8F%E9%94%81%E5%90%88%E9%9B%86-%E4%BA%8C/">分布式锁：有关于分布式锁合集(二)</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">redis</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">分布式锁</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">NoSQL</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/10/12/%E5%88%86%E5%B8%83%E5%BC%8F%E9%94%81%EF%BC%9A%E6%9C%89%E5%85%B3%E4%BA%8E%E5%88%86%E5%B8%83%E5%BC%8F%E9%94%81%E5%90%88%E9%9B%86-%E4%B8%80/" class="archive-article-date">
-  	<time datetime="2020-10-12T11:45:47.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-10-12</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/10/12/%E5%88%86%E5%B8%83%E5%BC%8F%E9%94%81%EF%BC%9A%E6%9C%89%E5%85%B3%E4%BA%8E%E5%88%86%E5%B8%83%E5%BC%8F%E9%94%81%E5%90%88%E9%9B%86-%E4%B8%80/">分布式锁：有关于分布式锁合集(一)</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">redis</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">分布式锁</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">NoSQL</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/10/12/Redis-%E5%9F%BA%E6%9C%AC%E7%9F%A5%E8%AF%86(%E4%B8%80)/" class="archive-article-date">
-  	<time datetime="2020-10-12T08:19:40.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-10-12</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/10/12/Redis-%E5%9F%BA%E6%9C%AC%E7%9F%A5%E8%AF%86(%E4%B8%80)/">Redis:基本知识(一)</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">redis</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/10/11/JUC-%E6%9C%89%E5%85%B3%E4%BA%8E%E7%BA%BF%E7%A8%8B%E7%9A%84%E4%B8%80%E4%BA%9B%E5%B0%8F%E4%B8%9C%E8%A5%BF/" class="archive-article-date">
-  	<time datetime="2020-10-11T15:51:47.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-10-11</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/10/11/JUC-%E6%9C%89%E5%85%B3%E4%BA%8E%E7%BA%BF%E7%A8%8B%E7%9A%84%E4%B8%80%E4%BA%9B%E5%B0%8F%E4%B8%9C%E8%A5%BF/">JUC:有关于线程的一些小东西</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">JUC</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/10/11/%E5%BE%AE%E6%9C%8D%E5%8A%A1%EF%BC%9Afeign%E8%BF%9C%E7%A8%8B%E8%B0%83%E7%94%A8/" class="archive-article-date">
-  	<time datetime="2020-10-11T11:51:57.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-10-11</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/10/11/%E5%BE%AE%E6%9C%8D%E5%8A%A1%EF%BC%9Afeign%E8%BF%9C%E7%A8%8B%E8%B0%83%E7%94%A8/">微服务：feign远程调用</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">微服务</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/10/11/%E7%BB%88%E4%BA%8E%E6%9C%89%E4%BA%86%E8%87%AA%E5%B7%B1%E7%9A%84%E5%8D%9A%E5%AE%A2/" class="archive-article-date">
-  	<time datetime="2020-10-10T17:43:07.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-10-11</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/10/11/%E7%BB%88%E4%BA%8E%E6%9C%89%E4%BA%86%E8%87%AA%E5%B7%B1%E7%9A%84%E5%8D%9A%E5%AE%A2/">终于有了自己的博客</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">随笔</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
-
-    
-    <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/archives/">&amp;laquo; Prev</a><a class="page-number" href="/archives/">1</a><span class="page-number current">2</span>
-    </nav>
   
 
 
@@ -611,8 +347,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,
