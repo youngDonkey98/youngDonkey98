@@ -143,6 +143,119 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-ES-ElasticSearch的基本使用" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/10/14/ES-ElasticSearch%E7%9A%84%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8/">ES:ElasticSearch的基本使用</a>
+    </h1>
+  
+
+        
+        <a href="/2020/10/14/ES-ElasticSearch%E7%9A%84%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8/" class="archive-article-date">
+  	<time datetime="2020-10-14T08:18:40.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-10-14</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h4 id="文本-主要是记录一些-有关于ElasticSearch的入门的使用"><a href="#文本-主要是记录一些-有关于ElasticSearch的入门的使用" class="headerlink" title="文本 主要是记录一些 有关于ElasticSearch的入门的使用"></a>文本 主要是记录一些 有关于ElasticSearch的入门的使用</h4><br>
+
+<h3 id="是什么？"><a href="#是什么？" class="headerlink" title="是什么？"></a>是什么？</h3><blockquote>
+<ul>
+<li>ElasticSearch 简称 ES  是一个 <strong>开源的 高扩展的 分布式 全文检索 引擎</strong></li>
+<li>可以 <strong><em>近乎实时</em></strong>  的 存储 检索 数据 本身扩展性很好 可扩展到 上百台 服务器 处理 PB 级别的数据</li>
+<li>ElasticSearch 可以使用 Java开发 并使用  Lucene【注:1】作为其核心 来实现 所有 检索 和 搜索的功能 但是 它(ElasticSearch)的目的 是通过 简单的 RESTful API 来隐藏 Lucene 的 复杂性 从而 让 全文搜索变得简单</li>
+</ul>
+</blockquote>
+<h3 id="ElasticSearch-和-Solr-的-对比"><a href="#ElasticSearch-和-Solr-的-对比" class="headerlink" title="ElasticSearch 和 Solr 的 对比"></a>ElasticSearch 和 Solr 的 对比</h3><blockquote>
+<ul>
+<li>上面说到了 目前常见的 两款 搜索引擎服务软件 接下来说说两者的区别</li>
+</ul>
+<blockquote>
+<ul>
+<li>Solr <strong>利用Zookeeper</strong>  进行 分布式 管理  而 <strong>ElasticSearch 自身</strong>  带有 分布式 协调 管理功能</li>
+<li>Solr 支持 更多格式的数据  而 ElasticSearch 仅仅支持 JSON文件格式</li>
+<li>Solr 官方提供 的功能更多  而 ElasticSearch  本身更注重于核心功能  高级功能多由 第三方 插件提供</li>
+<li>Solr 在 传统的搜索 应用中表现 <strong>好于</strong> ElasticSearch  但 在处理 <strong>实时搜索</strong>  应用时 效率 <strong>明显低于</strong> ElasticSearch </li>
+</ul>
+</blockquote>
+</blockquote>
+<h3 id="应用场景"><a href="#应用场景" class="headerlink" title="应用场景"></a>应用场景</h3><blockquote>
+<ul>
+<li>为 用户 提供 按 <strong><em>关键字</em></strong>  查询 的 <strong><em>全文搜索功能</em></strong></li>
+<li>著名的ELK框架(<strong>ElasticSearch</strong>,<strong>Logstash</strong>,<strong>Kibana</strong>【注:2】)  <strong><em>实现企业海量日志的 处理 分析 的解决方案</em></strong>  是  <strong>大数据</strong>   领域的重要一份子</li>
+<li>分析用户的行为 精准营销 例如：用户鼠标在哪个商品上 图片上的停留时间 对商品的点击量 查看评论的条数</li>
+</ul>
+</blockquote>
+<br>
+        
+          <a class="article-more-a" href="/2020/10/14/ES-ElasticSearch%E7%9A%84%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">ElasticSearch</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">搜索引擎</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">文档型数据库</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/10/14/ES-ElasticSearch%E7%9A%84%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-分布式锁：有关于分布式锁合集-四" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
