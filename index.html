@@ -143,6 +143,99 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-Collection-Java集合框架-HashSet" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/11/01/Collection-Java%E9%9B%86%E5%90%88%E6%A1%86%E6%9E%B6-HashSet/">Collection:Java集合框架-HashSet</a>
+    </h1>
+  
+
+        
+        <a href="/2020/11/01/Collection-Java%E9%9B%86%E5%90%88%E6%A1%86%E6%9E%B6-HashSet/" class="archive-article-date">
+  	<time datetime="2020-11-01T06:00:57.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-11-01</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="HashSet-基于JDK1-8"><a href="#HashSet-基于JDK1-8" class="headerlink" title="HashSet(基于JDK1.8)"></a>HashSet(基于JDK1.8)</h2><h3 id="HashSet"><a href="#HashSet" class="headerlink" title="HashSet"></a>HashSet</h3><ul>
+<li>Set 接口的实现类之一</li>
+<li>底层实现基于HashMap</li>
+</ul>
+<blockquote>
+<h3 id="依赖关系"><a href="#依赖关系" class="headerlink" title="依赖关系"></a>依赖关系</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">HashSet</span>&lt;<span class="title">E</span>&gt;</span></span><br><span class="line"><span class="class">    <span class="keyword">extends</span> <span class="title">AbstractSet</span>&lt;<span class="title">E</span>&gt;</span></span><br><span class="line"><span class="class">    <span class="keyword">implements</span> <span class="title">Set</span>&lt;<span class="title">E</span>&gt;, <span class="title">Cloneable</span>, <span class="title">java</span>.<span class="title">io</span>.<span class="title">Serializable</span></span></span><br></pre></td></tr></table></figure>
+
+<h3 id="类注解"><a href="#类注解" class="headerlink" title="类注解"></a>类注解</h3><ul>
+<li>HashSet 实现了Set接口 由一个哈希表(实际上是HashMap)支持 不能保证集合的迭代顺序 特别是 不能保证顺序随时间 保持不变 这个类允许null元素</li>
+<li>HashSet 的 add remove contains size 等方法 每次操作的时间是一定的 不会随着数据量增大而改变 即：在不考虑哈希冲突的情况下 时间复杂度为O(1) </li>
+<li>HashSet 遍历的时间 与 size 和 capacity的总和 成正比 如果迭代性能很重要 那么不要将初始容量设置的太高（或者 负载系数 设置的太低）</li>
+<li>HashSet 是线程不安全的 需要在外部实现同步 或者使用  Collections#synchronizedSet 例子：Set s = Collections.synchronizedSet(new HashSet(…));</li>
+<li>since：1.2</li>
+</ul></blockquote>
+        
+          <a class="article-more-a" href="/2020/11/01/Collection-Java%E9%9B%86%E5%90%88%E6%A1%86%E6%9E%B6-HashSet/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">Java源码分析</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">Java集合框架</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/11/01/Collection-Java%E9%9B%86%E5%90%88%E6%A1%86%E6%9E%B6-HashSet/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-Collection-Java集合框架-Vector" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -1056,98 +1149,6 @@
 
 
   
-    <article id="post-分布式锁：有关于分布式锁合集-四" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/10/13/%E5%88%86%E5%B8%83%E5%BC%8F%E9%94%81%EF%BC%9A%E6%9C%89%E5%85%B3%E4%BA%8E%E5%88%86%E5%B8%83%E5%BC%8F%E9%94%81%E5%90%88%E9%9B%86-%E5%9B%9B/">分布式锁：有关于分布式锁合集(四)</a>
-    </h1>
-  
-
-        
-        <a href="/2020/10/13/%E5%88%86%E5%B8%83%E5%BC%8F%E9%94%81%EF%BC%9A%E6%9C%89%E5%85%B3%E4%BA%8E%E5%88%86%E5%B8%83%E5%BC%8F%E9%94%81%E5%90%88%E9%9B%86-%E5%9B%9B/" class="archive-article-date">
-  	<time datetime="2020-10-13T09:26:12.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-10-13</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="本片文章为-分布式锁-相关的系列文章"><a href="#本片文章为-分布式锁-相关的系列文章" class="headerlink" title="本片文章为  分布式锁   相关的系列文章"></a>本片文章为  <strong><em>分布式锁</em></strong>   相关的系列文章</h3><p>​    本系列文章  将从  缓存的使用   <strong>本地锁 **  一直写到  **分布式锁</strong>   以及相关的一些 知识点 问题</p>
-<br>
-
-<h3 id="上一篇文章说明了八种Redisson-分布式锁和同步器的基本用法-本章将详细讲解如何使用Redisson做分布式锁"><a href="#上一篇文章说明了八种Redisson-分布式锁和同步器的基本用法-本章将详细讲解如何使用Redisson做分布式锁" class="headerlink" title="上一篇文章说明了八种Redisson 分布式锁和同步器的基本用法 本章将详细讲解如何使用Redisson做分布式锁"></a>上一篇文章说明了八种Redisson 分布式锁和同步器的基本用法 本章将详细讲解如何使用Redisson做分布式锁</h3><p><del><a target="_blank" rel="noopener" href="https://youngdonkey.cn/2020/10/13/%E5%88%86%E5%B8%83%E5%BC%8F%E9%94%81%EF%BC%9A%E6%9C%89%E5%85%B3%E4%BA%8E%E5%88%86%E5%B8%83%E5%BC%8F%E9%94%81%E5%90%88%E9%9B%86-%E4%B8%89/"><code>上一篇文章：“分布式锁：有关于分布式锁集合（三）”</code></a></del></p>
-<br>
-
-<h3 id="Redisson-的-快速入门"><a href="#Redisson-的-快速入门" class="headerlink" title="Redisson 的 快速入门"></a>Redisson 的 快速入门</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 1. Create config object</span></span><br><span class="line"><span class="comment">// 创建一个配置类对象 （那么我前面肯定就现需要有一个配置类或者配置文件）</span></span><br><span class="line">Config config = <span class="keyword">new</span> Config();</span><br><span class="line">config.useClusterServers()</span><br><span class="line">       <span class="comment">// use &quot;rediss://&quot; for SSL connection</span></span><br><span class="line">      .addNodeAddress(<span class="string">&quot;redis://127.0.0.1:7181&quot;</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// or read config from file</span></span><br><span class="line"><span class="comment">// 配置信息 可以 通过 配置文件获取</span></span><br><span class="line">config = Config.fromYAML(<span class="keyword">new</span> File(<span class="string">&quot;config-file.yaml&quot;</span>)); </span><br></pre></td></tr></table></figure>
-
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 2. Create Redisson instance</span></span><br><span class="line"><span class="comment">// 创建Redisson实例对象</span></span><br><span class="line"><span class="comment">// Sync and Async API</span></span><br><span class="line"><span class="comment">// 使用静态 非静态的 api方法</span></span><br><span class="line">RedissonClient redisson = Redisson.create(config);</span><br><span class="line"></span><br><span class="line"><span class="comment">// Reactive API</span></span><br><span class="line">RedissonReactiveClient redissonReactive = Redisson.createReactive(config);</span><br><span class="line"></span><br><span class="line"><span class="comment">// RxJava2 API</span></span><br><span class="line">RedissonRxClient redissonRx = Redisson.createRx(config);</span><br></pre></td></tr></table></figure>
-        
-          <a class="article-more-a" href="/2020/10/13/%E5%88%86%E5%B8%83%E5%BC%8F%E9%94%81%EF%BC%9A%E6%9C%89%E5%85%B3%E4%BA%8E%E5%88%86%E5%B8%83%E5%BC%8F%E9%94%81%E5%90%88%E9%9B%86-%E5%9B%9B/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">redis</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">分布式锁</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">NoSQL</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/10/13/%E5%88%86%E5%B8%83%E5%BC%8F%E9%94%81%EF%BC%9A%E6%9C%89%E5%85%B3%E4%BA%8E%E5%88%86%E5%B8%83%E5%BC%8F%E9%94%81%E5%90%88%E9%9B%86-%E5%9B%9B/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
       <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">Next &amp;raquo;</a>
@@ -1289,7 +1290,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">随笔</a>
+                <a href="javascript:void(0)" class="js-tag color4">多线程</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1297,7 +1298,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">多线程</a>
+                <a href="javascript:void(0)" class="js-tag color3">随笔</a>
               </li>
             
             <div class="clearfix"></div>
