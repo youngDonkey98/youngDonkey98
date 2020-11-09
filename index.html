@@ -143,6 +143,140 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-JUC：读写锁" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/11/09/JUC%EF%BC%9A%E8%AF%BB%E5%86%99%E9%94%81/">JUC：读写锁</a>
+    </h1>
+  
+
+        
+        <a href="/2020/11/09/JUC%EF%BC%9A%E8%AF%BB%E5%86%99%E9%94%81/" class="archive-article-date">
+  	<time datetime="2020-11-09T11:54:08.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-11-09</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="本文主要说明读写锁-及其相关-内容"><a href="#本文主要说明读写锁-及其相关-内容" class="headerlink" title="本文主要说明读写锁 及其相关 内容"></a>本文主要说明读写锁 及其相关 内容</h3><h2 id="锁的类型"><a href="#锁的类型" class="headerlink" title="锁的类型"></a>锁的类型</h2><blockquote>
+<ul>
+<li>悲观锁：<ul>
+<li>它认为 它在操作数据的时候 其他人都会改动数据 所有直接加锁<ul>
+<li>关系型数据库 ： mysql oracle</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>乐观锁：<ul>
+<li>它认为 它在操作数据的时候 其他人都不会改动数据 只有在提交的时候 （通过版本号来 更新数据的版本）<ul>
+<li>非关系型数据库：redis</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>行锁：<ul>
+<li>范围小 容易发生死锁</li>
+</ul>
+</li>
+<li>表锁：<ul>
+<li>范围大</li>
+</ul>
+</li>
+<li>读锁：<ul>
+<li>共享锁</li>
+</ul>
+</li>
+<li>写锁：<ul>
+<li>排他锁（对象锁）</li>
+</ul>
+</li>
+<li>读写锁（ JUC 并发工具类中提供的 ReentrantReadWriteLock ）<ul>
+<li>等线程写完之后，才能另一个线程写入数据</li>
+<li>ReentrantReadWriteLock 类中有 两个静态内部类<ul>
+<li>public  static class ReadLock implements Lock, java.io.Serializable</li>
+<li>public  static class WriteLock implements Lock, java.io.Serializable</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">   <span class="comment">/**</span></span><br><span class="line"><span class="comment">    * The lock returned by method &#123;<span class="doctag">@link</span> ReentrantReadWriteLock#readLock&#125;.</span></span><br><span class="line"><span class="comment">    */</span></span><br><span class="line">   <span class="keyword">public</span> <span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">ReadLock</span> <span class="keyword">implements</span> <span class="title">Lock</span>, <span class="title">java</span>.<span class="title">io</span>.<span class="title">Serializable</span> </span>&#123;</span><br><span class="line">       <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">long</span> serialVersionUID = -<span class="number">5992448646407690164L</span>;</span><br><span class="line">       <span class="keyword">private</span> <span class="keyword">final</span> Sync sync;</span><br><span class="line">       ...</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">   <span class="comment">/**</span></span><br><span class="line"><span class="comment">    * The lock returned by method &#123;<span class="doctag">@link</span> ReentrantReadWriteLock#writeLock&#125;.</span></span><br><span class="line"><span class="comment">    */</span></span><br><span class="line">   <span class="keyword">public</span> <span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">WriteLock</span> <span class="keyword">implements</span> <span class="title">Lock</span>, <span class="title">java</span>.<span class="title">io</span>.<span class="title">Serializable</span> </span>&#123;</span><br><span class="line">       <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">long</span> serialVersionUID = -<span class="number">4992448646407690164L</span>;</span><br><span class="line">       <span class="keyword">private</span> <span class="keyword">final</span> Sync sync;</span><br><span class="line">       ...</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+</blockquote>
+<h3 id="读写锁使用Demo"><a href="#读写锁使用Demo" class="headerlink" title="读写锁使用Demo"></a>读写锁使用Demo</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 缓存。。。。资源类</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyCache</span></span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 声明一个map</span></span><br><span class="line">    <span class="keyword">private</span> HashMap map = <span class="keyword">new</span> HashMap();</span><br><span class="line">    <span class="comment">// 声明一个读写锁对象</span></span><br><span class="line">    <span class="keyword">final</span> ReentrantReadWriteLock rwl = <span class="keyword">new</span> ReentrantReadWriteLock();</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 声明写入方法</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">set</span><span class="params">(String key,String value)</span></span>&#123;</span><br><span class="line">        <span class="comment">// 上锁</span></span><br><span class="line">        rwl.writeLock().lock();</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            <span class="comment">// 提示正在写入数据</span></span><br><span class="line">            System.out.println(Thread.currentThread().getName()+<span class="string">&quot;\t 正在写&quot;</span>+key);</span><br><span class="line">            <span class="comment">// 稍微睡一会</span></span><br><span class="line">            <span class="keyword">try</span> &#123;</span><br><span class="line">                TimeUnit.MILLISECONDS.sleep(<span class="number">500</span>);</span><br><span class="line">            &#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line">                e.printStackTrace();</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="comment">// 调用map 方法</span></span><br><span class="line">            map.put(key,value);</span><br><span class="line">            <span class="comment">// 提示用户已经写入完成</span></span><br><span class="line">            System.out.println(Thread.currentThread().getName()+<span class="string">&quot;\t 写完了&quot;</span>+key);</span><br><span class="line">        &#125; <span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125; <span class="keyword">finally</span> &#123;</span><br><span class="line">            rwl.writeLock().unlock();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 声明读方法</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Object <span class="title">get</span><span class="params">(String key)</span></span>&#123;</span><br><span class="line">        <span class="comment">// 声明对象</span></span><br><span class="line">        Object object = <span class="keyword">null</span>;</span><br><span class="line">        <span class="comment">// 上锁</span></span><br><span class="line">        rwl.readLock().lock();</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            <span class="comment">// 提示谁谁获取数据</span></span><br><span class="line">            System.out.println(Thread.currentThread().getName()+<span class="string">&quot;\t 正在读&quot;</span>+key);</span><br><span class="line">            <span class="comment">// 获取map 数据</span></span><br><span class="line">            object = map.get(key);</span><br><span class="line">            <span class="comment">// 提示读取数据完成</span></span><br><span class="line">            System.out.println(Thread.currentThread().getName()+<span class="string">&quot;\t 读完了&quot;</span>+object);</span><br><span class="line">        &#125; <span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125; <span class="keyword">finally</span> &#123;</span><br><span class="line">            rwl.readLock().unlock();</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// 返回数据</span></span><br><span class="line">        <span class="keyword">return</span> object;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ReadWriteLockDemo</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        <span class="comment">// 声明一个map 集合，在map 集合中 添加数据，获取数据。</span></span><br><span class="line">        <span class="comment">// 使用多线程的方式来调用方法。</span></span><br><span class="line">        <span class="comment">// 线程操作资源类</span></span><br><span class="line">        MyCache myCache = <span class="keyword">new</span> MyCache();</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 创建线程 调用写数据方法</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; <span class="number">5</span>; i++) &#123;</span><br><span class="line">            <span class="comment">// 将i 复制给 num</span></span><br><span class="line">            <span class="keyword">int</span> num = i;</span><br><span class="line">            <span class="keyword">new</span> Thread(()-&gt;&#123;</span><br><span class="line">                <span class="comment">// 放入的数据key，value 都是num</span></span><br><span class="line">                myCache.set(num+<span class="string">&quot;&quot;</span>,num+<span class="string">&quot;&quot;</span>);</span><br><span class="line">            &#125;,String.valueOf(i)).start();</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// 创建线程 调用读数据方法</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; <span class="number">5</span>; i++) &#123;</span><br><span class="line">            <span class="comment">// 将i 复制给 num</span></span><br><span class="line">            <span class="keyword">int</span> num = i;</span><br><span class="line">            <span class="keyword">new</span> Thread(()-&gt;&#123;</span><br><span class="line">                <span class="comment">// 放入的数据key，value 都是num</span></span><br><span class="line">                myCache.get(num+<span class="string">&quot;&quot;</span>);</span><br><span class="line">            &#125;,String.valueOf(i)).start();</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 总结： 等线程写完之后，才能另一个线程写入数据！</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<p>​    </p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">JUC</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">锁的类型</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">读写锁</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/11/09/JUC%EF%BC%9A%E8%AF%BB%E5%86%99%E9%94%81/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-Map-Java集合框架-HashMap" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -1018,97 +1152,6 @@
 
 
   
-    <article id="post-生产者消费者问题" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/10/18/%E7%94%9F%E4%BA%A7%E8%80%85%E6%B6%88%E8%B4%B9%E8%80%85%E9%97%AE%E9%A2%98/">生产者消费者问题</a>
-    </h1>
-  
-
-        
-        <a href="/2020/10/18/%E7%94%9F%E4%BA%A7%E8%80%85%E6%B6%88%E8%B4%B9%E8%80%85%E9%97%AE%E9%A2%98/" class="archive-article-date">
-  	<time datetime="2020-10-18T12:39:52.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-10-18</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="生产者-消费者-问题"><a href="#生产者-消费者-问题" class="headerlink" title="生产者/消费者 问题"></a>生产者/消费者 问题</h3><h2 id="生产者-消费者-问题-是线程模型中的经典问题"><a href="#生产者-消费者-问题-是线程模型中的经典问题" class="headerlink" title="生产者 / 消费者 问题 是线程模型中的经典问题"></a>生产者 / 消费者 问题 是线程模型中的经典问题</h2><h4 id="问题概述（为什么？）："><a href="#问题概述（为什么？）：" class="headerlink" title="问题概述（为什么？）："></a>问题概述（为什么？）：</h4><p>​    生产者 和 消费者 在<strong>同一时间段</strong>内 <strong>共用</strong> <strong>同一个存储空间</strong> 如果不加以协调 可能出现以下情况 存储空间已满 而生产者占用着它 消费者等待着 生产者 让出资源 从而去除产品 而 生产者 等待着 消费者 去消费产品 从而向空间中 新增产品  <strong><em>相互等待 产生死锁</em></strong></p>
-<h4 id="产什么死锁的四个必要条件："><a href="#产什么死锁的四个必要条件：" class="headerlink" title="产什么死锁的四个必要条件："></a>产什么死锁的四个必要条件：</h4><ul>
-<li>互斥条件 ： 一个资源一次只能被一个线程使用</li>
-<li>请求与保持条件： 一个线程因请求资源 而 阻塞时 对已经获得的资源 保持 不放</li>
-<li>不剥夺条件： 线程已经获得资源 在未使用完后之前 不能强行剥夺</li>
-<li>循环等待条件：若干线程之间 形成一种 头尾相接的 循环等待资源关系</li>
-<li>上述问题简而言之：同一时刻 统一资源 被两个线程(多个线程)使用 并且 两个线程相互等待对方执行结束 从而释放资源 另一方 接着使用 共享资源</li>
-</ul>
-        
-          <a class="article-more-a" href="/2020/10/18/%E7%94%9F%E4%BA%A7%E8%80%85%E6%B6%88%E8%B4%B9%E8%80%85%E9%97%AE%E9%A2%98/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">JUC</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">面试题</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">多线程</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/10/18/%E7%94%9F%E4%BA%A7%E8%80%85%E6%B6%88%E8%B4%B9%E8%80%85%E9%97%AE%E9%A2%98/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
       <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/2/">Next &amp;raquo;</a>
@@ -1226,11 +1269,19 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">redis</a>
+                <a href="javascript:void(0)" class="js-tag color4">JUC</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">JUC</a>
+                <a href="javascript:void(0)" class="js-tag color5">锁的类型</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">读写锁</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">redis</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1250,7 +1301,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">随笔</a>
+                <a href="javascript:void(0)" class="js-tag color4">微服务</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1258,7 +1309,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">微服务</a>
+                <a href="javascript:void(0)" class="js-tag color3">随笔</a>
               </li>
             
             <div class="clearfix"></div>
