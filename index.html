@@ -193,94 +193,10 @@
 </li>
 </ul>
 </li>
-<li>Sun 公司的 HotSpot VM<ul>
-<li>HotSpot 历史<ul>
-<li>最初由一家名为 “ Longview Technologies ” 的小公司设计</li>
-<li>1997年 被 Sun收购 ，2009年 Sun 被甲骨文收购</li>
-<li>JDK1.3时，HotSpot VM成为默认虚拟机</li>
-</ul>
-</li>
-<li>目前**HotSpot 占有绝对的市场地位 **<ul>
-<li>现在广泛使用的JDK版本 ，默认的虚拟机都是 HotSpot</li>
-<li>Oracle JDK / Open JDK 默认虚拟机都是 HotSpot</li>
-</ul>
-</li>
-<li>从服务器，桌面到移动端，嵌入式都有应用<ul>
-<li>通过计数器找到最具编译价值代码，触发即时编译或栈上替换</li>
-<li>通过编译器与解释器协同工作，在最优化的程序响应时间与最佳执行性能中取得平衡</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>BEA 的 JRockit<ul>
-<li><strong>专注于服务器应用</strong><ul>
-<li>不太关注程序启动速度，因此 内部不包含解析器 全部代码都靠即时编译器编译后执行</li>
-</ul>
-</li>
-<li>JRockit JVM 是世界上最快的 JVM</li>
-<li>优势：全面的 Java 运行时解决方案组合<ul>
-<li>JRockit 面向延迟敏感型应用的解决方案 JRockit Real Time 提供毫秒级或 为微秒级的JVM响应时间，适合财务，军事指挥，电信网络的需要</li>
-<li>MissionControl 服务套件，它是一组以极低的开销来监控，管理和分析生产环境中的应用程序的工具</li>
-</ul>
-</li>
-<li>2008年 BEA 被 Oracle收购</li>
-<li>Oracle表达了整合两大优秀虚拟机的工作，大致在JDK8完成。整合的方式：在HotSpot的基础上，移植JRockit的优秀特性</li>
-</ul>
-</li>
-<li>IBM 的 J9<ul>
-<li>全称：IBM Technology for Java Virtual Machine 简称 IT4J ，内部代号：J9</li>
-<li>市场定位与HotSpot接近，服务器端，桌面应用，嵌入式等多用途VM</li>
-<li>广泛用于IBM的各种 Java产品</li>
-<li>目前，<strong>有影响力的三大商用虚拟机之一</strong> ，也号称是世界上最快的虚拟机</li>
-<li>2017年左右，IBM发布了开源 J9 VM 命名为 OpenJ9 ，交给Ecplise基金会管理，也称为Eclipse Open J9</li>
-</ul>
-</li>
-<li>KVM 和 CDC / CLDC HotSpot<ul>
-<li>Oracle 在 Java ME 产品线上的两款虚拟机为：CDC / CLDC HotSpot Implementation VM</li>
-<li>KVM (Kilobyte) 是CLDC-HI 早期产品</li>
-<li>目前移动领域地位尴尬，智能手机被Android和IOS二分天下</li>
-<li>KVM简单，轻量，高度可移植性，而向更低端的设备上还维持自己的一片市场<ul>
-<li>智能遥控器，传感器</li>
-<li>老人手机，经济欠发达地区的功能手机</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>Azul VM<ul>
-<li>前面三款 ”高性能 Java 虚拟机“ 使用在通用硬件平台上</li>
-<li>Azul VM 和 BEA Liquid VM 是 <strong><em>与特定平台绑定，软硬件配合使用的专有虚拟机</em></strong><ul>
-<li>高性能虚拟机中的战斗机</li>
-</ul>
-</li>
-<li>Azul VM 是 Azul Systems公司在 HotSpot基础上进行大量改造，运行于 Azul Systems公司的专有硬件 Vega系统上的 Java 虚拟机</li>
-<li><strong>每个 Azul VM 实例都可以管理至少数十个 CPU和数百GB内存的硬件资源，并提供在巨大内存范围内实现可控的GC时间的垃圾回收器，专有硬件优化的线程调度等优秀特性</strong></li>
-<li>2010年 ，Azul Systems公司开始从硬件转向软件，发布了自己的 Zing JVM，可以在通用x86平台上提供接近于Vega系统的特性</li>
-</ul>
-</li>
-<li>Liquid VM<ul>
-<li>高性能虚拟机中的战斗机</li>
-<li>BEA 公司开发的 直接运行在自家 Hypervisor 系统上</li>
-<li>Liquid VM 即时现在的 JRockit VE （ Virtual Edition ）, Liquid VM 不需要操作系统的支持，或者说它本身自己实现了一个专用操作系统的必要功能，如线程调度，文件系统，网络支持等</li>
-<li>随着 JRockit 虚拟机中止开发 ，Liquid VM项目也停止了</li>
-</ul>
-</li>
-<li>Apache Harmony<ul>
-<li>Apache 也曾经退出过与 JDK1.5和JDK1.6兼容的 Java运行平台 Apache Harmony</li>
-<li>它是 IBM和Intel联合开发的开源 JVM ，受到同样开源的 OpenJDK 的压制，Sun坚决不让Harmony获得 JCP 认证，最终于2011年退役，IBM转而参与 OpenJDK</li>
-<li>虽然目前没有Apache Harmony被大规模商用的案例，但是它的 Java类库代码吸纳进了Android SDK</li>
-</ul>
-</li>
-<li><strong><em>Graal VM</em></strong><ul>
-<li>2018.04，Oracle Labs 公开了 Graal VM，号称 “Run Programs Faster Anywhere ”，野心勃勃。与1995年的 Java的 “ write once ，run anywhere ”遥相呼应</li>
-<li>Graal VM 在 HotSpot VM 基础上增强而成的 <strong>跨语言全栈虚拟机，可以作为 “任何语言” 的运行平台使用</strong> 语言包括：Java，Scala，Groovy，Kotlin；C，C++，JavaScript，Ruby，Python，R 等</li>
-<li>支持不同语言中 混用对方的接口和对象，支持这些语言使用已经编写好的本地库文件</li>
-<li>工作原理是将这些语言的源代码或源代码编译后的中间格式，通过解释器转换为能被Graal VM 接受的中间表示。Graal VM 提供 Truffle 工具集快速构建面向一种新语言的解释器。在运行时还能进行即时编译优化，获得比原生编译器更优秀的执行效率</li>
-<li>如果HotSpot被替代，Graal VM希望最大。</li>
-</ul>
-</li>
-</ul>
-</blockquote>
-
+</ul></blockquote>
+        
+          <a class="article-more-a" href="/2021/05/27/JVM%E5%9F%BA%E6%9C%AC%E7%9F%A5%E8%AF%8602/#more">more >></a>
+        
       
 
       
